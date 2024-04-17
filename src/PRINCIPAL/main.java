@@ -4,21 +4,18 @@
  */
 package PRINCIPAL;
 
+import dao.ConexionDB;
 import vista.Login;
 
-/**
- *
- * @author Victor
- */
+
 public class main {
 
-    /**
-     * @param args the command line arguments
-     */
+ 
     public static void main(String[] args) {
      Login log = new Login();
      log.setVisible(true);
      log.setLocationRelativeTo(null);
+     ConexionDB cnx = new ConexionDB();
     }
     
 }
