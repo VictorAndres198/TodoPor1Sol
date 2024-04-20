@@ -16,7 +16,8 @@ public class main {
      log.setVisible(true);
      log.setLocationRelativeTo(null);
      ConexionDB cnx = new ConexionDB();
-     //hola
+     //hola2
+     
     }
     
 }
