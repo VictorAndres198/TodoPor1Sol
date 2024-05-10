@@ -73,7 +73,52 @@
                             
             <div class="footer-home">
             </div>
-                            
+              
+          <div class="fondo-admin">    
+              <div class="login-admin">
+                  
+                  <div style="border-radius: 10px; height: 38px; width: 38px; background: #283342; position: absolute; right: 0; display: flex; align-items: center;justify-items: center; cursor: pointer;">
+                      <div style="position: relative;width: 100%; height: 100%; display: flex;align-items: center; justify-content: center;">
+                        <img style="object-fit: contain; width: 26px; height: 26px;" src="resources/img/home/Cerraricono.png" alt=""/>
+                      </div>
+                  </div>
+                    <div style="color:white;font-size: 2rem; font-weight: 500; margin: 40px 0px 20px 0px">
+                        Administrador
+                    </div>
+                    <form action="" method="post" class="form-login">
+                        <div style="display: flex; flex-direction: row; align-items: center; margin: 0px 15px">
+                            <div style="margin: 20px 8px 0px 8px;">
+                                <img style="height: 48px; width:48px;" src="resources/img/home/Usuarioicono.png" alt=""/>
+                            </div>
+                            <div>
+                                <label style="color:#787e85;font-size: 1.25rem;">Usuario</label><br>
+                                <input type="text" name="usuario" value="${usuario}"/>
+                            </div>   
+                            <div style="content: ''; width: 52px; height: 10px; "></div>
+                        </div>
+                        <div style="display: flex; flex-direction: row; align-items: center; margin: 0px 15px">
+                            <div style="margin: 20px 8px 0px 8px;">
+                                <img style="height: 48px; width:48px;" src="resources/img/home/Contraicono.png" alt=""/>
+                            </div>
+                            <div>
+                                <label style="color:#787e85;font-size: 1.25rem;">Contraseña</label><br>
+                                <input type="password" name="contraseña" value="${contraseña}"/>
+                            </div> 
+                            <div>
+                                <img style="height: 36px; width:36px;margin: 28px 8px 0px 8px; cursor: pointer;" src="resources/img/home/ContraOjo.png" alt=""/>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center; margin: 30px 0px 0px 0px;">
+                            <button class="button">
+                                Iniciar Sesión
+                            </button>
+                        </div>
+                    </form>
+                  
+                  
+                  
+              </div>
+          </div>
         </div>
     </body>
 </html>

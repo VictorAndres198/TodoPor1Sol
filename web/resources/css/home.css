@@ -8,6 +8,7 @@
     width: 100%;
     height: 100vh;
     background: white;
+    position: relative;
 }
 
 .header-login{
@@ -104,4 +105,30 @@ input{
     background: #009099;
     width: 100%;
     height: 100px;
+}
+
+.fondo-admin{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+}
+
+.login-admin{
+    content: "";
+    height: 400px;
+    width: 400px;
+    background: #1d242e;
+    position: relative;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
