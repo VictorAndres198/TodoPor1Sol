@@ -11,6 +11,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Todo Por 1 Sol</title>
         <link href="resources/css/home.css" rel="stylesheet" type="text/css"/>
+        <script>
+            function toggleAdmin() {
+                var showAdmin = document.querySelector(".fondo-admin");
+                showAdmin.classList.toggle("show");      
+            }
+        </script>
     </head>
     <body>
         <div class="contenedor-login">
@@ -25,7 +31,7 @@
                     </div>
                 </div>
                 
-                <button class="button">
+                <button onclick="toggleAdmin()" class="button">
                     ADMINISTRADOR
                 </button>                
             </div>
@@ -77,8 +83,8 @@
           <div class="fondo-admin">    
               <div class="login-admin">
                   
-                  <div style="border-radius: 10px; height: 38px; width: 38px; background: #283342; position: absolute; right: 0; display: flex; align-items: center;justify-items: center; cursor: pointer;">
-                      <div style="position: relative;width: 100%; height: 100%; display: flex;align-items: center; justify-content: center;">
+                  <div class="btn-close-admin" style="border-radius: 10px; height: 38px; width: 38px; background: #283342; position: absolute; right: 0; display: flex; align-items: center;justify-items: center; cursor: pointer;">
+                      <div onclick="toggleAdmin()" style="position: relative;width: 100%; height: 100%; display: flex;align-items: center; justify-content: center;">
                         <img style="object-fit: contain; width: 26px; height: 26px;" src="resources/img/home/Cerraricono.png" alt=""/>
                       </div>
                   </div>
