@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>web/resources/css/employee.css</url>
+            <bookmark id="1">
+                <name/>
+                <line>33</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Victor/OneDrive/Documentos/NetBeansProjects/Todox1Sol/web/resources/css/home.css</file>
+            <file>file:/C:/Users/Victor/OneDrive/Documentos/NetBeansProjects/Todox1Sol/web/pages/employee/register.jsp</file>
             <file>file:/C:/Users/Victor/OneDrive/Documentos/NetBeansProjects/Todox1Sol/web/home.jsp</file>
+            <file>file:/C:/Users/Victor/OneDrive/Documentos/NetBeansProjects/Todox1Sol/web/employee.jsp</file>
+            <file>file:/C:/Users/Victor/OneDrive/Documentos/NetBeansProjects/Todox1Sol/web/resources/css/employee.css</file>
+            <file>file:/C:/Users/Victor/OneDrive/Documentos/NetBeansProjects/Todox1Sol/web/resources/css/employee-display.css</file>
         </group>
     </open-files>
 </project-private>
