@@ -21,6 +21,12 @@
                 event.preventDefault(); // Quitar esto despúes es para prevenir el envio automatico del formulario
                 window.location.href = "employee.jsp";
             }
+            
+            function redirigirAdmin() {
+                event.preventDefault(); // Quitar esto despúes es para prevenir el envio automatico del formulario
+                window.location.href = "admin.jsp";
+            }
+            
         </script>
     </head>
     <body>
@@ -120,7 +126,7 @@
                             </div>
                         </div>
                         <div style="display: flex; justify-content: center; margin: 30px 0px 0px 0px;">
-                            <button class="button">
+                            <button class="button" onclick="redirigirAdmin()">
                                 Iniciar Sesión
                             </button>
                         </div>
@@ -132,7 +138,6 @@
           </div
          
         </div>
-                             <a href="RegistroProductos.jsp"><h>RegistroProductos</h></a>
                           
     </body>
 </html>
