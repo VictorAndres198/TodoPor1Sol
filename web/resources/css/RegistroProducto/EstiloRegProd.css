@@ -1,0 +1,244 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 15 may. 2024, 11:37:03 p. m.
+    Author     : Andres
+*/
+
+/*------------------------------CONTENIDO MARGEN DE LA APLICACIÓN-------------------------------------------*/
+      * {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', 'Helvetica', Arial, sans-serif;  
+}
+
+.body-RegiProd {
+    height: 100vh;
+    width: 100%;
+}
+
+.employee {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+    grid-template-rows: auto 1fr;
+}
+.titulo{
+   font-weight: bold;
+   font-size: 30px; /*Tamaño de letra*/
+  display: flex; 
+  align-items: center; /* Esto centra verticalmente */
+  padding-left: 20px; /* Establecer distancia con el logo*/
+  color: white; /*Color de letra*/
+  background: var(--Seleccion, #009099); /*Color de la columna horizontal*/
+ 
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background: #1d242e;
+}
+
+.nav-RegiProd {
+    background: #283342;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.button-nav-empl {
+    display: grid;
+    grid-template-columns: 0.2fr 0.7fr 0.1fr;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 8px;
+    padding: 20px 20px 20px 10px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.button-nav-empl:hover {
+    background: #425063;
+}
+
+.button-nav-empl:active {
+    background: #009099;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.transition {
+    transition: transform 0.4s ease;
+}
+
+.expanded {
+    background: #1D242E;
+}
+
+.hide {
+    display: none;
+}
+
+/* Extra CSS to ensure visibility */
+.button-nav-empl img {
+    max-height: 16px;
+    max-width: 16px;
+}
+
+/*-----------------------------CONTENIDO DE REGISTRO PRODUCTOS--------------------------------*/
+*{
+  margin: 0;
+padding: 0;
+box-sizing: border-box;
+    
+}
+body{
+    
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+} 
+.Container-RegistroProductos{
+max-width: 700px;
+width: 100%;
+padding:  2%; /*Espacio del formulario*/
+background-color:   #ffffff;
+border-radius: 5px; 
+    
+}
+.Container-RegistroProductos .IngreseDatos{
+    font-size: 25px;          
+    font-weight: bold;  
+    height: 10%;        
+    text-align: center;
+    
+}
+.form-group {
+    margin-bottom: 15px; /* Espacio entre elementos */
+     text-align: center; /* Centra horizontalmente el contenido del div */
+  
+}
+
+.Container-RegistroProductos form{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  space-between; 
+    margin: 10px 12px 0;
+    
+}
+.negrita{
+            font-weight: bold;  /*Establece un texto en negrita*/
+        }
+
+        form .form-group{
+            margin-bottom: 5%; 
+            width: 50%;
+      text-align: center; /* Centra horizontalmente el contenido del div */
+        }
+
+        form span{
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input{
+            height: 60px; 
+            width: 80%; 
+             outline: none; 
+             border-radius: 5px;
+              border-bottom-width:  2px; 
+              transition: all 0.3s ease;
+              border: 2px solid  #1D242E;
+              background-color: #D9D9D9;
+            text-align: center; /* Centra horizontalmente el contenido del div */
+        }
+.form-group textarea {
+    height: 90px; /* Altura del textarea */
+     width: 80%;  /* Ancho del textarea */
+    resize: none; /* Deshabilita la redimensión */
+    outline: none; /* Quita el contorno predeterminado */
+    border-radius: 5px; /* Borde redondeado */
+    border-bottom-width: 2px; /* Grosor del borde inferior */
+    transition: all 0.3s ease; /* Transición suave */
+    padding: 10px; /* Espacio interno */
+    font-size: 16px; /* Tamaño de la fuente */
+    border: 2px solid  #1D242E; /* Borde */
+    background-color: #D9D9D9;
+    text-align: center; /* Centra horizontalmente el contenido del div */
+}
+
+/* PROVEEDOR*/
+     .form-group select {
+    height: 60px; 
+    width: 80%; 
+    outline: none; 
+    border-radius: 5px;
+    border-bottom-width: 2px; 
+    transition: all 0.3s ease;
+  border: 2px solid  #1D242E;
+     background-color: #D9D9D9;
+     text-align: center; /* Centra horizontalmente el contenido del div */
+}/* PROVEEDOR*/
+ 
+
+.button {
+    text-align: center; /* Centra horizontalmente el contenido del div */
+    display: flex; /* Convertir el contenedor en un flex container */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    margin-top: 5%; /* Espacio con los elementos que están arriba de él */
+    padding:10px 250px; /* UBICACION DEL BOTON :D*/
+}
+
+.button input[type="submit"] {
+    background-color: #01A768; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border-radius: 5px; /* Borde redondeado del boton */
+    padding: 20px 30px; /* Espacio del boton*/
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Transición suave */
+  border: 2px solid  #1D242E; /*Borde del botton*/
+  
+}
+
+.button input[type="submit"]:hover {
+    background-color:  #FED600 /* Cambia el color de fondo al pasar el ratón :D */
+}
+
+
+@media(max-width: 584px){
+    .Container-RegistroProductos
+    {
+        margin-bottom: 15px;
+        width: 100%;
+    }    
+    .Container-RegistroProductos{
+       max-height: 400px;
+       overflow-y: scroll;
+    }
+   
+    .Container-RegistroProductos form::-webkit-scrollbar {
+    width:  0; 
+}
+form .button{
+    margin: 20px 0 ; 
+    
+}
+}
+
+/*Color de las alertas*/
+small {
+    color: red; 
+}
