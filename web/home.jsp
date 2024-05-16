@@ -129,7 +129,10 @@
                   
                   
               </div>
-          </div>
+          </div
+         
         </div>
+                             <a href="RegistroProductos.jsp"><h>RegistroProductos</h></a>
+                          
     </body>
 </html>
