@@ -13,34 +13,39 @@
           
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
 <div class="Container-RegistroProductos negrita"> 
+    <!--INGRESAR DATOS -->
     <div class="IngreseDatos"> Ingrese los Datos</div>
-
-    <form id="form-validation" action="guardar.jsp" method="post" novalidate>
+    <form id="form-validation" action="gu ardar.jsp" method="post" novalidate>
         <div class="form-group">
             <span> Nombre </span>
             <input type="text" style="text-align: center" placeholder="" required>
             <small id="nombre-help" style="display: none;">Ingresar nombre</small>
         </div>
+        <!--DESCRIPCIÓN-->
         <div class="form-group">
             <span> Descripción </span>
-            <textarea rows="4" cols="20" placeholder="" required></textarea>
-            <small id="descripcion-help" style="display: none;">Ingresar descripción</small>
+            <textarea rows="4" cols="20" placeholder="" ></textarea>
+            <small id="descripcion-help" style="display: none;"></small>
         </div>
+        <!--FECHA DE VENCIMIENTO-->
         <div class="form-group">
             <span> Fecha de Vencimiento </span>
             <input type="date" id="fecha-vencimiento" name="fecha-vencimiento" required>
             <small id="fecha-help" style="display: none;">Ingresar fecha de vencimiento</small>
         </div>
+        <!--STOCK-->
         <div class="form-group">
             <span> Stock </span>
             <input type="number" placeholder="" min="0" required>
             <small id="stock-help" style="display: none;">Ingresar stock</small>
         </div>
+        <!--PRECIO-->
         <div class="form-group">
             <span> Precio </span>
-            <input type="number" placeholder="" min="0" required>
+            <input type="number" placeholder="" min="0" step="any" required> <!--any para que reciba decimales-->
             <small id="precio-help" style="display: none;">Ingresar precio</small>
         </div>
+        <!--PROVEEDORES-->
         <div class="form-group">
             <span> Proveedor </span>
             <select id="proveedores" name="proveedores" required>
@@ -56,10 +61,10 @@
     </form>
 </div>
 
-
+ <!--SCRIPT PARA VALIDAR EL INGRESO DE DATOS-->
 <script>
 document.getElementById("form-validation").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevenir el envío del formulario
+    e.preventDefault(); // Evita que el formulario sea enviado sin antes ser revisado
     const form = e.target;
     mostrarMensajesAyuda(form);
 
@@ -68,15 +73,15 @@ document.getElementById("form-validation").addEventListener("submit", function(e
     }
 });
 
-function mostrarMensajesAyuda(form) {
-    const formGroups = form.querySelectorAll('.form-group');
+function mostrarMensajesAyuda(form) { 
+    const formGroups = form.querySelectorAll('.form-group'); //Seleccionar todos los grupos form-group que estan dentro del formulario
     formGroups.forEach(formGroup => {
-        const input = formGroup.querySelector('input, textarea, select');
-        const small = formGroup.querySelector('small');
+        const input = formGroup.querySelector('input, textarea, select'); //Selecciona a todos los input, textarea y select
+        const small = formGroup.querySelector('small');//Selecciona a todos los small
         if (!input.validity.valid) {
-            small.style.display = 'block';
+            small.style.display = 'block'; //si el campo no es válido, se muestra el mensaje de ayuda
         } else {
-            small.style.display = 'none';
+            small.style.display = 'none'; //si el campo es válido, no se muestra el mensaje de ayuda 
         }
     });
 }
