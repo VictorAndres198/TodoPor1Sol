@@ -8,7 +8,7 @@ package DAO;
 import java.sql.*;
 
 public class ConectarBD implements Parametros {
-    Connection conexion;   // Se asignan nombre de variable
+    Connection conexion;   // Se asignan nombre de variables
     Statement st;
     ResultSet rs;
     PreparedStatement ps;
