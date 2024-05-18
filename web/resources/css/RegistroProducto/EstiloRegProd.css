@@ -38,11 +38,6 @@ border-radius: 5px;
     text-align: center;
     
 }
-.form-group {
-    margin-bottom: 15px; /* Espacio entre elementos */
-     text-align: center; /* Centra horizontalmente el contenido del div */
-  
-}
 
 .Container-RegistroProductos form{
    
@@ -57,7 +52,8 @@ border-radius: 5px;
         }
 
         form .form-group{
-            margin-bottom: 5%; 
+            
+            margin-bottom: 5% ; 
             width: 50%;
       text-align: center; /* Centra horizontalmente el contenido del div */
         }
