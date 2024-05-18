@@ -3,16 +3,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de Productos</title>
-
+      
         <script src="node_modules/bootstrap/dist/ js/bootstrap.min.js"></script>
         <link href="resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
-        
     </head>
     <body class="body-RegiProd">
 
           
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
 <div class="Container-RegistroProductos negrita"> 
+    
     <!--INGRESAR DATOS -->
     <div class="IngreseDatos"> Ingrese los Datos</div>
     <form id="form-validation" action="gu ardar.jsp" method="post" novalidate>
@@ -54,6 +54,16 @@
                 <option value="Dove">Dove</option>
             </select>
             <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
+        </div>
+        <!--CATEGORIA-->
+        <div class="form-group"  >
+            <span class="categoria"> Categoria </span>
+            <select id="categoria" name="categoria" required>
+                <option value="" selected="selected"></option>
+                <option value="Generico">Generico</option>
+                <option value="Original">Original</option>
+            </select>
+            <small id="categoria-help" style="display: none;">Ingresar categoria</small>
         </div>
         <div class="button" style="text-align: center">
             <input type="submit" value="Guardar">
