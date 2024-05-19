@@ -8,13 +8,12 @@
         <link href="resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="body-RegiProd">
-
-          
+        
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
 <div class="Container-RegistroProductos negrita"> 
     
     <!--INGRESAR DATOS -->
-    <div class="IngreseDatos"> Ingrese los Datos</div>
+    <div class="IngreseDatos">NUEVO PRODUCTO</div>
     <form id="form-validation" action="gu ardar.jsp" method="post" novalidate>
         <div class="form-group">
             <span> Nombre </span>
