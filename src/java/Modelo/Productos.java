@@ -8,12 +8,13 @@ package Modelo;
  *
  * @author Andres
  */
-import java.time.LocalDate;
+
+import java.util.Date;
 public class Productos {
     private  int ID_Prod ;
     private String Nombre; 
     private String Descripcion; 
-    private LocalDate FechaVencimiento;
+    private Date FechaVencimiento;
     private double precio;
     private int Stock;
     private int ID_categoria; 
@@ -22,7 +23,7 @@ public class Productos {
     public Productos() {
     }
 
-    public Productos(int ID_Prod, String Nombre, String Descripcion, LocalDate FechaVencimiento, double precio, int Stock, int ID_categoria, String RUC_Prov) {
+    public Productos(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String RUC_Prov) {
         this.ID_Prod = ID_Prod;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
@@ -57,11 +58,11 @@ public class Productos {
         this.Descripcion = Descripcion;
     }
 
-    public LocalDate getFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return FechaVencimiento;
     }
 
-    public void setFechaVencimiento(LocalDate FechaVencimiento) {
+    public void setFechaVencimiento(Date FechaVencimiento) {
         this.FechaVencimiento = FechaVencimiento;
     }
 
@@ -96,9 +97,6 @@ public class Productos {
     public void setRUC_Prov(String RUC_Prov) {
         this.RUC_Prov = RUC_Prov;
     }
+
     
-    
-    
-    
-    
-}
+     }
