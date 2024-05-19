@@ -7,94 +7,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Andres
 */
 
-/*------------------------------CONTENIDO MARGEN DE LA APLICACIÓN-------------------------------------------*/
-      * {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto', 'Helvetica', Arial, sans-serif;  
-}
-
-.body-RegiProd {
-    height: 100vh;
-    width: 100%;
-}
-
-.employee {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 0.3fr 0.7fr;
-    grid-template-rows: auto 1fr;
-}
-.titulo{
-   font-weight: bold;
-   font-size: 30px; /*Tamaño de letra*/
-  display: flex; 
-  align-items: center; /* Esto centra verticalmente */
-  padding-left: 20px; /* Establecer distancia con el logo*/
-  color: white; /*Color de letra*/
-  background: var(--Seleccion, #009099); /*Color de la columna horizontal*/
- 
-}
-
-.logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: white;
-    font-size: 1.25rem;
-    font-weight: bold;
-    background: #1d242e;
-}
-
-.nav-RegiProd {
-    background: #283342;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.button-nav-empl {
-    display: grid;
-    grid-template-columns: 0.2fr 0.7fr 0.1fr;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 1rem;
-    gap: 8px;
-    padding: 20px 20px 20px 10px;
-    cursor: pointer;
-    align-items: center;
-}
-
-.button-nav-empl:hover {
-    background: #425063;
-}
-
-.button-nav-empl:active {
-    background: #009099;
-}
-
-.rotated {
-    transform: rotate(180deg);
-}
-
-.transition {
-    transition: transform 0.4s ease;
-}
-
-.expanded {
-    background: #1D242E;
-}
-
-.hide {
-    display: none;
-}
-
-/* Extra CSS to ensure visibility */
-.button-nav-empl img {
-    max-height: 16px;
-    max-width: 16px;
-}
 
 /*-----------------------------CONTENIDO DE REGISTRO PRODUCTOS--------------------------------*/
 *{
@@ -113,30 +25,26 @@ body{
 .Container-RegistroProductos{
 max-width: 700px;
 width: 100%;
-padding:  2%; /*Espacio del formulario*/
+padding:  2% ; /*Espacio del formulario*/
+margin-left: 10%;
 background-color:   #ffffff;
 border-radius: 5px; 
     
 }
+
 .Container-RegistroProductos .IngreseDatos{
     font-size: 25px;          
-    font-weight: bold;  
-    height: 10%;        
-    text-align: center;
-    
-}
-.form-group {
-    margin-bottom: 15px; /* Espacio entre elementos */
-     text-align: center; /* Centra horizontalmente el contenido del div */
-  
+    font-weight: bold;   
+    text-align: center; /*ALINEAR TEXTO EN EL MEDIO*/
+                        
 }
 
 .Container-RegistroProductos form{
-
+   
     display: flex;
     flex-wrap: wrap;
     justify-content:  space-between; 
-    margin: 10px 12px 0;
+    margin: 8% 12px 0;
     
 }
 .negrita{
@@ -144,7 +52,8 @@ border-radius: 5px;
         }
 
         form .form-group{
-            margin-bottom: 5%; 
+            
+            margin-bottom: 5% ; 
             width: 50%;
       text-align: center; /* Centra horizontalmente el contenido del div */
         }
@@ -192,15 +101,40 @@ border-radius: 5px;
      text-align: center; /* Centra horizontalmente el contenido del div */
 }/* PROVEEDOR*/
  
+/* CATEGORIA */
+     .form-group #categoria{
+    height: 60px; 
+    width: 180%; 
+    margin-left: 10%;
+    outline: none; 
+    border-radius: 5px;
+    border-bottom-width: 2px; 
+    transition: all 0.3s ease;
+  border: 2px solid  #1D242E;
+     background-color: #D9D9D9;
+     text-align: center; /* Centra horizontalmente el contenido del div */
+}/* PROVEEDOR*/
 
+/* categoria*/
+.categoria{
+  padding-left: 88%; 
+}
 .button {
     text-align: center; /* Centra horizontalmente el contenido del div */
     display: flex; /* Convertir el contenedor en un flex container */
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
     margin-top: 5%; /* Espacio con los elementos que están arriba de él */
-    padding:10px 250px; /* UBICACION DEL BOTON :D*/
+    padding:1% 42%; /* UBICACION DEL BOTON :D*/
 }
+
+#categoria-help {
+    padding-left: 82%; 
+    white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+}
+
+
+
 
 .button input[type="submit"] {
     background-color: #01A768; /* Color de fondo del botón */

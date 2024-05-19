@@ -41,7 +41,7 @@
                 <img style="height:60px; width:60px; margin: 10px 8px"src="resources/img/home/Logo.png" alt=""/>
                 Todo Por 1 Sol
             </div>
-            <div style="background: #F7FAFD;"></div>
+            <div class="pepe" style="background: var(--Seleccion, #009099);"></div>
             
             <div class="nav-admin">
               <div style="overflow: hidden; overflow-y: auto">                    
