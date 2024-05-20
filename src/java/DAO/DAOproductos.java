@@ -1,7 +1,7 @@
 package DAO;
 
 import Conexion.*;
-import Modelo.Productos;
+import Modelo.Producto;
 import DAO.*;
 import Interfaces.CRUDproductos;
 import java.sql.Connection;
@@ -14,17 +14,17 @@ import javax.swing.JOptionPane;
 public class DAOproductos extends ConectarBD implements CRUDproductos {
 
     @Override
-    public ArrayList<Productos> ListarProductos() {
+    public ArrayList<Producto> ListarProductos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Productos ObtenerProductos(String id) {
+    public Producto ObtenerProductos(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean RegistrarProductos(Productos pro) {
+    public boolean RegistrarProductos(Producto pro) {
         
         String SQL = "insert into cargo values(?,?,?,?,?,?,?,?);";
         try{
@@ -48,7 +48,7 @@ public class DAOproductos extends ConectarBD implements CRUDproductos {
     }
 
     @Override
-    public boolean EditarProductos(Productos RegProd) {
+    public boolean EditarProductos(Producto RegProd) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

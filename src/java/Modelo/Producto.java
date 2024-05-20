@@ -3,7 +3,7 @@ package Modelo;
 
 
 import java.util.Date;
-public class Productos {
+public class Producto {
     private  int ID_Prod ;
     private String Nombre; 
     private String Descripcion; 
@@ -13,10 +13,10 @@ public class Productos {
     private int ID_categoria; 
     private String RUC_Prov;
 
-    public Productos() {
+    public Producto() {
     }
 
-    public Productos(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String RUC_Prov) {
+    public Producto(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String RUC_Prov) {
         this.ID_Prod = ID_Prod;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;

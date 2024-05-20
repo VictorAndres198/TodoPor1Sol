@@ -8,15 +8,15 @@ package Modelo;
  *
  * @author Andres
  */
-public  class Categorias {
+public  class Categoria {
     private int ID_categoria; 
     private String Nombre; 
 //Constructor
 
-    public Categorias() {
+    public Categoria() {
     }
 
-    public Categorias(int ID_categoria, String Nombre) {
+    public Categoria(int ID_categoria, String Nombre) {
         this.ID_categoria = ID_categoria;
         this.Nombre = Nombre;
     }

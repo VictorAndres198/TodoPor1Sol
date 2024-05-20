@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author Andres
  */
-public class proveedores {
+public class Proveedor {
     private String RUC;
     private String Nombre;
     private String Pais;
@@ -16,10 +16,10 @@ public class proveedores {
     private String Correo;
 //CONSTRUCTOR
 
-    public proveedores() {
+    public Proveedor() {
     }
 
-    public proveedores(String RUC, String Nombre, String Pais, String Telefono, String Correo) {
+    public Proveedor(String RUC, String Nombre, String Pais, String Telefono, String Correo) {
         this.RUC = RUC;
         this.Nombre = Nombre;
         this.Pais = Pais;

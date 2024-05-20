@@ -1,6 +1,6 @@
 
 package Modelo;
 
-public class Empleados {
+public class Empleado {
     
 }
