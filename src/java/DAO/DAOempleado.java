@@ -9,5 +9,6 @@ package DAO;
  * @author Omar
  */
 public class DAOempleado {
+  
     
 }
