@@ -1,6 +1,5 @@
 package DAO;
 
-import Conexion.ConectarBD;
 import Modelo.Productos;
 import java.sql.Connection;
 import java.sql.Date;
