@@ -3,7 +3,7 @@ package Conexion;
 import java.sql.*;
 
 public class ConectarBD implements Parametros {
-    Connection conexion;   // Se asignan nombre de variables
+    public Connection conexion;   // Cambiar acceso a público
     Statement st;
     ResultSet rs;
     PreparedStatement ps;
@@ -14,9 +14,7 @@ public class ConectarBD implements Parametros {
             conexion = DriverManager.getConnection(RUTA, USUARIO, CLAVE);    // Se realiza la conexión
             st = conexion.createStatement();            
         } catch (Exception ex) {
-           
             System.out.println("ERROR: NO SE PUEDE CONECTAR A LA BASE DE DATOS. " + ex);
         }
     }
 }
-
