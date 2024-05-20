@@ -2,6 +2,10 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
 <%@page import="com.mysql.jdbc.Driver"%>
+<%@page import="java.util.*" %>
+<%@page import="DAO.*" %>
+<%@page import="Modelo.*" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +16,7 @@
         <script src="node_modules/bootstrap/dist/ js/bootstrap.min.js"></script>
         <link href="resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body class="body-RegiProd">
+    
         
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
 
@@ -20,7 +24,7 @@
     
     <!--INGRESAR DATOS -->
     <div class="IngreseDatos">NUEVO PRODUCTO</div>
-   <form id="form-validation" action="SvRegProd" method="post" novalidate>
+   <form id="form-validation" action="SvProductos" method="post" novalidate>
         <div class="form-group">
             <span> Nombre </span>
             <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
@@ -76,6 +80,7 @@
     </form>
 </div>
 
+
  <!--SCRIPT PARA VALIDAR EL INGRESO DE DATOS-->
 <script>
 document.getElementById("form-validation").addEventListener("submit", function(e) {
@@ -104,6 +109,6 @@ function mostrarMensajesAyuda(form) {
 </script>
 
     
-</body>
+
 </html>
 

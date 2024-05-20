@@ -3,18 +3,22 @@ package Conexion;
 import java.sql.*;
 
 public class ConectarBD implements Parametros {
-    public Connection conexion;   // Cambiar acceso a público
-    Statement st;
-    ResultSet rs;
-    PreparedStatement ps;
-
-    public ConectarBD() {
-        try {
-            Class.forName(DRIVE);
-            conexion = DriverManager.getConnection(RUTA, USUARIO, CLAVE);    // Se realiza la conexión
-            st = conexion.createStatement();            
-        } catch (Exception ex) {
-            System.out.println("ERROR: NO SE PUEDE CONECTAR A LA BASE DE DATOS. " + ex);
-        }
+    private Connection con;
+      public PreparedStatement ps;           
+      public Statement smt;
+      public ResultSet rs;
+      public String mensaje;
+      public ConectarBD(){
+           try{
+                Class.forName(DRIVE);
+                con = DriverManager.getConnection(RUTA, USUARIO, CLAVE);            
+                smt = con.createStatement();
+                mensaje="Conexion OK!!!!";
+            }catch(Exception ex){
+                mensaje="ERROR al conectar base de datos";      
+       }
+     }
+     public Connection getConnection(){
+        return con;
     }
 }
