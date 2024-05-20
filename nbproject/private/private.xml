@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/web/pages/admin/RegistroProductos.jsp</file>
-            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/DAO/CRUDProductos.java</file>
-            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/servlets/SvRegProd.java</file>
+            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/DAO/Parametros.java</file>
+            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/DAO/ConectarBD.java</file>
+            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/DAO/DAOempleado.java</file>
+            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/CRUDProductos.java</file>
+            <file>file:/D:/Jhayr/UTP/Ciclos/Ciclo%206/Sitemas%20-%20Software/Proyecto/A3%20FINAL%20PROY%201/SOFTWARE/TodoPor1Sol/src/java/Modelo/Productos.java</file>
         </group>
     </open-files>
 </project-private>
