@@ -1,13 +1,6 @@
 
-package DAO;
-/**
- *
- * @author Andres
- */
+package Conexion;
 
-//D: DATA
-//A: ACCESS
-//O: OBJECT
 
 public interface Parametros {
 String DRIVE="com.mysql.cj.jdbc.Driver";

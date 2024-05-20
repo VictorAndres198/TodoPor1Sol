@@ -1,3 +1,8 @@
+<%@page import="java.text.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.*"%>
+<%@page import="com.mysql.jdbc.Driver"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,47 +15,48 @@
     <body class="body-RegiProd">
         
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
+
 <div class="Container-RegistroProductos negrita"> 
     
     <!--INGRESAR DATOS -->
     <div class="IngreseDatos">NUEVO PRODUCTO</div>
-    <form id="form-validation" action="gu ardar.jsp" method="post" novalidate>
+   <form id="form-validation" action="SvRegProd" method="post" novalidate>
         <div class="form-group">
             <span> Nombre </span>
-            <input type="text" style="text-align: center" placeholder="" required>
-            <small id="nombre-help" style="display: none;">Ingresar nombre</small>
+            <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
+            <small name="nombre" id="nombre-help" style="display: none;">Ingresar nombre</small>
         </div>
-        <!--DESCRIPCIÓN-->
+        <!--DESCRIPCIÃ“N-->
         <div class="form-group">
-            <span> Descripción </span>
-            <textarea rows="4" cols="20" placeholder="" ></textarea>
+            <span> DescripciÃ³n </span>
+            <textarea name="descripcion"  rows="4" cols="20" placeholder="" ></textarea>
             <small id="descripcion-help" style="display: none;"></small>
         </div>
         <!--FECHA DE VENCIMIENTO-->
         <div class="form-group">
             <span> Fecha de Vencimiento </span>
-            <input type="date" id="fecha-vencimiento" name="fecha-vencimiento" required>
+            <input name="fechaVencimiento"  type="date" id="fecha-vencimiento" name="fecha-vencimiento" required>
             <small id="fecha-help" style="display: none;">Ingresar fecha de vencimiento</small>
         </div>
         <!--STOCK-->
         <div class="form-group">
             <span> Stock </span>
-            <input type="number" placeholder="" min="0" required>
+            <input name="stock" type="number" placeholder="" min="0" required>
             <small id="stock-help" style="display: none;">Ingresar stock</small>
-        </div>
+        </div> 
         <!--PRECIO-->
         <div class="form-group">
             <span> Precio </span>
-            <input type="number" placeholder="" min="0" step="any" required> <!--any para que reciba decimales-->
+            <input name="precio" type="number" placeholder="" min="0" step="any" required> <!--any para que reciba decimales-->
             <small id="precio-help" style="display: none;">Ingresar precio</small>
         </div>
         <!--PROVEEDORES-->
         <div class="form-group">
             <span> Proveedor </span>
-            <select id="proveedores" name="proveedores" required>
-                <option value="" selected="selected"></option>
-                <option value="Lab">Lab</option>
-                <option value="Dove">Dove</option>
+            <select id="proveedores" name="proveedor" required>
+                <option value="1" selected="selected"></option>
+                <option value="2">Lab</option>
+                <option value="3">Dove</option>
             </select>
             <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
         </div>
@@ -58,14 +64,14 @@
         <div class="form-group"  >
             <span class="categoria"> Categoria </span>
             <select id="categoria" name="categoria" required>
-                <option value="" selected="selected"></option>
-                <option value="Generico">Generico</option>
-                <option value="Original">Original</option>
+                <option value="1" selected="selected"></option>
+                <option value="2">Generico</option>
+                <option value="3">Original</option>
             </select>
             <small id="categoria-help" style="display: none;">Ingresar categoria</small>
         </div>
         <div class="button" style="text-align: center">
-            <input type="submit" value="Guardar">
+            <input type="submit" name="guardar" value="Guardar">
         </div>
     </form>
 </div>
@@ -78,7 +84,7 @@ document.getElementById("form-validation").addEventListener("submit", function(e
     mostrarMensajesAyuda(form);
 
     if (form.checkValidity()) {
-        form.submit(); // Si el formulario es válido, proceder a enviarlo
+        form.submit(); // Si el formulario es vÃ¡lido, proceder a enviarlo
     }
 });
 
@@ -88,15 +94,16 @@ function mostrarMensajesAyuda(form) {
         const input = formGroup.querySelector('input, textarea, select'); //Selecciona a todos los input, textarea y select
         const small = formGroup.querySelector('small');//Selecciona a todos los small
         if (!input.validity.valid) {
-            small.style.display = 'block'; //si el campo no es válido, se muestra el mensaje de ayuda
+            small.style.display = 'block'; //si el campo no es vÃ¡lido, se muestra el mensaje de ayuda
         } else {
-            small.style.display = 'none'; //si el campo es válido, no se muestra el mensaje de ayuda 
+            small.style.display = 'none'; //si el campo es vÃ¡lido, no se muestra el mensaje de ayuda 
         }
     });
 }
 
 </script>
 
+    
 </body>
 </html>
 
