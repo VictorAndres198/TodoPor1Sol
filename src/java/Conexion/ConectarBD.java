@@ -1,10 +1,5 @@
+package Conexion;
 
-package DAO;
-/**
- *
- * @author Andres
- */
-// Librerías
 import java.sql.*;
 
 public class ConectarBD implements Parametros {

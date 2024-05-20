@@ -15,6 +15,7 @@
     <body class="body-RegiProd">
         
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
+
 <div class="Container-RegistroProductos negrita"> 
     
     <!--INGRESAR DATOS -->
