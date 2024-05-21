@@ -6,7 +6,7 @@
                 cheuron.classList.toggle("rotated");
                 cheuron.classList.toggle("transition");
                 
-                const expandedElements = document.querySelectorAll('.expanded');
+                const expandedElements = document.querySelectorAll('.productosExpandidos');
                 // Agregamos o eliminamos la clase fade según el estado actual del elemento
                 expandedElements.forEach(function(element) {
                     element.classList.toggle('hide');
@@ -17,6 +17,24 @@
                     cheuron.classList.remove("transition");
                 }, 400);
             };
+            
+            function rotateCheuron2() {
+                const cheuron2 = document.getElementById("cheuron2");
+                cheuron2.classList.toggle("rotated");
+                cheuron2.classList.toggle("transition");
+                
+                const expandedElements2 = document.querySelectorAll('.proveedoresExpandidos');
+                // Agregamos o eliminamos la clase fade según el estado actual del elemento
+                expandedElements2.forEach(function(element) {
+                    element.classList.toggle('hide');
+                });
+
+                // Eliminamos la clase de transición después de la duración de la transición
+                setTimeout(function() {
+                    cheuron2.classList.remove("transition");
+                }, 400);
+            };
+            
         </script>
         
         <div class="admin">
@@ -65,7 +83,7 @@
                         <img id="cheuron" name="cheuron" style="max-height: 16px; max-width: 16px;" alt=""/>
                     </div>
                 </div>
-                <div class="button-nav-admin expanded hide">
+                <div class="button-nav-admin expanded productosExpandidos hide">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
@@ -73,7 +91,7 @@
                        <a class="SeccionName" href="/Todox1Sol/pages/admin/RegistroProductos.jsp">Nuevo Producto</a> 
                     </div>
                 </div>
-                <div class="button-nav-admin expanded hide">
+                <div class="button-nav-admin expanded productosExpandidos hide">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
@@ -81,17 +99,17 @@
                         Gestionar Productos
                     </div>
                 </div>
-                <div class="button-nav-admin"  onclick="rotateCheuron()" >
+                <div class="button-nav-admin"  onclick="rotateCheuron2()" >
                     <div style="display: flex; justify-content: end;">                        
                     </div>
                     <div style="display: flex; align-items: center;">
                         Proveedor
                     </div>
                     <div style="display: flex; align-items: center;height: 100%;width: 100%;">
-                        <img id="cheuron" style="max-height: 16px; max-width: 16px;" alt=""/>
+                        <img id="cheuron2" name="cheuron2" style="max-height: 16px; max-width: 16px;" src="resources/img/admin/cheuron-abajo2.png" alt=""/>
                     </div>
                 </div>
-                <div class="button-nav-admin expanded hide">
+                <div class="button-nav-admin expanded proveedoresExpandidos hide">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
@@ -99,7 +117,7 @@
                         <a class="SeccionName" href="/Todox1Sol/pages/admin/RegistrarProveedor.jsp">Nuevo Proveedor</a>
                     </div>
                 </div>
-                <div class="button-nav-admin expanded hide">
+                <div class="button-nav-admin expanded proveedoresExpandidos hide">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
