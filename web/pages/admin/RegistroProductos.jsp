@@ -12,14 +12,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de Productos</title>
-      
         <script src="node_modules/bootstrap/dist/ js/bootstrap.min.js"></script>
-        <link href="resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/admin-display.css" rel="stylesheet" type="text/css"/>
     </head>
     
         
 <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
-
+  <!-- Para traer el layout(menu lateral) del admin -->
+        <jsp:include page="../../admin_layout.jsp" /> 
+        <!-- script de carga de imagenes--> 
+    
 <div class="Container-RegistroProductos negrita"> 
     
     <!--INGRESAR DATOS -->
@@ -82,7 +86,9 @@
 
 
  <!--SCRIPT PARA VALIDAR EL INGRESO DE DATOS-->
+ 
 <script>
+    
 document.getElementById("form-validation").addEventListener("submit", function(e) {
     e.preventDefault(); // Evita que el formulario sea enviado sin antes ser revisado
     const form = e.target;
@@ -108,6 +114,8 @@ function mostrarMensajesAyuda(form) {
 
 </script>
 
+<!-- CARGAR LAS IMAGENES  -->
+ <script src="../../loadImages.js" type="text/javascript"></script>
     
 
 </html>

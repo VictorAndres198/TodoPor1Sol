@@ -70,7 +70,7 @@
                         
                     </div>
                     <div>
-                        Nuevo Productos
+                       <a class="SeccionName" href="/Todox1Sol/pages/admin/RegistroProductos.jsp">Nuevo Producto</a> 
                     </div>
                 </div>
                 <div class="button-nav-admin expanded hide">
