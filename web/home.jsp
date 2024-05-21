@@ -24,7 +24,7 @@
             
             function redirigirAdmin() {
                 event.preventDefault(); // Quitar esto despúes es para prevenir el envio automatico del formulario
-                window.location.href = "admin.jsp";
+                window.location.href = "pages/admin/AdminPanel.jsp";
             }
             
         </script>
