@@ -67,30 +67,30 @@
         </div>
 
 
-         <!--SCRIPT PARA VALIDAR EL INGRESO DE DATOS-->
-        <script>
-        document.getElementById("form-validation").addEventListener("submit", function(e) {
-            e.preventDefault(); // Evita que el formulario sea enviado sin antes ser revisado
-            const form = e.target;
-            mostrarMensajesAyuda(form);
+      <!--SCRIPT PARA VALIDAR EL INGRESO DE DATOS-->
+<script>
+document.getElementById("form-validation").addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita que el formulario sea enviado sin antes ser revisado
+    const form = e.target;
+    mostrarMensajesAyuda(form);
 
-            if (form.checkValidity()) {
-                form.submit(); // Si el formulario es válido, proceder a enviarlo
-            }
-        });
+    if (form.checkValidity()) {
+        form.submit(); // Si el formulario es válido, proceder a enviarlo
+    }
+});
 
-        function mostrarMensajesAyuda(form) { 
-            const formGroups = form.querySelectorAll('.form-group'); //Seleccionar todos los grupos form-group que estan dentro del formulario
-            formGroups.forEach(formGroup => {
-                const input = formGroup.querySelector('input'); //Selecciona a todos los input, textarea y select
-                const small = formGroup.querySelector('small');//Selecciona a todos los small
-                if (!input.validity.valid) {
-                    small.style.display = 'block'; //si el campo no es válido, se muestra el mensaje de ayuda
-                } else {
-                    small.style.display = 'none'; //si el campo es válido, no se muestra el mensaje de ayuda 
-                }
-            });
+function mostrarMensajesAyuda(form) { 
+    const formGroups = form.querySelectorAll('.form-group'); //Seleccionar todos los grupos form-group que estan dentro del formulario
+    formGroups.forEach(formGroup => {
+        const input = formGroup.querySelector('input, textarea, select'); //Selecciona a todos los input, textarea y select
+        const small = formGroup.querySelector('small');//Selecciona a todos los small
+        if (!input.validity.valid) {
+            small.style.display = 'block'; //si el campo no es válido, se muestra el mensaje de ayuda
+        } else {
+            small.style.display = 'none'; //si el campo es válido, no se muestra el mensaje de ayuda 
         }
+    });
+}
 
         </script>
         <script src="../../loadImages.js" type="text/javascript"></script>

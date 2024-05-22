@@ -13,5 +13,11 @@
            e.setAttribute("src","../../resources/img/admin/cheuron-abajo.png");
        }
    });    
+   document.querySelectorAll("img").forEach(e=>{
+       if(e.getAttribute("id")==="cheuron2"){
+           //Colocar la ruta relativa del la icono de la flecha
+           e.setAttribute("src","../../resources/img/admin/cheuron-abajo2.png");
+       }
+   });  
 })();
 

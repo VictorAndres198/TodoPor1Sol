@@ -17,9 +17,12 @@
         <!-- script de carga de imagenes-->
         <script src="../../loadImages.js" type="text/javascript"></script>
         
-        <div>
-            <span class="Form-name">Panel de Informacion</span>
-            <span class="Form-description">Una descripción general rápida de los datos en el inventario.</span>
+        <div class="admin-title-container">
+            <div style="position: relative"></div>
+            <div class="title" style="position: relative; width: 100%; height: 80px; display: flex; flex-direction: column;">                
+                <span class="Form-name">Panel de Informacion</span>
+                <span class="Form-description">Una descripción general rápida de los datos en el inventario.</span>
+            </div>
         </div>
         
         <div class="card-container">
