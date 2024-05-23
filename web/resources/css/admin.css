@@ -15,7 +15,7 @@
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 0.3fr 0.7fr;
+    grid-template-columns: subgrid;
     grid-template-rows: auto 1fr;
 }
 .logo{
@@ -72,3 +72,4 @@
 .hide{    
     display: none;
 }
+
