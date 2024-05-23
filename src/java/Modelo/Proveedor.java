@@ -70,6 +70,13 @@ public class Proveedor {
         this.Correo = Correo;
     }
 
+    @Override
+    public String toString() {
+        return "Proveedor{" + "RUC=" + RUC + ", Nombre=" + Nombre + ", "
+                + "Pais=" + Pais + ", Telefono=" + Telefono + ", "
+                + "Correo=" + Correo + '}'+"\n";
+    }
+
    
 
     
