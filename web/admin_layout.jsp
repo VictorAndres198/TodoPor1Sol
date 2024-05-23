@@ -1,5 +1,5 @@
 <!-- ESTE ES EL MENU DE NAVEGACION DEL ADMIN, PUEDE SER REUTILIZADO EN LOS demas Forms-->
-    <div class="body-admin">
+    
         <script>
             function rotateCheuron() {
                 const cheuron = document.getElementById("cheuron");
@@ -42,7 +42,6 @@
                 <img id="logoBotica" style="height:60px; width:60px; margin: 10px 8px" alt=""/>
                 Todo Por 1 Sol
             </div>
-            <div class="pepe" style="background: var(--Seleccion, #009099);"></div>
             
             <div class="nav-admin">
               <div style="overflow: hidden; overflow-y: auto">                    
@@ -114,7 +113,7 @@
                         
                     </div>
                     <div>
-                        <a class="SeccionName" href="/Todox1Sol/pages/admin/RegistrarProveedor.jsp">Nuevo Proveedor</a>
+                        <a class="SeccionName" href="/Todox1Sol/pages/admin/NuevoProveedor.jsp">Nuevo Proveedor</a>
                     </div>
                 </div>
                 <div class="button-nav-admin expanded proveedoresExpandidos hide">
@@ -122,7 +121,7 @@
                         
                     </div>
                     <div>
-                        Gestionar Proveedor
+                        <a class="SeccionName" href="/Todox1Sol/pages/admin/GestionarProveedor.jsp">Gestionar Proveedor</a>
                     </div>
                 </div>
                 <div class="button-nav-admin">
@@ -146,6 +145,4 @@
             </div>
 
         </div>
-        
-    </div>
 
