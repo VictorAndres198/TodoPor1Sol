@@ -3,8 +3,10 @@ package Conexion;
 
 
 public interface Parametros {
-String DRIVE="com.mysql.cj.jdbc.Driver";
-        String RUTA="jdbc:mysql://localhost:3307/bdbotica";
-        String USUARIO="root";
-        String CLAVE="";
+    String DRIVER="com.mysql.cj.jdbc.Driver";
+    String PORT = "3306";
+    String DATABASE = "bdbotica";
+    String RUTA="jdbc:mysql://localhost:"+PORT+"/"+DATABASE;
+    String USUARIO="root";
+    String CLAVE="123123";
 }
