@@ -1,4 +1,4 @@
-//funcion´para cargar las imagenes del admin layout
+//funcion para cargar las imagenes del admin layout
 
 (function setImgPath(){
     document.getElementById("logoBotica").
