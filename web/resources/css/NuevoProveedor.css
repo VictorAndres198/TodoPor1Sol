@@ -1,13 +1,32 @@
 
-.Form-name{
-    display: inline-block;
-    color: white;
-    font-weight: bold;
-    position: absolute;
+.parent-container{
+    display: grid;
+    grid-template-columns: minmax(400px,0.3fr) 1fr;
+    grid-auto-columns: auto;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.box-Content{
+    display: grid;
+    box-sizing: border-box;
+    max-height: 100vh;
+    grid-template-columns: subgrid;
+    grid-template-rows: minmax(60px,0.20fr) 0.7fr 0.5fr;
+}
+
+/* TITULO*/
+.Frm-Header{
+    background: #009099;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Frm-Header span{
+    color: #fff;
     font-size: 2rem;
-    padding: 0 0 0 20px;
-    left: 30rem;
-    top: 1.2rem;
+    padding-left: 2rem;
     
 }
 
@@ -24,16 +43,19 @@ position: absolute;
 left: 30rem;
 top: 5rem;
 width: 100%;
-padding:  2% ; /*Espacio del formulario*/
-margin-left: 10%;
-border-radius: 5px; 
+padding:  2% ;
+margin: auto;
+box-sizing: border-box;
+margin-left: 5rem;
 
 }
 
+
 .Container-RegistroProductos .IngreseDatos{
-    font-size: 25px;          
+    font-size: 25px; 
     font-weight: bold;   
     text-align: center; /*ALINEAR TEXTO EN EL MEDIO*/
+    box-sizing: border-box;
                         
 }
 
@@ -118,11 +140,12 @@ border-radius: 5px;
   padding-left: 88%; 
 }
 .button {
+    box-sizing: border-box;
     text-align: center; /* Centra horizontalmente el contenido del div */
     display: flex; /* Convertir el contenedor en un flex container */
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
-    margin-top: 5%; /* Espacio con los elementos que están arriba de él */
+    margin-bottom: 5%; /* Espacio con los elementos que están arriba de él */
     padding:1% 42%; /* UBICACION DEL BOTON :D*/
 }
 

@@ -9,41 +9,46 @@ html, body {
     padding: 0;
 }
 
-.admin-title-container {
-    position: absolute;
+.parent-container{
     display: grid;
-    grid-template-columns: 0.3fr 0.7fr;
-    grid-template-rows: 80px 1fr;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+    grid-template-columns: minmax(400px,0.3fr) 1fr;
+    grid-auto-columns: auto;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
-.Form-name{
-    position: absolute;
-    color: black;
-    font-weight: bold;
-    position: relative;
-    font-size: 1.7rem;
-    padding: 0 0 0 20px;
-    left: 0;
-    top: 0.7rem;
+/* CONTENIDO DE LA DERECHA */
+.box-Content{
+    display: grid;
+    box-sizing: border-box;
+    max-height: 100vh;
+    grid-template-columns: subgrid;
+    grid-template-rows: minmax(20px,0.14fr) 1fr;
 }
 
 
-.Form-description{
-    position: absolute;
-    color: black;
-    position: relative;
-    font-size: 1.2rem;
-    padding: 0 0 0 20px;
-    left: 0;
-    top: 0.8rem;
+.Frm-Header{
+    background: #009099;
+    display: flex;
+    flex-direction: column;
+    align-content:  center;
+}
+
+.Frm-name,.Frm-description{
+    color: #fff;
+    padding: 0.5rem 0 0 0;
+    margin-left: 1.5rem;
+    
 }
 
 
+.Frm-name{
+    font-size: 2rem;
+}
+
+.Frm-description{
+    margin-bottom: 1rem;
+}
 
 .card-container{
   position: absolute;
