@@ -18,71 +18,76 @@
         <link href="../../resources/css/admin-display.css" rel="stylesheet" type="text/css"/>
     </head>
     
-        
-<!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
-  <!-- Para traer el layout(menu lateral) del admin -->
+    <body class="parent-container">      
+        <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
+          <!-- Para traer el layout(menu lateral) del admin -->
         <jsp:include page="../../admin_layout.jsp" /> 
         <!-- script de carga de imagenes--> 
-    
-<div class="Container-RegistroProductos negrita"> 
-    
-    <!--INGRESAR DATOS -->
-    <div class="IngreseDatos">NUEVO PRODUCTO</div>
-   <form id="form-validation" action="SvProductos" method="post" novalidate>
-        <div class="form-group">
-            <span> Nombre </span>
-            <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
-            <small name="nombre" id="nombre-help" style="display: none;">Ingresar nombre</small>
+        <div class="box-Content" >
+            <div class="Frm-Header">
+                <span>Nuevo Producto</span>
+            </div>
+            <div class="Container-RegistroProductos negrita"> 
+                <!--INGRESAR DATOS -->
+               <div class="IngreseDatos">Ingrese los Datos</div>
+               <form id="form-validation" action="SvProductos" method="post" novalidate>
+                    <div class="form-group">
+                        <span> Nombre </span>
+                        <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
+                        <small name="nombre" id="nombre-help" style="display: none;">Ingresar nombre</small>
+                    </div>
+                    <!--DESCRIPCIÓN-->
+                    <div class="form-group form-text-Area">
+                        <span> Descripción </span>
+                        <textarea name="descripcion"  rows="4" cols="20" placeholder=""></textarea>
+                        <small id="descripcion-help" style="display: none;"></small>
+                    </div>
+                    <!--FECHA DE VENCIMIENTO-->
+                    <div class="form-group">
+                        <span> Fecha de Vencimiento </span>
+                        <input name="fechaVencimiento"  type="date" id="fecha-vencimiento" name="fecha-vencimiento" required>
+                        <small id="fecha-help" style="display: none;">Ingresar fecha de vencimiento</small>
+                    </div>
+                    <!--STOCK-->
+                    <div class="form-group">
+                        <span> Stock </span>
+                        <input name="stock" type="number" placeholder="" min="0" required>
+                        <small id="stock-help" style="display: none;">Ingresar stock</small>
+                    </div> 
+                    <!--PRECIO-->
+                    <div class="form-group">
+                        <span> Precio </span>
+                        <input name="precio" type="number" placeholder="" min="0" step="any" required> <!--any para que reciba decimales-->
+                        <small id="precio-help" style="display: none;">Ingresar precio</small>
+                    </div>
+                    <!--PROVEEDORES-->
+                    <div class="form-group">
+                        <span> Proveedor </span>
+                        <select id="proveedores" name="proveedor" required>
+                            <option value="1" selected="selected"></option>
+                            <option value="2">Lab</option>
+                            <option value="3">Dove</option>
+                        </select>
+                        <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
+                    </div>
+                    <!--CATEGORIA-->
+                    <div class="form-group"  >
+                        <span class="categoria"> Categoria </span>
+                        <select id="categoria" name="categoria" required>
+                            <option value="1" selected="selected"></option>
+                            <option value="2">Generico</option>
+                            <option value="3">Original</option>
+                        </select>
+                        <small id="categoria-help" style="display: none;">Ingresar categoria</small>
+                    </div>
+                    <div class="button" style="text-align: center">
+                        <input type="submit" name="guardar" value="Guardar">
+                    </div>
+                </form>
+            </div>
+            
         </div>
-        <!--DESCRIPCIÓN-->
-        <div class="form-group">
-            <span> Descripción </span>
-            <textarea name="descripcion"  rows="4" cols="20" placeholder="" ></textarea>
-            <small id="descripcion-help" style="display: none;"></small>
-        </div>
-        <!--FECHA DE VENCIMIENTO-->
-        <div class="form-group">
-            <span> Fecha de Vencimiento </span>
-            <input name="fechaVencimiento"  type="date" id="fecha-vencimiento" name="fecha-vencimiento" required>
-            <small id="fecha-help" style="display: none;">Ingresar fecha de vencimiento</small>
-        </div>
-        <!--STOCK-->
-        <div class="form-group">
-            <span> Stock </span>
-            <input name="stock" type="number" placeholder="" min="0" required>
-            <small id="stock-help" style="display: none;">Ingresar stock</small>
-        </div> 
-        <!--PRECIO-->
-        <div class="form-group">
-            <span> Precio </span>
-            <input name="precio" type="number" placeholder="" min="0" step="any" required> <!--any para que reciba decimales-->
-            <small id="precio-help" style="display: none;">Ingresar precio</small>
-        </div>
-        <!--PROVEEDORES-->
-        <div class="form-group">
-            <span> Proveedor </span>
-            <select id="proveedores" name="proveedor" required>
-                <option value="1" selected="selected"></option>
-                <option value="2">Lab</option>
-                <option value="3">Dove</option>
-            </select>
-            <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
-        </div>
-        <!--CATEGORIA-->
-        <div class="form-group"  >
-            <span class="categoria"> Categoria </span>
-            <select id="categoria" name="categoria" required>
-                <option value="1" selected="selected"></option>
-                <option value="2">Generico</option>
-                <option value="3">Original</option>
-            </select>
-            <small id="categoria-help" style="display: none;">Ingresar categoria</small>
-        </div>
-        <div class="button" style="text-align: center">
-            <input type="submit" name="guardar" value="Guardar">
-        </div>
-    </form>
-</div>
+    </body>
 
 
  <!--SCRIPT PARA VALIDAR EL INGRESO DE DATOS-->
