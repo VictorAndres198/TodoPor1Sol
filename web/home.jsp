@@ -26,7 +26,6 @@
                 event.preventDefault(); // Quitar esto despúes es para prevenir el envio automatico del formulario
                 window.location.href = "pages/admin/AdminPanel.jsp";
             }
-            
         </script>
     </head>
     <body>
@@ -57,14 +56,18 @@
                     <div style="color:#1d242e;font-size: 2rem; font-weight: 500;">
                         Ingrese sus Datos
                     </div>
-                    <form action="" method="post" class="form-login">
+                    <c:if test="${not empty error}">
+                        <div style="color:red;">${error}</div>
+                    </c:if>
+                    
+                     <form action="${pageContext.request.contextPath}/SvInicioSesion" method="post" class="form-login">
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <div style="margin: 20px 8px 0px 8px;">
                                 <img style="height: 48px; width:48px;" src="resources/img/home/Usuarioicono.png" alt=""/>
                             </div>
                             <div>
                                 <label style="color:#787e85;font-size: 1.25rem;">Usuario</label><br>
-                                <input type="text" name="usuario" value="${usuario}"/>
+                                <input type="text" name="usuario"/>
                             </div>                            
                         </div>
                         <div style="display: flex; flex-direction: row; align-items: center;">
@@ -73,18 +76,19 @@
                             </div>
                             <div>
                                 <label style="color:#787e85;font-size: 1.25rem;">Contraseña</label><br>
-                                <input type="password" name="contraseña" value="${contraseña}"/>
+                                <input type="password" name="contrasena"/>
                             </div> 
                             <div>
                                 <img style="height: 36px; width:36px;margin: 28px 8px 0px 8px; cursor: pointer;" src="resources/img/home/ContraOjo.png" alt=""/>
                             </div>
                         </div>
                         <div style="display: flex; justify-content: center; margin: 30px 0px 0px 0px;">
-                            <button class="button" onclick="redirigirEmployee()">
+                            <button type="submit" class="button">
                                 Iniciar Sesión
                             </button>
                         </div>
                     </form>
+                            
                 </div>
             </div>
                             
@@ -109,7 +113,7 @@
                             </div>
                             <div>
                                 <label style="color:#787e85;font-size: 1.25rem;">Usuario</label><br>
-                                <input type="text" name="usuario" value="${usuario}"/>
+                                <input type="text" name="usuarioadmin"/>
                             </div>   
                             <div style="content: ''; width: 52px; height: 10px; "></div>
                         </div>
@@ -119,7 +123,7 @@
                             </div>
                             <div>
                                 <label style="color:#787e85;font-size: 1.25rem;">Contraseña</label><br>
-                                <input type="password" name="contraseña" value="${contraseña}"/>
+                                <input type="password" name="contraseñaadmin"/>
                             </div> 
                             <div>
                                 <img style="height: 36px; width:36px;margin: 28px 8px 0px 8px; cursor: pointer;" src="resources/img/home/ContraOjo.png" alt=""/>

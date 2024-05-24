@@ -1,10 +1,6 @@
 package servlets;
 
-
 import DAO.DAOempleado;
-import Conexion.ConectarBD;
-import java.sql.Connection;
-import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,28 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import Modelo.Empleado;
-import Modelo.EmpleadoHorario;
-import Modelo.Horario;
 
-/**
- *
- * @author Victor
- */
-@WebServlet(name = "SvEySEmpleados", urlPatterns = {"/SvEySEmpleados"})
-public class SvEySEmpleados extends HttpServlet {
-
+@WebServlet(name = "SvProbarConexionBD", urlPatterns = {"/SvProbarConexionBD"})
+public class SvProbarConexionBD extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String dniEmpleado = (String) session.getAttribute("dniEmpleado"); // Supongo que el DNI se almacena en la sesión
-
         DAOempleado daoEmpleado = new DAOempleado();
-        List<EmpleadoHorario> empleadoHorarios = daoEmpleado.obtenerHorariosPorEmpleado(dniEmpleado);
+        boolean conexionExitosa = daoEmpleado.probarConexionBD();
 
-        request.setAttribute("empleadoHorarios", empleadoHorarios);
-        request.getRequestDispatcher("/pages/employee/register.jsp").forward(request, response);
+        // Enviar respuesta al cliente
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(conexionExitosa ? "Conexión exitosa" : "Error al conectar a la base de datos");
     }
 
     @Override
@@ -50,6 +36,7 @@ public class SvEySEmpleados extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Servlet que maneja los horarios y datos del empleado";
+        return "Servlet para probar la conexión a la base de datos";
     }
+
 }
