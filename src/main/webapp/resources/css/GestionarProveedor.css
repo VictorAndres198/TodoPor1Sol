@@ -14,7 +14,7 @@
     box-sizing: border-box;
     max-height: 100vh;
     grid-template-columns: subgrid;
-    grid-template-rows: minmax(60px,0.24fr) 0.8fr 0.5fr;
+    grid-template-rows: minmax(60px,0.24fr) 0.8fr 0.25 0.5fr;
 }
 
 /* TITULO Y BARRA DE BUSQUEDA*/
@@ -132,6 +132,14 @@ tr:nth-child(2n){
     align-items: center;
 }
 
+.Frm-Btns-Report{
+   display: flex;
+   justify-content: right;
+   align-items: center;
+   max-width: 90%;
+}
+
+
 .box-Content_Btn{
     padding: 0.9rem 4rem;
     font-size: 1.4rem;
@@ -148,23 +156,36 @@ tr:nth-child(2n){
     color: #fff;
 }
 
+.Btn_PDF{
+    padding: 0.7rem 0.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0.9rem;
+    border-radius: 15px;
+    border: 0;
+    background: rgb(57, 130, 221);
+    transition: all .5s ease;
+}
+
+.Btn_PDF:hover{
+    background: rgb(191, 219, 247);
+    transform: scale(.9);
+    color: #000;
+}
+
+
 .box-Content_Btn:hover{
     background: rgb(221, 250, 189);
     transform: scale(.9);
-    
-}
-
-.box-Content_Btn:active{
-    transform: scale(1.1);
-    
 }
 
 .btn_delete:hover{
     background: rgb(246, 206, 198 );
     transform: scale(.9);
+    color: #000;
 }
 
-.btn_delete:active{
-    transform: scale(1.1);
-    
+:is(.box-Content_Btn,.btn_delete,.Btn_PDF):active{
+    transform: scale(1.1);    
 }
+

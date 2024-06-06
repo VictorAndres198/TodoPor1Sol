@@ -61,7 +61,7 @@
                         
                     </div>
                     <div>
-                         <a class="SeccionName" href="/Todox1Sol/pages/admin/AdminPanel.jsp">Panel de Información</a>
+                         <a class="SeccionName" href="/TodoPor1Sol/pages/admin/AdminPanel.jsp">Panel de Información</a>
                     </div>
                 </div>
                 <div class="button-nav-admin">
@@ -87,7 +87,7 @@
                         
                     </div>
                     <div>
-                       <a class="SeccionName" href="/Todox1Sol/pages/admin/RegistroProductos.jsp">Nuevo Producto</a> 
+                       <a class="SeccionName" href="/TodoPor1Sol/pages/admin/RegistroProductos.jsp">Nuevo Producto</a> 
                     </div>
                 </div>
                 <div class="button-nav-admin expanded productosExpandidos hide">
@@ -113,7 +113,7 @@
                         
                     </div>
                     <div>
-                        <a class="SeccionName" href="/Todox1Sol/pages/admin/NuevoProveedor.jsp">Nuevo Proveedor</a>
+                        <a class="SeccionName" href="/TodoPor1Sol/pages/admin/NuevoProveedor.jsp">Nuevo Proveedor</a>
                     </div>
                 </div>
                 <div class="button-nav-admin expanded proveedoresExpandidos hide">
@@ -121,7 +121,7 @@
                         
                     </div>
                     <div>
-                        <a class="SeccionName" href="/Todox1Sol/pages/admin/GestionarProveedor.jsp">Gestionar Proveedor</a>
+                        <a class="SeccionName" href="/TodoPor1Sol/pages/admin/GestionarProveedor.jsp">Gestionar Proveedor</a>
                     </div>
                 </div>
                 <div class="button-nav-admin">

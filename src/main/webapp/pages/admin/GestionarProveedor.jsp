@@ -45,6 +45,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="Frm-Btns-Report">
+                <button class="Btn_PDF" onclick="sendReportData()">Generar Reporte</button>
+            </div>
             <div class="Frm-Btns">
                 <button class="box-Content_Btn">Modificar</button>       
                 <button class="box-Content_Btn btn_delete">Eliminar</button>       
@@ -56,6 +59,9 @@
         
         <!-- SCRIPT PARA CARGAR TODOS LOS PROVEEDORES -->
         <script src="../../SearchProveedor.js" type="text/javascript"></script>
+        
+        <!-- SCRIPT PARA MANEJAR LOS DATOS ENVIADOS PARA GENERAR REPORTE -->
+        <script src="../../generateReport.js" type="text/javascript"></script>
         
     </body>
 </html>

@@ -19,7 +19,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.27</version> <!-- Cambiar a la versión deseada -->
+            <version>8.0.30</version> <!-- Cambiar a la versión deseada -->
         </dependency>
 
         <!-- Dependencia para JSTL -->
@@ -83,6 +83,20 @@
             <artifactId>gson</artifactId>
             <version>2.11.0</version>
         </dependency>
+
+        <!-- Dependencias para usar JasperReports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.20.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.20.4</version>
+        </dependency>
+             
     </dependencies> 
 
      <build>
