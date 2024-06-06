@@ -26,7 +26,7 @@ function getFormData(){
 
 function sendData(){
     // Definimos la ruta del Servlet al que se hace la peticion
-    const url = 'http://localhost:8080/Todox1Sol/SvProveedor';
+    const url = 'http://localhost:8080/TodoPor1Sol/SvProveedor';
     //definimos los datos a enviar
     const data = getFormData();
     
