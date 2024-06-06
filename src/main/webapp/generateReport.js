@@ -6,11 +6,11 @@ function getTableData(){
     rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         const rowData = {
-            ruc: cells[0].textContent,
-            nombre: cells[1].textContent,
-            pais: cells[2].textContent,
-            telefono: cells[3].textContent,
-            correo: cells[4].textContent
+            RUC: cells[0].textContent,
+            Nombre: cells[1].textContent,
+            Pais: cells[2].textContent,
+            Telefono: cells[3].textContent,
+            Correo: cells[4].textContent
         };
         data.push(rowData);
     });
@@ -32,7 +32,7 @@ function sendReportData(){
         body: JSON.stringify(data)
     })
     .then(response => response.json()) 
-    .then(data => console.log('Data from Table:', data))
+    .then(result => console.log(result))
     .catch(error => console.error('Error:', error));
     //funciones console log es para tener una traza del resultado  
 }
