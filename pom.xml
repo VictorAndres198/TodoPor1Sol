@@ -19,7 +19,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.27</version> <!-- Cambiar a la versión deseada -->
+            <version>8.0.30</version> <!-- Cambiar a la versión deseada -->
         </dependency>
 
         <!-- Dependencia para JSTL -->
