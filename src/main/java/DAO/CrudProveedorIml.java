@@ -140,7 +140,7 @@ public class CrudProveedorIml implements CrudRepository<Proveedor>{
     }
     
     private void setProveedorToDB(PreparedStatement pst,Proveedor prov) throws SQLException{
-        pst.setString(1, prov.getRUC());
+        pst.setString(1, prov.getRuc());
         pst.setString(2, prov.getNombre());
         pst.setString(3, prov.getPais());
         pst.setString(4, prov.getTelefono());
