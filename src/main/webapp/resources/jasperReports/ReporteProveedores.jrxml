@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProveedores2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="219a9c49-a050-4153-b697-b047b971fd60">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProveedores" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7841a98f-ed7c-4bac-9924-bb911b9c5f1b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -30,20 +31,14 @@
 	</style>
 	<subDataset name="dsReporteProveedores" uuid="20cb8d86-1b96-4ac3-aee0-ce74a7595daf">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-		<queryString>
-			<![CDATA[]]>
-		</queryString>
-		<field name="RUC" class="java.lang.String"/>
-		<field name="Nombre" class="java.lang.String"/>
-		<field name="Pais" class="java.lang.String"/>
-		<field name="Telefono" class="java.lang.String"/>
-		<field name="Correo" class="java.lang.String"/>
+		<field name="ruc" class="java.lang.String"/>
+		<field name="nombre" class="java.lang.String"/>
+		<field name="pais" class="java.lang.String"/>
+		<field name="telefono" class="java.lang.String"/>
+		<field name="correo" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="LogoEmpresa" class="java.io.InputStream"/>
-	<parameter name="ds" class="net.sf.jasperreports.engine.data.JRBeanArrayDataSource"/>
-	<queryString>
-		<![CDATA[]]>
-	</queryString>
+	<parameter name="ds" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -199,7 +194,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="88f7447b-68ca-497c-9a60-8432075a74d2"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{RUC}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{ruc}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -218,7 +213,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="129" height="30" uuid="8caed868-2057-4624-ac38-6b349507436a"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -237,7 +232,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="98" height="30" uuid="7514efa1-aa39-4d24-9f0a-74d18334ec07"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{Pais}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -256,7 +251,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="101" height="30" uuid="61b3da48-753c-4130-af87-c5840ae4ddd4"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{Telefono}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -275,7 +270,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="149" height="30" uuid="f9947e4f-dac3-4cce-a537-fd721491d944"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{Correo}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
