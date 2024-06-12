@@ -15,11 +15,11 @@ function getFormData(){
   const correoValue = document.querySelector("[name='correo']").value;
   
   // creamos el objetivo data que contendra toda la info del Proveedor a registrar
-  const data = {RUC:rucValue,
-                Nombre:nombreValue,
-                Pais:paisValue,
-                Telefono:telefonoValue,
-                Correo:correoValue};
+  const data = {ruC:rucValue,
+                nombre:nombreValue,
+                pais:paisValue,
+                telefono:telefonoValue,
+                correo:correoValue};
   //Returnamos el objeto
   return data; 
 }
