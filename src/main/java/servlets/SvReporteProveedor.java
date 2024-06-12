@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,11 +18,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 
@@ -60,6 +60,11 @@ public class SvReporteProveedor extends HttpServlet {
         List<Proveedor> ListProveedores = new ArrayList<>();
         ListProveedores = gson.fromJson(jsonData, new TypeToken<List<Proveedor>>() {}.getType());
         
+                // Ejemplo: imprimir la lista en la consola
+        for (Proveedor proveedor : ListProveedores) {
+            System.out.println(proveedor);
+        }
+        
         // Aquí puedes manejar la lista de proveedores como desees
         // Por ejemplo, pasarla a JasperReports
         try {
@@ -69,23 +74,24 @@ public class SvReporteProveedor extends HttpServlet {
             InputStream logoEmpresa = srvContext.getResourceAsStream("resources/img/home/Logo_1_Reporte.png");
             
             //Obtenemos ruta de la plantilla del reporte Jasper
-            InputStream reporteProveedores = srvContext.getResourceAsStream("resources/jasperReports/ReporteProveedores2.jrxml");
+            InputStream reporteProveedores = srvContext.getResourceAsStream("resources/jasperReports/ReporteProveedores.jasper");
             
             JasperReport report = (JasperReport) JRLoader.loadObject(reporteProveedores);
-            JRBeanArrayDataSource ds = new JRBeanArrayDataSource(ListProveedores.toArray());
+            JRDataSource ds = new JRBeanCollectionDataSource(ListProveedores,false);
             
             Map<String,Object> parameters = new HashMap<>();
             parameters.put("ds", ds);
-            parameters.put("logoEmpresa", logoEmpresa);
+            parameters.put("LogoEmpresa", logoEmpresa);
             response.setContentType("application/pdf");
             response.addHeader("Content-Disposition", "inline; filename=ReporteProveedores.pdf");
             JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters,ds);
             JasperExportManager.exportReportToPdfStream(jasperPrint, out);
             out.flush();
             out.close();
+            System.out.println("LLegamos aqui??");
             
         } catch (Exception e) {
-        
+            
             Map<String, String> responseMap = new HashMap<>();
             responseMap.put("status", "ok");
             responseMap.put("msj", "Data received and processed");
@@ -93,17 +99,9 @@ public class SvReporteProveedor extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             out.print(gson.toJson(responseMap));
             out.flush();
-            
             e.printStackTrace();
             throw new ServletException(e);
         }
-        
-        
-        // Ejemplo: imprimir la lista en la consola
-        for (Proveedor proveedor : ListProveedores) {
-            System.out.println(proveedor.getRUC()+ " " + proveedor.getNombre() + " " + proveedor.getPais() + " " + proveedor.getTelefono() + " " + proveedor.getCorreo());
-        }
-        
     }
 
 
