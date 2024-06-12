@@ -61,24 +61,24 @@ public class SvProveedor extends HttpServlet {
         JsonObject jsonObject = gson.fromJson(jsonData, JsonObject.class);
         
         // Procesar los datos recibidos
-        String Ruc = jsonObject.get("RUC").getAsString();
-        String Nombre = jsonObject.get("Nombre").getAsString();
-        String Pais = jsonObject.get("Pais").getAsString();
-        String Telefono = jsonObject.get("Telefono").getAsString();
-        String Correo = jsonObject.get("Correo").getAsString();
+        String ruc = jsonObject.get("ruc").getAsString();
+        String nombre = jsonObject.get("nombre").getAsString();
+        String pais = jsonObject.get("pais").getAsString();
+        String telefono = jsonObject.get("telefono").getAsString();
+        String correo = jsonObject.get("correo").getAsString();
         
-        Proveedor prov = new Proveedor(Ruc, Nombre, Pais, Telefono, Correo);
+        Proveedor prov = new Proveedor(ruc, nombre, pais, telefono, correo);
         
         // Enviar una respuesta
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         JsonObject jsonResponse = new JsonObject();
         jsonResponse.addProperty("message", "Datos recibidos correctamente");
-        jsonResponse.addProperty("RUC", Ruc);
-        jsonResponse.addProperty("Nombre", Nombre);
-        jsonResponse.addProperty("Pais", Pais);
-        jsonResponse.addProperty("Telefono", Telefono);
-        jsonResponse.addProperty("Correo", Correo);
+        jsonResponse.addProperty("ruc", ruc);
+        jsonResponse.addProperty("nombre", nombre);
+        jsonResponse.addProperty("pais", pais);
+        jsonResponse.addProperty("telefono", telefono);
+        jsonResponse.addProperty("correo", correo);
         response.getWriter().write(jsonResponse.toString());
         
         WebService serviceProveedor = new ServiceProveedor();
