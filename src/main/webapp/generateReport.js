@@ -6,11 +6,11 @@ function getTableData(){
     rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         const rowData = {
-            RUC: cells[0].textContent,
-            Nombre: cells[1].textContent,
-            Pais: cells[2].textContent,
-            Telefono: cells[3].textContent,
-            Correo: cells[4].textContent
+            ruc: cells[0].textContent,
+            nombre: cells[1].textContent,
+            pais: cells[2].textContent,
+            telefono: cells[3].textContent,
+            correo: cells[4].textContent
         };
         data.push(rowData);
     });
@@ -26,15 +26,26 @@ function sendReportData(){
     //Funcion realizar la peticion con los datos en JSON
     fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
         body: JSON.stringify(data)
     })
-    .then(response => response.json()) 
-    .then(result => console.log(result))
-    .catch(error => console.error('Error:', error));
-    //funciones console log es para tener una traza del resultado  
+    .then(response => {
+        if (response.ok) {
+            return response.blob();  // Obtener la respuesta como Blob
+        } else {
+            throw new Error('Error en la respuesta del servidor');
+        }
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'ReporteProveedores.pdf';  // Nombre del archivo a descargar
+        document.body.appendChild(a);  // Necesario para Firefox
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => console.error('Error:', error));  
 }
 
 

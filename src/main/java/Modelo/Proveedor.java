@@ -1,83 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Modelo;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Andres
- */
 public class Proveedor implements Serializable{
-    private String RUC;
-    private String Nombre;
-    private String Pais;
-    private String Telefono;
-    private String Correo;
+    private String ruc;
+    private String nombre;
+    private String pais;
+    private String telefono;
+    private String correo;
+    
 //CONSTRUCTOR
 
     public Proveedor() {
     }
 
-    public Proveedor(String RUC, String Nombre, String Pais, String Telefono, String Correo) {
-        this.RUC = RUC;
-        this.Nombre = Nombre;
-        this.Pais = Pais;
-        this.Telefono = Telefono;
-        this.Correo = Correo;
+    public Proveedor(String ruc, String nombre, String pais, String telefono, String correo) {
+        this.ruc = ruc;
+        this.nombre = nombre;
+        this.pais = pais;
+        this.telefono = telefono;
+        this.correo = correo;
     }
 
- 
-   //Metodos getters y setters
-
-    public String getRUC() {
-        return RUC;
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setRUC(String RUC) {
-        this.RUC = RUC;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPais() {
-        return Pais;
+        return pais;
     }
 
-    public void setPais(String Pais) {
-        this.Pais = Pais;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     @Override
     public String toString() {
-        return "Proveedor{" + "RUC=" + RUC + ", Nombre=" + Nombre + ", "
-                + "Pais=" + Pais + ", Telefono=" + Telefono + ", "
-                + "Correo=" + Correo + '}'+"\n";
+        return "Proveedor{" + "ruc=" + ruc + ", nombre=" + nombre + ", pais=" + pais + ", telefono=" + telefono + ", correo=" + correo + '}';
     }
+    
+    
+
+
 
    
 

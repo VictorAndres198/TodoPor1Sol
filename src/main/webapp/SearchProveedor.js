@@ -24,19 +24,19 @@ async function buildTable() {
         const row = table.insertRow();
 
         const cellRUC = row.insertCell();
-        cellRUC.textContent = prov.RUC;
+        cellRUC.textContent = prov.ruc;
 
         const cellNombre = row.insertCell();
-        cellNombre.textContent = prov.Nombre;
+        cellNombre.textContent = prov.nombre;
 
         const cellPais = row.insertCell();
-        cellPais.textContent = prov.Pais;
+        cellPais.textContent = prov.pais;
 
         const cellTelefono = row.insertCell();
-        cellTelefono.textContent = prov.Telefono;
+        cellTelefono.textContent = prov.telefono;
 
         const cellCorreo = row.insertCell();
-        cellCorreo.textContent = prov.Correo;
+        cellCorreo.textContent = prov.correo;
     });
 }
 

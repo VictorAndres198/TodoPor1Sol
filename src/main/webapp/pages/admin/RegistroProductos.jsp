@@ -1,3 +1,4 @@
+<%@page import="Conexion.ConectarBD"%>
 <%@page import="java.text.ParseException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.*"%>
@@ -64,9 +65,24 @@
                     <div class="form-group">
                         <span> Proveedor </span>
                         <select id="proveedores" name="proveedor" required>
-                            <option value="1" selected="selected"></option>
-                            <option value="2">Lab</option>
-                            <option value="3">Dove</option>
+                            <% 
+                        ConectarBD cn = new ConectarBD();
+                       
+                        try{
+                        cn.ConectarBD();
+                        String sql= "select * from proveedores; "; 
+                        cn.smt= cn.con.createStatement();
+                        cn.rs=cn.smt.executeQuery(sql);
+                        while(cn.rs.next()){
+                                out.println("<option>"+cn.rs.getString(2)+"</option>");
+                                
+                                }
+                                }catch (Exception e){
+                                out.print(e.toString());
+                                }
+                                
+                            
+                            %>
                         </select>
                         <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
                     </div>
@@ -74,9 +90,23 @@
                     <div class="form-group"  >
                         <span class="categoria"> Categoria </span>
                         <select id="categoria" name="categoria" required>
-                            <option value="1" selected="selected"></option>
-                            <option value="2">Generico</option>
-                            <option value="3">Original</option>
+                           
+                                  <% 
+                        try{
+                        cn.ConectarBD();
+                        String sql= "select * from categorias; "; 
+                        cn.smt= cn.con.createStatement();
+                        cn.rs=cn.smt.executeQuery(sql);
+                        while(cn.rs.next()){
+                                out.println("<option>"+cn.rs.getString(2)+"</option>");
+                                
+                                }
+                                }catch (Exception e){
+                                out.print(e.toString());
+                                }
+                                
+                            
+                            %>
                         </select>
                         <small id="categoria-help" style="display: none;">Ingresar categoria</small>
                     </div>
