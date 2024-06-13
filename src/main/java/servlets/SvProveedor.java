@@ -60,29 +60,46 @@ public class SvProveedor extends HttpServlet {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(jsonData, JsonObject.class);
         
-        // Procesar los datos recibidos
-        String ruc = jsonObject.get("ruc").getAsString();
-        String nombre = jsonObject.get("nombre").getAsString();
-        String pais = jsonObject.get("pais").getAsString();
-        String telefono = jsonObject.get("telefono").getAsString();
-        String correo = jsonObject.get("correo").getAsString();
         
-        Proveedor prov = new Proveedor(ruc, nombre, pais, telefono, correo);
-        
-        // Enviar una respuesta
+        //generamos un JSON para la respuesta
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         JsonObject jsonResponse = new JsonObject();
-        jsonResponse.addProperty("message", "Datos recibidos correctamente");
-        jsonResponse.addProperty("ruc", ruc);
-        jsonResponse.addProperty("nombre", nombre);
-        jsonResponse.addProperty("pais", pais);
-        jsonResponse.addProperty("telefono", telefono);
-        jsonResponse.addProperty("correo", correo);
-        response.getWriter().write(jsonResponse.toString());
         
+        
+        //Creamos un Objeto Servicio
         WebService serviceProveedor = new ServiceProveedor();
-        serviceProveedor.Insert(prov);
+        
+        // Dterminamos si el prooveedor con ruc ingresado ya existe
+        String ruc = jsonObject.get("ruc").getAsString();
+        boolean ExistProv = new ServiceProveedor().FindById(ruc);
+        
+        if(ExistProv){
+            jsonResponse.addProperty("status","Error");
+            jsonResponse.addProperty("message", "El proveedor con el ruc "+ruc+" ya existe");
+            response.getWriter().write(jsonResponse.toString());
+            
+        }else{
+            String nombre = jsonObject.get("nombre").getAsString();
+            String pais = jsonObject.get("pais").getAsString();
+            String telefono = jsonObject.get("telefono").getAsString();
+            String correo = jsonObject.get("correo").getAsString();
+
+            Proveedor prov = new Proveedor(ruc, nombre, pais, telefono, correo);
+
+            // Enviar una respuesta
+
+            jsonResponse.addProperty("status","OK");
+            jsonResponse.addProperty("message", "Datos recibidos correctamente");
+            jsonResponse.addProperty("ruc", ruc);
+            jsonResponse.addProperty("nombre", nombre);
+            jsonResponse.addProperty("pais", pais);
+            jsonResponse.addProperty("telefono", telefono);
+            jsonResponse.addProperty("correo", correo);
+            response.getWriter().write(jsonResponse.toString());
+            serviceProveedor.Insert(prov);   
+        }
+        
     }
 
     @Override

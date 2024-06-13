@@ -80,8 +80,6 @@ document.getElementById("form-validation").addEventListener("submit", function(e
     if (form.checkValidity()) {
         //Si el formulario es válido se realiza:
         sendData();// 1. Envio por POST del Proveedor a registrar
-        clearInputs(); // 2. Limpia los inputs del formulario
-        
     }
 });
 

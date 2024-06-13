@@ -15,7 +15,7 @@ function getFormData(){
   const correoValue = document.querySelector("[name='correo']").value;
   
   // creamos el objetivo data que contendra toda la info del Proveedor a registrar
-  const data = {ruC:rucValue,
+  const data = {ruc:rucValue,
                 nombre:nombreValue,
                 pais:paisValue,
                 telefono:telefonoValue,
@@ -39,9 +39,15 @@ function sendData(){
         body: JSON.stringify(data)
     })
     .then(response => response.json()) 
-    .then(data => console.log('Success:', data))
+    .then(data => {
+        if(data.status==="Error"){
+            alert(data.message);
+        }else{
+            console.log(data);
+            clearInputs();
+        }
+    })
     .catch(error => console.error('Error:', error));
-    //funciones console log es para tener una traza del resultado  
 }
 
 
