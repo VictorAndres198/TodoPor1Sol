@@ -24,6 +24,10 @@ public class ServiceProveedor implements WebService<Proveedor>{
     public Proveedor FindById(long id) {
         return crudProveedor.FindById(id);
     }
+    
+    public boolean FindById(String id) {
+        return ((CrudProveedorIml)crudProveedor).FindById(id);
+    }
 
     @Override
     public void Insert(Proveedor prov) {

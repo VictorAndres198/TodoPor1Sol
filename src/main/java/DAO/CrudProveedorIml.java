@@ -70,6 +70,33 @@ public class CrudProveedorIml implements CrudRepository<Proveedor>{
         }
         return prov;
     }
+    
+    //Buscar Proveedor Por ID, para verificar si existe
+    
+    public boolean FindById(String id) {
+        boolean provExiste = false;
+        
+        //Query a ejecutar
+        String action = "SELECT count(*) FROM proveedores where RUC = (?);";
+        
+        try( Connection conn = getCnx().getConnection();
+             PreparedStatement pst = conn.prepareStatement(action)){
+
+            pst.setString(1, id);
+            
+            try(ResultSet rs = pst.executeQuery()){
+                rs.next();
+                //Obtenemos al proveedor correspondiente
+                if (rs.getInt(1)>0){
+                    provExiste =  true;
+                }
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return provExiste;
+    }
 
     @Override
     public void Insert(Proveedor prov) {
