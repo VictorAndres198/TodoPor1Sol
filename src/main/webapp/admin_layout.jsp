@@ -18,6 +18,23 @@
                 }, 400);
             };
             
+            function rotateCheuron0() {
+                const cheuron0 = document.getElementById("cheuron0");
+                cheuron0.classList.toggle("rotated");
+                cheuron0.classList.toggle("transition");
+                
+                const expandedElements0 = document.querySelectorAll('.empleadosExpandidos');
+                // Agregamos o eliminamos la clase fade según el estado actual del elemento
+                expandedElements0.forEach(function(element) {
+                    element.classList.toggle('hide');
+                });
+
+                // Eliminamos la clase de transición después de la duración de la transición
+                setTimeout(function() {
+                    cheuron0.classList.remove("transition");
+                }, 400);
+            };
+            
             function rotateCheuron2() {
                 const cheuron2 = document.getElementById("cheuron2");
                 cheuron2.classList.toggle("rotated");
@@ -64,14 +81,34 @@
                          <a class="SeccionName" href="/TodoPor1Sol/pages/admin/AdminPanel.jsp">Panel de Información</a>
                     </div>
                 </div>
-                <div class="button-nav-admin">
+                <div class="button-nav-admin"  onclick="rotateCheuron0()">
+                    <div style="display: flex; justify-content: end;">
+                        
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        Empleado
+                    </div>
+                    <div style="display: flex; align-items: center;height: 100%;width: 100%;">
+                        <img id="cheuron0" name="cheuron0" style="max-height: 16px; max-width: 16px;" alt="" src="resources/img/admin/cheuron-abajo0.png"/>
+                    </div>
+                </div>
+                <div class="button-nav-admin expanded empleadosExpandidos hide">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
                     <div>
-                        Empleados
+                        <a class="SeccionName" href="/TodoPor1Sol/pages/admin/NuevoEmpleado.jsp">Nuevo Empleado</a>
                     </div>
                 </div>
+                  <a class="button-nav-admin expanded empleadosExpandidos hide" href="/TodoPor1Sol/pages/admin/GestionarEmpleados.jsp" style="text-decoration: none">
+                    <div style="display: flex; justify-content: end;">
+                        
+                    </div>
+                    <div>
+                        <div class="SeccionName" >Gestionar Empleados</div>
+                    </div>
+                </a>
+                    
                   <div class="button-nav-admin"  onclick="rotateCheuron()">
                     <div style="display: flex; justify-content: end;">                        
                     </div>
@@ -116,14 +153,14 @@
                         <a class="SeccionName" href="/TodoPor1Sol/pages/admin/NuevoProveedor.jsp">Nuevo Proveedor</a>
                     </div>
                 </div>
-                <div class="button-nav-admin expanded proveedoresExpandidos hide">
+                  <a class="button-nav-admin expanded proveedoresExpandidos hide" href="/TodoPor1Sol/pages/admin/GestionarProveedor.jsp" style="text-decoration: none">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
                     <div>
-                        <a class="SeccionName" href="/TodoPor1Sol/pages/admin/GestionarProveedor.jsp">Gestionar Proveedor</a>
+                        <div class="SeccionName" >Gestionar Proveedor</div>
                     </div>
-                </div>
+                </a>
                 <div class="button-nav-admin">
                     <div style="display: flex; justify-content: end;">
                         
@@ -132,7 +169,6 @@
                         Historial de Ventas
                     </div>
                 </div>  
-          </div>
 
             <div class="button-nav-admin">
                 <div style="display: flex; justify-content: end;">
@@ -141,8 +177,8 @@
                     Cerrar Sesión
                 </div>
             </div>
-                
-            </div>
 
         </div>
-
+     </div>
+</div>
+                
