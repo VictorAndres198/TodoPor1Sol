@@ -16,23 +16,14 @@ import javax.servlet.http.HttpSession;
 public class SvInicioSesion extends HttpServlet {
 
  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    throws ServletException, IOException {
     String nombre = request.getParameter("usuario");
     String clave = request.getParameter("contrasena");
-    
-    
-    System.out.println("Si aparece esto significa que el SvIncioSesion obtiene los datos correctamente"+nombre + clave);
-    
     
     DAOempleado daoUsuario = new DAOempleado();
     Usuario usuario = daoUsuario.validarUsuario(nombre, clave);
 
-    if (usuario != null) {
-        // Imprimir los datos del usuario obtenidos de la base de datos
-        System.out.println("Datos del usuario obtenidos de la base de datos:");
-        System.out.println("Nombre: " + usuario.getNombre());
-        System.out.println("DNI: " + usuario.getDniEmpleado());
-        
+    if (usuario != null) {        
         // Añadir el usuario a la sesión
         HttpSession session = request.getSession();
         session.setAttribute("usuario", usuario);

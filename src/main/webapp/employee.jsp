@@ -1,9 +1,3 @@
-<%-- 
-    Document   : employee
-    Created on : 11 may. 2024, 12:05:30
-    Author     : Victor
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,10 +26,46 @@
                
             };
             
-            $(document).ready(function() {
-                // Cargar el contenido del archivo JSP en el div
-                $('#employee-display').load('pages/employee/register.jsp');
+            $('#employee-display').load('pages/employee/register.jsp');
+            /*$(document).ready(function() {
+            function loadPage(page) {
+                console.log("Loading page:", page); // Agregar este console.log
+                $('#employee-display').load(`/TodoPor1Sol/pages/employee/${page}.jsp`, function(response, status, xhr) {
+                    if (status == "error") {
+                        $('#employee-display').html(`<p>Error loading page: ${xhr.status} ${xhr.statusText}</p>`);
+                    }
+                });
+            }
+
+            // Página por defecto
+            loadPage('register');
+
+            // Asignar eventos de clic para los ítems del menú
+            $('#nav-register').click(function() {
+                loadPage('register');
             });
+
+            $('#nav-inventory').click(function() {
+                loadPage('inventory');
+            });
+
+            $('#nav-sale').click(function() {
+                loadPage('sale');
+            });
+
+            $('#nav-sale-receipt').click(function() {
+                loadPage('sale-receipt');
+            });
+
+            $('#nav-sale-invoice').click(function() {
+                loadPage('sale-invoice');
+            });
+
+            $('#nav-sale-history').click(function() {
+                loadPage('sale-history');
+            });
+        });*/
+        
         </script>
         
     </head>
@@ -60,13 +90,9 @@
                         </label>
                     </div>
                 </div>
-                <div class="button-nav-empl">
-                    <div style="display: flex; justify-content: end;">
-                        
-                    </div>
-                    <div>
-                        Registro de Entr. y Sal.
-                    </div>
+                <div class="button-nav-empl" id="nav-register">
+                    <div style="display: flex; justify-content: end;"></div>
+                    <div>Registro de Entr. y Sal.</div>
                 </div>
                 <div class="button-nav-empl">
                     <div style="display: flex; justify-content: end;">
@@ -116,7 +142,7 @@
                 <div style="display: flex; justify-content: end;">
                 </div>
                 <div>
-                    Cerrar Sesión
+                    <a class="SeccionName" href="/TodoPor1Sol/home.jsp">Cerrar Sesión</a>
                 </div>
             </div>
                 

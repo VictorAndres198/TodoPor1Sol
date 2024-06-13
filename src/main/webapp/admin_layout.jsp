@@ -138,7 +138,7 @@
                 <div style="display: flex; justify-content: end;">
                 </div>
                 <div>
-                    Cerrar Sesión
+                    <a class="SeccionName" href="/TodoPor1Sol/home.jsp">Cerrar Sesión</a>
                 </div>
             </div>
                 

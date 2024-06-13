@@ -69,7 +69,7 @@ public class SvReporteProveedor extends HttpServlet {
             InputStream logoEmpresa = srvContext.getResourceAsStream("resources/img/home/Logo_1_Reporte.png");
             
             //Obtenemos ruta de la plantilla del reporte Jasper
-            InputStream reporteProveedores = srvContext.getResourceAsStream("resources/jasperReports/ReporteProveedores2.jrxml");
+            InputStream reporteProveedores = srvContext.getResourceAsStream("resources/jasperReports/ReporteProveedores2.jasper");
             
             JasperReport report = (JasperReport) JRLoader.loadObject(reporteProveedores);
             JRBeanArrayDataSource ds = new JRBeanArrayDataSource(ListProveedores.toArray());
