@@ -31,7 +31,7 @@
             <div class="Container-RegistroProductos negrita"> 
                 <!--INGRESAR DATOS -->
                <div class="IngreseDatos">Ingrese los Datos</div>
-               <form id="form-validation" action="SvProductos" method="post" novalidate>
+               <form id="form-validation"  action="./SvProductos" method="post" novalidate>
                     <div class="form-group">
                         <span> Nombre </span>
                         <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
@@ -74,8 +74,9 @@
                         cn.smt= cn.con.createStatement();
                         cn.rs=cn.smt.executeQuery(sql);
                         while(cn.rs.next()){
-                                out.println("<option>"+cn.rs.getString(2)+"</option>");
-                                
+                %>
+                <option value="<%=cn.rs.getString(1)%>"><%=cn.rs.getString(2)%></option>
+                <% 
                                 }
                                 }catch (Exception e){
                                 out.print(e.toString());
@@ -83,6 +84,10 @@
                                 
                             
                             %>
+                            
+                            
+                            
+                            
                         </select>
                         <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
                     </div>
@@ -98,7 +103,9 @@
                         cn.smt= cn.con.createStatement();
                         cn.rs=cn.smt.executeQuery(sql);
                         while(cn.rs.next()){
-                                out.println("<option>"+cn.rs.getString(2)+"</option>");
+                                     %>
+                <option value="<%=cn.rs.getInt(1)%>"><%=cn.rs.getString(2)%></option>
+                <% 
                                 
                                 }
                                 }catch (Exception e){
@@ -111,7 +118,7 @@
                         <small id="categoria-help" style="display: none;">Ingresar categoria</small>
                     </div>
                     <div class="button" style="text-align: center">
-                        <input type="submit" name="guardar" value="Guardar">
+                        <input type="submit"  value="Guardar">
                     </div>
                 </form>
             </div>

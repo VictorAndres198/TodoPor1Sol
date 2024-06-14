@@ -11,12 +11,12 @@ public class Producto {
     private double precio;
     private int Stock;
     private int ID_categoria; 
-    private String RUC_Prov;
+    private String ruc;
 
     public Producto() {
     }
 
-    public Producto(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String RUC_Prov) {
+    public Producto(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String ruc) {
         this.ID_Prod = ID_Prod;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
@@ -24,7 +24,7 @@ public class Producto {
         this.precio = precio;
         this.Stock = Stock;
         this.ID_categoria = ID_categoria;
-        this.RUC_Prov = RUC_Prov;
+        this.ruc = ruc;
     }
 
     public int getID_Prod() {
@@ -83,13 +83,15 @@ public class Producto {
         this.ID_categoria = ID_categoria;
     }
 
-    public String getRUC_Prov() {
-        return RUC_Prov;
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setRUC_Prov(String RUC_Prov) {
-        this.RUC_Prov = RUC_Prov;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
 
-    
+
+
+  
      }

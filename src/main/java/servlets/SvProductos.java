@@ -2,7 +2,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,9 +28,9 @@ public class SvProductos extends HttpServlet {
        pro.setFechaVencimiento(java.sql.Date.valueOf(request.getParameter("fechaVencimiento")));
        pro.setStock(Integer.parseInt(request.getParameter("stock")));
        pro.setPrecio(Double.parseDouble(request.getParameter("precio")));
-       pro.setRUC_Prov(request.getParameter("proveedor"));
+       pro.setRuc(request.getParameter("proveedor"));
        pro.setID_categoria(Integer.parseInt(request.getParameter("categoria")));
-
+   
 
        
    }  

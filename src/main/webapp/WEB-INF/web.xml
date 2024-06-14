@@ -8,6 +8,16 @@
         <servlet-name>SvHome</servlet-name>
         <url-pattern>/SvHome</url-pattern>
     </servlet-mapping>
+       <servlet>
+        <servlet-name>SvProductos</servlet-name>
+        <servlet-class>servlets.SvProductos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SvProductos</servlet-name>
+        <url-pattern>/SvProductos</url-pattern>
+    </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30
