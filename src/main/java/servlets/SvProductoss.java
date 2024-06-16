@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,8 +67,18 @@ public class SvProductoss extends HttpServlet {
        Producto prod = new Producto(nombre, descripcion, fechaVencimiento, precio, Stock, categoria, proveedorRUC);
        DAOproductos prodao= new DAOproductos();
 
-        String result = prodao.insertarProducto(prod);
-        response.getWriter().print(result);
+        String resultado = prodao.insertarProducto(prod);
+        if ("Producto insertado con éxito".equals(resultado)) {
+            response.sendRedirect("RegistroProductos.jsp");
+        } else {
+            // Manejar el error de inserción
+            request.setAttribute("mensajeError", resultado);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        
+        
+        
+        //response.getWriter().print(result);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

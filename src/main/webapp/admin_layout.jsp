@@ -124,7 +124,9 @@
                         
                     </div>
                     <div>
-                       <a class="SeccionName" href="/TodoPor1Sol/pages/admin/RegistroProductos.jsp">Nuevo Producto</a> 
+                        
+                        <a class="SeccionName"href="/TodoPor1Sol/RegistroProductos.jsp">Nuevo Producto</a> 
+                        <!-- <a class="SeccionName" href="/TodoPor1Sol/pages/admin/RegistroProductos.jsp">Nuevo Producto</a>  -->
                     </div>
                 </div>
                 <div class="button-nav-admin expanded productosExpandidos hide">
