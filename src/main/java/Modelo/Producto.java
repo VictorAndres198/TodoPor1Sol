@@ -1,4 +1,3 @@
-
 package Modelo;
 
 
@@ -12,12 +11,10 @@ public class Producto {
     private int Stock;
     private int ID_categoria; 
     private String ruc;
-
-    public Producto() {
+ public Producto() {
     }
 
-    public Producto(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String ruc) {
-        this.ID_Prod = ID_Prod;
+    public Producto(String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String ruc) {
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.FechaVencimiento = FechaVencimiento;
@@ -26,6 +23,8 @@ public class Producto {
         this.ID_categoria = ID_categoria;
         this.ruc = ruc;
     }
+
+   
 
     public int getID_Prod() {
         return ID_Prod;

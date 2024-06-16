@@ -31,7 +31,7 @@
             <div class="Container-RegistroProductos negrita"> 
                 <!--INGRESAR DATOS -->
                <div class="IngreseDatos">Ingrese los Datos</div>
-               <form id="form-validation"  action="./SvProductos" method="post" novalidate>
+               <form id="form-validation"  action="../SvProductoss" method="post" novalidate>
                     <div class="form-group">
                         <span> Nombre </span>
                         <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
