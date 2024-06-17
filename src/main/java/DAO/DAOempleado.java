@@ -1,17 +1,22 @@
 package DAO;
 import Conexion.ConectarBD;
+import Interfaces.CRUDempleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import Modelo.Empleado;
-import Modelo.EmpleadoHorario;
-import Modelo.Usuario;
+import Modelo.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.Time;
+import java.time.LocalTime;
 
-public class DAOempleado {
+public class DAOempleado extends ConectarBD implements CRUDempleado {
+Empleado empleado;
+Farmacias farm;
+
 
     public Empleado obtenerEmpleadoPorDNI(String dni) {
         Empleado empleado = null;
@@ -33,7 +38,10 @@ public class DAOempleado {
                 empleado.setTelefono(rs.getString("Telefono"));
                 empleado.setSueldo(rs.getBigDecimal("Sueldo"));
                 empleado.setIdFarm(rs.getInt("ID_farm"));
-                empleado.setIdHorario(rs.getInt("ID_Horario"));
+                LocalTime horarioE = (rs.getTime("horarioE")).toLocalTime();
+                empleado.setHorarioE(horarioE);
+                LocalTime horarioS = (rs.getTime("horarioS")).toLocalTime();
+                empleado.setHorarioS(horarioS);
             }
             
             rs.close();
@@ -155,5 +163,137 @@ public boolean probarConexionBD() {
         System.out.println("Error al conectar a la base de datos.");
         return false;
     }
-}   
 }
+
+
+    public DAOempleado(){}
+    @Override
+    public ArrayList<Empleado> ListarEmpleado() {
+        ArrayList<Empleado> Lista = new ArrayList();
+       String SQL = "SELECT * from empleados  where Estado='A';";
+       try{
+           rs = smt.executeQuery(SQL);
+           while(rs.next()){
+               empleado = new Empleado();
+               empleado.setDni(rs.getString("DNI"));
+               empleado.setNombre(rs.getString("Nombre"));
+               empleado.setApellidos(rs.getString("Apellidos"));
+               empleado.setCorreo(rs.getString("Correo"));
+               empleado.setTelefono(rs.getString("Telefono"));
+               empleado.setSueldo(rs.getBigDecimal("Sueldo"));
+               empleado.setIdFarm(rs.getInt("ID_farm"));
+               LocalTime horarioE = (rs.getTime("horarioE")).toLocalTime();
+               empleado.setHorarioE(horarioE);
+               LocalTime horarioS = (rs.getTime("horarioS")).toLocalTime();
+               empleado.setHorarioS(horarioS);
+               Lista.add(empleado);
+           }
+       }catch(Exception ex){
+           JOptionPane.showMessageDialog(null,
+                   "ERROR no se puede recuperar los empleados.."+ex);
+       }
+       return Lista;  
+    }
+    
+    
+
+
+    @Override
+    public Empleado ObtenerEmpleado(String dni) {
+        String SQL = "select * from empleados where DNI=? and Estado='A'";
+        try{
+            ps = super.getConnection().prepareStatement(SQL);
+            ps.setString(1, dni);
+            rs = ps.executeQuery();
+            if(rs.next()){
+               empleado = new Empleado();
+               empleado.setDni(rs.getString("DNI"));
+               empleado.setNombre(rs.getString("Nombre"));
+               empleado.setApellidos(rs.getString("Apellidos"));
+               empleado.setCorreo(rs.getString("Correo"));
+               empleado.setTelefono(rs.getString("Telefono"));
+               empleado.setSueldo(rs.getBigDecimal("Sueldo"));
+               empleado.setIdFarm(rs.getInt("ID_farm"));
+               LocalTime horarioE = (rs.getTime("horarioE")).toLocalTime();
+               empleado.setHorarioE(horarioE);
+               LocalTime horarioS = (rs.getTime("horarioS")).toLocalTime();
+               empleado.setHorarioS(horarioS);
+            }
+        }catch(Exception ex){
+           JOptionPane.showMessageDialog(null,
+                   "ERROR no se puede recuperar los Empleados.."+ex);
+       }
+       return empleado;
+    }
+
+    @Override
+    public boolean Insert(Empleado emp) {
+        String SQL = "insert into empleados values(?,?,?,?,?,?,?,?,?,'A');";
+        try{
+            ps = super.getConnection().prepareStatement(SQL);
+            ps.setString(1,emp.getDni());
+            ps.setString(2,emp.getNombre());
+            ps.setString(3, emp.getApellidos());
+            ps.setString(4, emp.getCorreo());
+            ps.setString(5, emp.getTelefono());
+            ps.setBigDecimal(6, emp.getSueldo());
+            ps.setInt(7, emp.getIdFarm());
+            Time HorarioE = Time.valueOf(emp.getHorarioE());
+            ps.setTime(8, HorarioE);
+            Time HorarioS = Time.valueOf(emp.getHorarioS());
+            ps.setTime(9, HorarioS);
+            ps.executeUpdate();
+        }catch(Exception ex){
+           JOptionPane.showMessageDialog(null,
+                   "ERROR no se puede insertar empleados.."+ex);
+       }
+        return false;
+    }
+
+    @Override
+    public boolean Update(Empleado emp) {
+    String SQL = "UPDATE empleados SET Nombre=?, Apellidos=?, Correo=?, Telefono=?, Sueldo=?, ID_farm=?, horarioE=?, horarioS=? WHERE DNI=?";
+    
+    try {
+        ps = super.getConnection().prepareStatement(SQL);
+        ps.setString(1, emp.getNombre());
+        ps.setString(2, emp.getApellidos());
+        ps.setString(3, emp.getCorreo());
+        ps.setString(4, emp.getTelefono());
+        ps.setBigDecimal(5, emp.getSueldo());
+        ps.setInt(6, emp.getIdFarm());
+        Time HorarioE = Time.valueOf(emp.getHorarioE());
+        ps.setTime(7, HorarioE);
+        Time HorarioS = Time.valueOf(emp.getHorarioS());
+        ps.setTime(8, HorarioS);
+        ps.setString(9, emp.getDni());
+        
+        ps.executeUpdate();
+        // Retorna verdadero si al menos una fila fue actualizada
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, 
+             "ERROR al actualizar empleado: " + ex);
+        
+    }return false;
+}
+
+
+    @Override
+    public boolean Delete(String dni) {
+        String SQL = "update empleados set Estado='I' where DNI like ?";
+        try{
+            ps= super.getConnection().prepareStatement(SQL);
+            ps.setString(1, dni);
+            ps.executeUpdate();
+        }catch(Exception ex){
+           JOptionPane.showMessageDialog(null,
+                              "ERROR no se puede eliminar empleado.."+ex);
+       }
+        return false;
+    }//fin eliminar  
+
+
+
+
+}
+

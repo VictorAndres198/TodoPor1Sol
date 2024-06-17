@@ -2,6 +2,8 @@
 package Modelo;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.time.LocalTime;
 
 public class Empleado {
     private String dni;
@@ -11,21 +13,12 @@ public class Empleado {
     private String telefono;
     private BigDecimal sueldo;
     private int idFarm;
-    private int idHorario;
+    private LocalTime horarioE;
+    private LocalTime horarioS;
+    
     
     //Constructor vacio
     public Empleado(){
-    }
-
-    public Empleado(String dni, String nombre, String apellidos, String correo, String telefono, BigDecimal sueldo, int idFarm, int idHorario) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.sueldo = sueldo;
-        this.idFarm = idFarm;
-        this.idHorario = idHorario;
     }
 
     public String getDni() {
@@ -84,12 +77,24 @@ public class Empleado {
         this.idFarm = idFarm;
     }
 
-    public int getIdHorario() {
-        return idHorario;
+    public LocalTime getHorarioE() {
+        return horarioE;
     }
 
-    public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
+    public void setHorarioE(LocalTime horarioE) {
+        this.horarioE = horarioE;
     }
+
+    public LocalTime getHorarioS() {
+        return horarioS;
+    }
+
+    public void setHorarioS(LocalTime horarioS) {
+        this.horarioS = horarioS;
+    }
+
+    
+
+    
     
 }

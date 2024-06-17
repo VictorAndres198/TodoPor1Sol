@@ -25,7 +25,7 @@
                     <input type="input" class="search-bar"></<input>
                     <button type="submit" class="search-btn">
                         <img class="search-icon" src="../../resources/img/icons/search-symbol.png" alt=""/>
-                    <button> 
+                    </button> 
                 </div>
             </div>
             <div class="Frm-Table">
