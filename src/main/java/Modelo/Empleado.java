@@ -12,7 +12,7 @@ public class Empleado {
     private String correo;
     private String telefono;
     private BigDecimal sueldo;
-    private int idFarm;
+    private Integer idFarm;
     private LocalTime horarioE;
     private LocalTime horarioS;
     
@@ -69,11 +69,11 @@ public class Empleado {
         this.sueldo = sueldo;
     }
 
-    public int getIdFarm() {
+    public Integer getIdFarm() {
         return idFarm;
     }
 
-    public void setIdFarm(int idFarm) {
+    public void setIdFarm(Integer idFarm) {
         this.idFarm = idFarm;
     }
 
@@ -93,8 +93,10 @@ public class Empleado {
         this.horarioS = horarioS;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", correo=" + correo + ", telefono=" + telefono + ", sueldo=" + sueldo + ", idFarm=" + idFarm + ", horarioE=" + horarioE + ", horarioS=" + horarioS + '}';
+    }
 
-    
     
 }
