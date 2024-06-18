@@ -24,6 +24,8 @@ public class Producto {
         this.ruc = ruc;
     }
 
+
+
    
 
     public int getID_Prod() {
