@@ -161,9 +161,8 @@ function mostrarMensajesAyuda(form) {
 
 <!-- CARGAR LAS IMAGENES  -->
 <!-- <script src="../../loadImages.js" type="text/javascript"></script>  -->
-<script src="loadImages.js" type="text/javascript"></script>
 
-    
+<script src="../../loadImages.js" type="text/javascript"></script>
 
 </html>
 

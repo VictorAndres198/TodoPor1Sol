@@ -134,7 +134,8 @@
                         
                     </div>
                     <div>
-                        Gestionar Productos
+                        
+                      <a class="SeccionName"href="/TodoPor1Sol/GestionarProductos.jsp">Gestionar Productos</a>   
                     </div>
                 </div>
                 <div class="button-nav-admin"  onclick="rotateCheuron2()" >
