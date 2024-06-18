@@ -25,9 +25,6 @@ public class Producto {
     }
 
 
-
-   
-
     public int getID_Prod() {
         return ID_Prod;
     }
