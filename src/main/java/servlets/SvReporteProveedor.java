@@ -1,6 +1,7 @@
 
 package servlets;
 
+import Modelo.Empleado;
 import Modelo.Proveedor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,9 +42,7 @@ public class SvReporteProveedor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        /*Funcion generar reporte que no hace ni pio*/
-        
+
         ServletOutputStream out = response.getOutputStream();
         
         // Leer el cuerpo de la solicitud(contenido de la tabla proveedores)
@@ -57,10 +56,15 @@ public class SvReporteProveedor extends HttpServlet {
         // Convertir JSON a objeto Java(Lista de Proveedores)
         String jsonData = sb.toString();
         Gson gson = new Gson();
+        
         List<Proveedor> ListProveedores = new ArrayList<>();
-        ListProveedores = gson.fromJson(jsonData, new TypeToken<List<Proveedor>>() {}.getType());
+        List<Proveedor> tmpList = gson.fromJson(jsonData, new TypeToken<List<Proveedor>>() {}.getType());
+        ListProveedores.add(new Proveedor());
+        ListProveedores.addAll(tmpList);
+        
         
                 // Ejemplo: imprimir la lista en la consola
+        System.out.println("\nSIZE: "+ListProveedores.size());
         for (Proveedor proveedor : ListProveedores) {
             System.out.println(proveedor);
         }
@@ -88,7 +92,6 @@ public class SvReporteProveedor extends HttpServlet {
             JasperExportManager.exportReportToPdfStream(jasperPrint, out);
             out.flush();
             out.close();
-            System.out.println("LLegamos aqui??");
             
         } catch (Exception e) {
             

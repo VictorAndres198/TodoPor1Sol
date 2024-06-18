@@ -25,7 +25,7 @@
                     <input type="input" class="search-bar"></<input>
                     <button type="submit" class="search-btn">
                         <img class="search-icon" src="../../resources/img/icons/search-symbol.png" alt=""/>
-                    <button> 
+                    </button> 
                 </div>
             </div>
             <div class="Frm-Table">
@@ -61,7 +61,7 @@
         <script src="../../SearchProveedor.js" type="text/javascript"></script>
         
         <!-- SCRIPT PARA MANEJAR LOS DATOS ENVIADOS PARA GENERAR REPORTE -->
-        <script src="../../generateReport.js" type="text/javascript"></script>
+        <script src="../../resources/generateReports/reportProveedor.js" type="text/javascript"></script>
         
     </body>
 </html>

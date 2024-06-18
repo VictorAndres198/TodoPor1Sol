@@ -12,26 +12,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registro de Productos</title>
+        <title>Registro de Productos </title>
         <script src="node_modules/bootstrap/dist/ js/bootstrap.min.js"></script>
-        <link href="../../resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
-        <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
-        <link href="../../resources/css/admin-display.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/RegistroProducto/EstiloRegProd.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/admin.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/employee-display.css" rel="stylesheet" type="text/css"/>
+    
     </head>
     
     <body class="parent-container">      
         <!-- CONTENEDOR REGISTRO DE NUEVOS PRODUCTOS -->
           <!-- Para traer el layout(menu lateral) del admin -->
-        <jsp:include page="../../admin_layout.jsp" /> 
+      
+        <jsp:include page="admin_layout.jsp"/>
+        
         <!-- script de carga de imagenes--> 
         <div class="box-Content" >
             <div class="Frm-Header">
-                <span>Nuevo Producto</span>
+                <span>Nuevo Producto </span>
             </div>
             <div class="Container-RegistroProductos negrita"> 
                 <!--INGRESAR DATOS -->
-               <div class="IngreseDatos">Ingrese los Datos</div>
-               <form id="form-validation" action="SvProductos" method="post" novalidate>
+               <div class="IngreseDatos">Ingrese los Datos </div>
+               <form id="form-validation"  action="./SvProductoss" method="post" novalidate>
                     <div class="form-group">
                         <span> Nombre </span>
                         <input name="nombre"  type="text" style="text-align: center" placeholder="" required>
@@ -74,8 +77,9 @@
                         cn.smt= cn.con.createStatement();
                         cn.rs=cn.smt.executeQuery(sql);
                         while(cn.rs.next()){
-                                out.println("<option>"+cn.rs.getString(2)+"</option>");
-                                
+                %>
+                <option value="<%=cn.rs.getString(1)%>"><%=cn.rs.getString(2)%></option>
+                <% 
                                 }
                                 }catch (Exception e){
                                 out.print(e.toString());
@@ -83,6 +87,10 @@
                                 
                             
                             %>
+                            
+                            
+                            
+                            
                         </select>
                         <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
                     </div>
@@ -98,7 +106,9 @@
                         cn.smt= cn.con.createStatement();
                         cn.rs=cn.smt.executeQuery(sql);
                         while(cn.rs.next()){
-                                out.println("<option>"+cn.rs.getString(2)+"</option>");
+                                     %>
+                <option value="<%=cn.rs.getInt(1)%>"><%=cn.rs.getString(2)%></option>
+                <% 
                                 
                                 }
                                 }catch (Exception e){
@@ -111,7 +121,7 @@
                         <small id="categoria-help" style="display: none;">Ingresar categoria</small>
                     </div>
                     <div class="button" style="text-align: center">
-                        <input type="submit" name="guardar" value="Guardar">
+                        <input type="submit"  value="Guardar">
                     </div>
                 </form>
             </div>
@@ -150,8 +160,9 @@ function mostrarMensajesAyuda(form) {
 </script>
 
 <!-- CARGAR LAS IMAGENES  -->
- <script src="../../loadImages.js" type="text/javascript"></script>
-    
+<!-- <script src="../../loadImages.js" type="text/javascript"></script>  -->
+
+<script src="../../loadImages.js" type="text/javascript"></script>
 
 </html>
 

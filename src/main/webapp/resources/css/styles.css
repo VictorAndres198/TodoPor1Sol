@@ -1,0 +1,50 @@
+body {
+    background-color: #f0f8ff; /* Cambiar el color de fondo a un azul claro */
+    font-family: 'Arial', sans-serif;
+}
+.pattern-bg {
+    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/memphis-mini.png');
+    padding: 50px 0;
+}
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+.card-header {
+    background: linear-gradient(135deg, #72c2d9, #35a29f); /* Cambiar gradiente a azul y verde verdoso */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.card-body {
+    background: #ffffff;
+    padding: 30px;
+}
+.form-label {
+    color: #333333;
+    font-weight: bold;
+}
+.form-control {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+.form-control:focus {
+    border-color: #72c2d9; /* Cambiar color de borde en enfoque a azul */
+    box-shadow: 0 0 10px rgba(114, 194, 217, 0.2); /* Sombra azul claro */
+}
+.btn-primary {
+    background-color: #35a29f; /* Cambiar color de fondo del botón a verde verdoso */
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #2c8b8f; /* Cambiar color del botón al pasar el ratón a un tono más oscuro de verde verdoso */
+}
+.form-group i {
+    color: #35a29f; /* Cambiar color de los iconos a verde verdoso */
+    margin-right: 10px;
+}
