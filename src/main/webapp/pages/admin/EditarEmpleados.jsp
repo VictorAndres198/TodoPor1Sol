@@ -72,7 +72,7 @@
                     <small id="farm-help" style="display: none;">Ingresar la Farmacia</small>
                 </div>
 
-                    <input class="btn btn-primary" type="submit" name="accion" value="Actualizar"> 
+                    <input class="btn btn-primary" type="submit" name="accion" value="actualizar"> 
                 
             </form>
           </div>

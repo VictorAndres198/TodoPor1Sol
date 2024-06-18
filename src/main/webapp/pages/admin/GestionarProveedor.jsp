@@ -61,7 +61,7 @@
         <script src="../../SearchProveedor.js" type="text/javascript"></script>
         
         <!-- SCRIPT PARA MANEJAR LOS DATOS ENVIADOS PARA GENERAR REPORTE -->
-        <script src="../../generateReport.js" type="text/javascript"></script>
+        <script src="../../resources/generateReports/reportProveedor.js" type="text/javascript"></script>
         
     </body>
 </html>

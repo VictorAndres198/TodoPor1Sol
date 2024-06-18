@@ -112,7 +112,7 @@
                         <small id="farm-help" style="display: none;">Ingresar la Farmacia</small>
                     </div>
                     <div class="button" style="text-align: center">
-                       <input type="submit" name="accion" value="Agregar">
+                       <input type="submit" name="accion" value="agregar">
                     </div>
                 </form>
             </div>
