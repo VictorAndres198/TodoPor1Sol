@@ -1,16 +1,19 @@
 function getTableData(){
-    const table = document.getElementById('Table-Proveedores');
+    const table = document.getElementById('Table-Empleados');
     const rows = table.querySelector('tbody').querySelectorAll('tr');
     const data = [];
 
     rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         const rowData = {
-            ruc: cells[0].textContent,
-            nombre: cells[1].textContent,
-            pais: cells[2].textContent,
-            telefono: cells[3].textContent,
-            correo: cells[4].textContent
+            dni: cells[0].textContent,
+            nombre: `${cells[1].textContent} ${cells[2].textContent}`,
+            correo: cells[3].textContent,
+            telefono: cells[4].textContent,
+            sueldo: cells[5].textContent,
+            idFarm: cells[6].textContent,
+            horarioE: cells[7].textContent,
+            horarioS: cells[8].textContent
         };
         data.push(rowData);
     });
@@ -19,7 +22,7 @@ function getTableData(){
 
 function sendReportData(){
     // Definimos la ruta del Servlet al que se hace la peticion
-    const url = 'http://localhost:8080/TodoPor1Sol/SvReporteProveedor';
+    const url = 'http://localhost:8080/TodoPor1Sol/SvEmpleado';
     //definimos los datos a enviar
     const data = getTableData();
     
@@ -39,7 +42,7 @@ function sendReportData(){
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'ReporteProveedores.pdf';  // Nombre del archivo a descargar
+        a.download = 'ReporteEmpleados.pdf';  // Nombre del archivo a descargar
         document.body.appendChild(a);  // Necesario para Firefox
         a.click();
         a.remove();

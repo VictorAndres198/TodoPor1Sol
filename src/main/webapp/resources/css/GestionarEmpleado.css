@@ -1,5 +1,4 @@
 
-
 .parent-container{
     display: grid;
     grid-template-columns: minmax(400px,0.3fr) 1fr;
@@ -14,7 +13,7 @@
     box-sizing: border-box;
     max-height: 100vh;
     grid-template-columns: subgrid;
-    grid-template-rows: minmax(60px,0.24fr) 0.8fr 0.25 0.5fr;
+    grid-template-rows: minmax(20px,0.30fr) 1fr 0.3fr;
 }
 
 /* TITULO Y BARRA DE BUSQUEDA*/
@@ -85,13 +84,9 @@
 
 /* TABLA DE CONTENIDOS */
 .Frm-Table{   
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
     max-height: 100%;
-    max-width: 80%;
-    overflow: auto;
-    margin-left: 6rem;
+    max-width: 97%;
+    margin-left: 0.7rem;
     margin-top: 2rem;
     border-radius: 10px;
         
@@ -99,19 +94,9 @@
 
 .table{
     font-size: 1.2rem;
-    width: 100%;
-    border-spacing: 0;
-    
 }
 
-td,th{
-   text-align: center;
-   padding: 0.5rem;
-}
 
-tr:nth-child(2n){
-    background: rgb(191, 191, 191);
-}
 .table-header{
     position: sticky;
     top:0;
