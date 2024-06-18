@@ -6,8 +6,8 @@ public interface Parametros {
     String PORT = "3306";
     String DATABASE = "bdbotica";
     String RUTA="jdbc:mysql://localhost:"+PORT+"/"+DATABASE;
-    String USUARIO="userbdbotica";
-    String CLAVE="TodoPor1Sol";
+    String USUARIO="root";
+    String CLAVE="";
  
     
     /*
