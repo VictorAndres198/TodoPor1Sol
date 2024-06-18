@@ -71,7 +71,7 @@
                                             // ConectarBD = clase de conexión a la base de datos
                                             ConectarBD cn = new ConectarBD();
                                             // Consulta SQL CON INNERJOIN
-                                            String sql = "SELECT prod.ID_Prod AS ID, prod.Nombre AS producto_nombre, prod.descripcion, "
+                                            String sql = "SELECT prod.ID_Prod AS ID, prod.Nombre AS producto, prod.descripcion, "
                                                     + "prod.FechaVencimiento, prod.Precio, prod.Stock, "
                                                     + "cat.Nombre AS categoria, "
                                                    + "prov.RUC AS RUC_Prov, prov.nombre AS proveedor "
@@ -86,7 +86,7 @@
                                         %>
                                         <tr>
                                             <td><%= cn.rs.getInt("ID")%></td>
-                                            <td><%= cn.rs.getString("producto_nombre")%></td>
+                                            <td><%= cn.rs.getString("producto")%></td>
                                             <td><%= cn.rs.getString("descripcion")%></td>
                                             <td><%= cn.rs.getDate("FechaVencimiento")%></td>
                                             <td><%= cn.rs.getDouble("Precio")%></td>
