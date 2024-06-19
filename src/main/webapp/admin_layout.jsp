@@ -152,13 +152,15 @@
                         Historial de Ventas
                     </div>
                 </a>  
+               
+                
+        </div>
                 <a class="button-nav-admin" style="text-decoration: none;"  href="/TodoPor1Sol/home.jsp">
                     <div style="display: flex; justify-content: end;"></div>
                     <div>
                         <div class="SeccionName">Cerrar Sesión</div>
                     </div>
                 </a>
-        </div>
      </div>
 </div>
                 

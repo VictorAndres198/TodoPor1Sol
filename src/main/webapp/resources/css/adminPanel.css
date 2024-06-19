@@ -51,9 +51,9 @@ html, body {
 }
 
 .card-container{
+  padding-top: 5rem;
   position: relative;
   display: grid;
-  top: 5rem;
   justify-content: center;
   grid-template-columns: 0.4fr 0.4fr;
   grid-template-rows: 0.25fr 0.25fr;
