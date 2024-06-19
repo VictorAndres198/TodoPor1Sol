@@ -4,29 +4,26 @@
         <servlet-name>SvHome</servlet-name>
         <servlet-class>servlets.SvHome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SvProductosss</servlet-name>
+        <servlet-class>servlets.SvProductos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SvHome</servlet-name>
         <url-pattern>/SvHome</url-pattern>
     </servlet-mapping>
-       <servlet>
-        <servlet-name>SvProductos</servlet-name>
-        <servlet-class>servlets.SvProductos</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>SvProductos</servlet-name>
-        <url-pattern>/SvProductos</url-pattern>
+        <servlet-name>SvProductosss</servlet-name>
+        <url-pattern>/SvProductosss</url-pattern>
     </servlet-mapping>
-    
-    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-     <welcome-file-list>
+    <welcome-file-list>
         <welcome-file>home.jsp</welcome-file>
     </welcome-file-list>
-    
     <servlet>
         <servlet-name>SvInicioSesion</servlet-name>
         <servlet-class>servlets.SvInicioSesion</servlet-class>
@@ -35,5 +32,4 @@
         <servlet-name>SvInicioSesion</servlet-name>
         <url-pattern>/SvInicioSesion</url-pattern>
     </servlet-mapping>
-    
 </web-app>

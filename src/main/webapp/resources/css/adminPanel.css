@@ -51,16 +51,13 @@ html, body {
 }
 
 .card-container{
-  position: absolute;
-  width: 80%;
+  position: relative;
   display: grid;
-  left: 17rem;
-  top: 10rem;
+  top: 5rem;
   justify-content: center;
-  grid-template-columns: 0.3fr 0.3fr;
-  grid-template-rows: 0.3fr 0.3fr;
+  grid-template-columns: 0.4fr 0.4fr;
+  grid-template-rows: 0.25fr 0.25fr;
   grid-gap: 3rem ;
-  pointer-events: none;
 }
 
 
@@ -69,9 +66,7 @@ html, body {
     border-color: black;
     border-radius: 10px;
     max-width: 150rem;
-    display:grid;
-
-    
+    display:grid;    
 }
 
 

@@ -21,9 +21,9 @@
         <title>Gestionar Productos </title>
         <script src="node_modules/bootstrap/dist/ js/bootstrap.min.js"></script>
 
-        <link href="resources/css/admin.css" rel="stylesheet" type="text/css"/>
-        <link href="resources/css/employee-display.css" rel="stylesheet" type="text/css"/>
-        <link href="resources/css/RegistroProducto/GestionarProductos.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/employee-display.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/RegistroProducto/GestionarProductos.css" rel="stylesheet" type="text/css"/>
 
         <title>Gestionar Productos</title>
 
@@ -38,7 +38,7 @@
 
     <body class="parent-container">      
         <!-- Para traer el layout(menu lateral) del admin -->
-        <jsp:include page="admin_layout.jsp"/>
+        <jsp:include page="../../admin_layout.jsp"/>
         <div class="box-Content">
             <div class="Frm-Header">
                 <span class="Frm-Title">Gestionar Productos</span>
@@ -111,12 +111,6 @@
                             </div>
                             </div>
                             </body>
-
-
-
-
-                            <!-- CARGAR LAS IMAGENES  -->
-                            <!-- <script src="../../loadImages.js" type="text/javascript"></script>  -->
 
                             <script src="../../loadImages.js" type="text/javascript"></script>
 

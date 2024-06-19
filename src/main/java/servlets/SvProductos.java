@@ -7,24 +7,20 @@ package servlets;
 import DAO.DAOproductos;
 import Modelo.Producto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Andres
+ * @author Victor
  */
-@WebServlet(name = "SvProductoss", urlPatterns =
-{
-    "/SvProductoss"
-})
-public class SvProductoss extends HttpServlet {
+public class SvProductos extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +65,7 @@ public class SvProductoss extends HttpServlet {
 
         String resultado = prodao.insertarProducto(prod);
         if ("Producto insertado con éxito".equals(resultado)) {
-            response.sendRedirect("RegistroProductos.jsp");
+            response.sendRedirect("/TodoPor1Sol/pages/admin/RegistroProductos.jsp");
         } else {
             // Manejar el error de inserción
             request.setAttribute("mensajeError", resultado);
