@@ -8,6 +8,10 @@
         <servlet-name>SvProductosss</servlet-name>
         <servlet-class>servlets.SvProductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SvProducto</servlet-name>
+        <servlet-class>servlets.SvProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SvHome</servlet-name>
         <url-pattern>/SvHome</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>SvProductosss</servlet-name>
         <url-pattern>/SvProductosss</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvProducto</servlet-name>
+        <url-pattern>/SvProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

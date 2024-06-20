@@ -37,7 +37,8 @@ public class DAOproductos {
         } catch (SQLException e) {
             e.printStackTrace();
             return "Error al insertar el producto: " + e.getMessage();
-        }
-    }}
+        }   
+    }  
+}
     
 
