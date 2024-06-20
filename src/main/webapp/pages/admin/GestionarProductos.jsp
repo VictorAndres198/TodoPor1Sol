@@ -1,4 +1,4 @@
-<%-- 
+           <%-- 
     Document   : GestionarProductos
     Created on : 17 jun. 2024, 5:48:13 p. m.
     Author     : Andres
@@ -23,6 +23,7 @@
         <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/css/employee-display.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/css/RegistroProducto/GestionProductos.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/RegistroProducto/GestionarProductos.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
    
@@ -49,10 +50,10 @@
                 <table id="Table-Productos" class="table">
                     <thead class="table-header">
                         <tr>
-                            <th>ID</th>
+                            
                             <th>Nombre</th>
                             <th>Descripcion</th>
-                            <th>Fecha de vencimiento</th>
+                            <th>Vencimiento</th>
                             <th>Precio</th>
                             <th>Stock</th>
                             <th>Categoria</th>
@@ -77,7 +78,7 @@
                             {
                         %>
                         <tr>
-                            <td><%= cn.rs.getInt("ID")%></td>
+                            
                             <td><%= cn.rs.getString("producto")%></td>
                             <td><%= cn.rs.getString("descripcion")%></td>
                             <td><%= cn.rs.getDate("FechaVencimiento")%></td>
@@ -89,7 +90,7 @@
                                 <div class="Frm-Btns"> 
                 <a href="/TodoPor1Sol/pages/admin/EditarProductos.jsp?ID=<%= cn.rs.getInt("ID")%>" class="btn btn-success"> <i class="fas fa-edit"></i> </a>
                             <a href="/TodoPor1Sol/pages/admin/EliminarProductos.jsp?ID==<%= cn.rs.getInt("ID")  %>" class="btn btn-danger">
-                                <i class="fas fa-trash-alt"></i>
+                                <i class="fas fa-trash-alt"></i> </a>
             </div>
                             </td>
                         </tr>
