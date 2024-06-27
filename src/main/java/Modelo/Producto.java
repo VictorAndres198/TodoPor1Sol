@@ -14,7 +14,8 @@ public class Producto {
  public Producto() {
     }
 
-    public Producto(String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String ruc) {
+    public Producto(int ID_Prod, String Nombre, String Descripcion, Date FechaVencimiento, double precio, int Stock, int ID_categoria, String ruc) {
+        this.ID_Prod = ID_Prod;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.FechaVencimiento = FechaVencimiento;
@@ -23,8 +24,6 @@ public class Producto {
         this.ID_categoria = ID_categoria;
         this.ruc = ruc;
     }
-
-
     public int getID_Prod() {
         return ID_Prod;
     }
@@ -88,6 +87,28 @@ public class Producto {
     public void setRuc(String ruc) {
         this.ruc = ruc;
     }
+
+    public void setNombreProveedor(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setNombreCategoria(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getNombreProveedor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getNombreCategoria() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setID(int ID) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
 
 
 

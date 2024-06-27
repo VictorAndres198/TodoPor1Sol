@@ -270,7 +270,7 @@ public boolean probarConexionBD() {
         
         ps.executeUpdate();
         // Retorna verdadero si al menos una fila fue actualizada
-    } catch (SQLException ex) {
+  }   catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, 
              "ERROR al actualizar empleado: " + ex);
         

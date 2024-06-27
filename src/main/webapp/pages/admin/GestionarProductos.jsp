@@ -70,7 +70,7 @@
                                     + "prov.RUC AS RUC_Prov, prov.nombre AS proveedor "
                                     + "FROM Productos prod "
                                     + "JOIN Proveedores prov ON prod.RUC_Prov = prov.RUC "
-                                    + "JOIN Categorias cat ON prod.ID_categoria = cat.ID_categoria";
+                                    + "JOIN Categorias cat ON prod.ID_categoria = cat.ID_categoria where Stock >= 0";
                             cn.smt = cn.con.createStatement();
                             cn.rs = cn.smt.executeQuery(sql);
 
@@ -88,10 +88,15 @@
                             <td><%= cn.rs.getString("proveedor")%></td>
                             <td>
                                 <div class="Frm-Btns"> 
-                <a href="/TodoPor1Sol/pages/admin/EditarProductos.jsp?ID=<%= cn.rs.getInt("ID")%>" class="btn btn-success"> <i class="fas fa-edit"></i> </a>
-                            <a href="/TodoPor1Sol/pages/admin/EliminarProductos.jsp?ID==<%= cn.rs.getInt("ID")  %>" class="btn btn-danger">
-                                <i class="fas fa-trash-alt"></i> </a>
-            </div>
+                                <a href="/TodoPor1Sol/pages/admin/EditarProductos.jsp?accion=editar&ID=<%= cn.rs.getInt("ID")%>" class="btn btn-success"> <i class="fas fa-edit"></i> </a>
+                                <form action="/TodoPor1Sol/SvEliminarProductos" method="post" novalidate>
+                                    <input type="hidden" name="eliminar" value="true">
+                                    <input type="hidden" name="ID" value="<%= cn.rs.getInt("ID") %>">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
                             </td>
                         </tr>
                         <%

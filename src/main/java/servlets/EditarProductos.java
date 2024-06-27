@@ -1,7 +1,9 @@
 package servlets;
+
 import DAO.DAOproductos;
 import Modelo.Producto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,15 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+public class EditarProductos extends HttpServlet {
 
-public class SvProductos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //CODIGO PARA QUE TE DEJE INSERTAR (Ñ)
+      //CODIGO PARA QUE TE DEJE INSERTAR (Ñ) EN MYSQL
        response.setContentType("text/html;charset=UTF-8");
        request.setCharacterEncoding("UTF-8");
        //ID POR DEFECTO CON EL NÚMERO 0
-         int ID =0;
+        int id= Integer.parseInt(request.getParameter("ID"));  //ID 
         String nombre = request.getParameter("nombre"); //nombre 
         String descripcion = request.getParameter("descripcion"); //descripcion 
         String fechaVencimientoStr = request.getParameter("fechaVencimiento"); //fecha de vencimiento
@@ -43,30 +45,33 @@ public class SvProductos extends HttpServlet {
             e.printStackTrace();
         }  
         
-       Producto prod = new Producto(ID,nombre, descripcion, fechaVencimiento, precio, Stock, categoria, proveedorRUC);
+       Producto prod = new Producto(id,nombre, descripcion, fechaVencimiento, precio, Stock, categoria, proveedorRUC);
        DAOproductos prodao= new DAOproductos();
        
-       String resultado = prodao.insertarProducto(prod);
+       String resultado = prodao.ActualizarProductos(prod);
        
-        if ("Producto insertado con éxito".equals(resultado)) {
+        if ("Producto actualizado con éxito".equals(resultado)) {
             response.sendRedirect("/TodoPor1Sol/pages/admin/GestionarProductos.jsp");
         } else {
-            // Manejar el error de inserción
+          // Manejar el error de inserción
             request.setAttribute("mensajeError", resultado);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         //response.getWriter().print(result);
-    
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);  
+        processRequest(request, response);
     }
+
     @Override
     public String getServletInfo() {
         return "Short description";

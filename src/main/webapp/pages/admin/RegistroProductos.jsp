@@ -6,7 +6,6 @@
 <%@page import="java.util.*" %>
 <%@page import="DAO.*" %>
 <%@page import="Modelo.*" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -83,13 +82,7 @@
                                 }catch (Exception e){
                                 out.print(e.toString());
                                 }
-                                
-                            
                             %>
-                            
-                            
-                            
-                            
                         </select>
                         <small id="proveedor-help" style="display: none;">Ingresar proveedor</small>
                     </div>
@@ -120,7 +113,7 @@
                         <small id="categoria-help" style="display: none;">Ingresar categoria</small>
                     </div>
                     <div class="button" style="text-align: center">
-                        <input type="submit"  value="Guardar">
+                        <input type="submit" name="accion" value="insertar">
                     </div>
                 </form>
             </div>

@@ -12,6 +12,22 @@
         <servlet-name>SvProducto</servlet-name>
         <servlet-class>servlets.SvProducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SvProduct</servlet-name>
+        <servlet-class>servlets.SvProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarEmpleados</servlet-name>
+        <servlet-class>servlets.Editarssssss</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarProductos</servlet-name>
+        <servlet-class>servlets.EditarProductos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SvEliminarProductos</servlet-name>
+        <servlet-class>servlets.SvEliminarProductos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SvHome</servlet-name>
         <url-pattern>/SvHome</url-pattern>
@@ -23,6 +39,22 @@
     <servlet-mapping>
         <servlet-name>SvProducto</servlet-name>
         <url-pattern>/SvProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvProduct</servlet-name>
+        <url-pattern>/SvProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarEmpleados</servlet-name>
+        <url-pattern>/EditarEmpleados</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarProductos</servlet-name>
+        <url-pattern>/EditarProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvEliminarProductos</servlet-name>
+        <url-pattern>/SvEliminarProductos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

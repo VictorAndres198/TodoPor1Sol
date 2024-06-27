@@ -47,7 +47,6 @@ public class SvEmpleado extends HttpServlet {
       Empleado empleado = new Empleado();
       DAOempleado dao = new DAOempleado();
       String dni;
-   
       //metodo que lee los datos para el empleado
     public void LeerDatosEmpleado(HttpServletRequest request, HttpServletResponse response) {
     try {
