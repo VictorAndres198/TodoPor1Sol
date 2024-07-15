@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de Entrada y Salida</title>
-        <link href="../../Todox1Sol/resources/css/employee-display.css" rel="stylesheet" type="text/css"/>
+        <link href="../../TodoPor1Sol/resources/css/employee-display.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="principal-container">

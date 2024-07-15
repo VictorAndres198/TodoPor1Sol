@@ -1,7 +1,7 @@
 <%-- 
-    Document   : hola
-    Created on : 16 jun. 2024, 4:36:40 p. m.
-    Author     : Andres
+    Document   : realizarventa
+    Created on : 7 jul. 2024, 16:53:27
+    Author     : Victor
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>REALIZAR VENTA JSP</h1>
     </body>
 </html>

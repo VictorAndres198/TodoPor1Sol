@@ -5,68 +5,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>employee</title>
         <link href="resources/css/employee.css" rel="stylesheet" type="text/css"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
-        <script>
-            function rotateCheuron() {
-                const cheuron = document.getElementById("cheuron");
-                cheuron.classList.toggle("rotated");
-                cheuron.classList.toggle("transition");
-                
-                const expandedElements = document.querySelectorAll('.expanded');
-                // Agregamos o eliminamos la clase fade según el estado actual del elemento
-                expandedElements.forEach(function(element) {
-                    element.classList.toggle('hide');
-                });
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>        
+        <script src="resources/js/employee-display.js"></script> <!-- Enlace al archivo JS separado -->
 
-                // Eliminamos la clase de transición después de la duración de la transición
-                setTimeout(function() {
-                    cheuron.classList.remove("transition");
-                }, 400);
-               
-            };
-            
-            $('#employee-display').load('pages/employee/register.jsp');
-            /*$(document).ready(function() {
-            function loadPage(page) {
-                console.log("Loading page:", page); // Agregar este console.log
-                $('#employee-display').load(`/TodoPor1Sol/pages/employee/${page}.jsp`, function(response, status, xhr) {
-                    if (status == "error") {
-                        $('#employee-display').html(`<p>Error loading page: ${xhr.status} ${xhr.statusText}</p>`);
-                    }
-                });
-            }
-
-            // Página por defecto
-            loadPage('register');
-
-            // Asignar eventos de clic para los ítems del menú
-            $('#nav-register').click(function() {
-                loadPage('register');
-            });
-
-            $('#nav-inventory').click(function() {
-                loadPage('inventory');
-            });
-
-            $('#nav-sale').click(function() {
-                loadPage('sale');
-            });
-
-            $('#nav-sale-receipt').click(function() {
-                loadPage('sale-receipt');
-            });
-
-            $('#nav-sale-invoice').click(function() {
-                loadPage('sale-invoice');
-            });
-
-            $('#nav-sale-history').click(function() {
-                loadPage('sale-history');
-            });
-        });*/
-        
-        </script>
         
     </head>
     <body class="body-employee">
@@ -94,7 +35,7 @@
                     <div style="display: flex; justify-content: end;"></div>
                     <div>Registro de Entr. y Sal.</div>
                 </div>
-                <div class="button-nav-empl">
+                <div class="button-nav-empl" id="nav-inventory">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
@@ -112,7 +53,7 @@
                         <img id="cheuron" style="max-height: 16px; max-width: 16px;" src="resources/img/employee/cheuron-abajo.png" alt=""/>
                     </div>
                 </div>
-                <div class="button-nav-empl expanded hide">
+                  <div class="button-nav-empl expanded hide" id="nav-realizarventa">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
@@ -120,7 +61,7 @@
                         Boleta
                     </div>
                 </div>
-                <div class="button-nav-empl expanded hide">
+                <div class="button-nav-empl expanded hide" id="nav-realizarventa">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
@@ -128,7 +69,7 @@
                         Factura
                     </div>
                 </div>
-                <div class="button-nav-empl">
+                  <div class="button-nav-empl" id="nav-historialventas">
                     <div style="display: flex; justify-content: end;">
                         
                     </div>
