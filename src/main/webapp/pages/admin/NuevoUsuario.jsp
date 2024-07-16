@@ -105,6 +105,11 @@
                     </tbody>
                 </table>
             </div>
+                    
+                    <!-- Botón para exportar a Excel -->
+        <div class="col-md-12">
+            <a href="/TodoPor1Sol/SvUsuario?accion=exportarExcel" class="btn btn-primary">Exportar a Excel</a>
+        </div>
     </div>
 
     <script src="../../loadImages.js" type="text/javascript"></script>
