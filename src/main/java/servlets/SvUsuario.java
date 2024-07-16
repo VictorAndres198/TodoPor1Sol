@@ -118,6 +118,7 @@ protected void exportToExcel(HttpServletResponse response) throws IOException {
     headerStyle.setBorderTop(BorderStyle.THIN);
     headerStyle.setBorderRight(BorderStyle.THIN);
     headerStyle.setBorderLeft(BorderStyle.THIN);
+    headerStyle.setAlignment(HorizontalAlignment.CENTER);
     Font headerFont = workbook.createFont();
     headerFont.setBold(true);
     headerFont.setColor(IndexedColors.BLACK.getIndex());
@@ -139,6 +140,8 @@ titleStyle.setFont(titleFont);
     cellStyle.setBorderTop(BorderStyle.THIN);
     cellStyle.setBorderRight(BorderStyle.THIN);
     cellStyle.setBorderLeft(BorderStyle.THIN);
+    cellStyle.setAlignment(HorizontalAlignment.CENTER);
+
 
 // Información de la empresa
 String[][] empresaInfo = {
@@ -161,7 +164,7 @@ for (String[] info : empresaInfo) {
     // Crear fila de título
     Row titleRow = sheet.createRow(rowIndex++);
     Cell titleCell = titleRow.createCell(0);
-    titleCell.setCellValue("REPORTE DE EMPLEADOS - TODO POR 1 SOL");
+    titleCell.setCellValue("REPORTE DE USUARIOS - TODO POR 1 SOL");
     titleCell.setCellStyle(titleStyle);
     sheet.addMergedRegion(new CellRangeAddress(titleRow.getRowNum(), titleRow.getRowNum(), 0, 2));
 
