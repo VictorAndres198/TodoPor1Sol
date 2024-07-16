@@ -14,7 +14,7 @@
     box-sizing: border-box;
     max-height: 100vh;
     grid-template-columns: subgrid;
-    grid-template-rows: minmax(60px,0.24fr) 0.8fr 0.25 0.5fr;
+    grid-template-rows: minmax(60px,0.24fr) 1.2fr 0.30fr;
 }
 
 /* TITULO Y BARRA DE BUSQUEDA*/
@@ -85,75 +85,42 @@
 
 /* TABLA DE CONTENIDOS */
 .Frm-Table{   
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
     max-height: 100%;
-    max-width: 80%;
-    overflow: auto;
-    margin-left: 6rem;
+    max-width: 97%;
+    margin-left: 0.7rem;
     margin-top: 2rem;
     border-radius: 10px;
-        
+    justify-content: center;
 }
 
 .table{
     font-size: 1.2rem;
-    width: 100%;
-    border-spacing: 0;
-    
 }
 
-td,th{
-   text-align: center;
-   padding: 0.5rem;
-}
 
-tr:nth-child(2n){
-    background: rgb(191, 191, 191);
-}
 .table-header{
     position: sticky;
     top:0;
     color: #fff;
     height: 2rem;
+    text-align: center;
     background: rgb(57, 130, 221 );
 }
 .table-header tr{
         padding: 3rem;
 }
+.table td, .table th {
+    text-align: center;
+    padding: 0.5rem;
+}
 
 /* BOTONES*/
-
-.Frm-Btns{
-    margin:auto;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
 
 .Frm-Btns-Report{
    display: flex;
    justify-content: right;
    align-items: center;
    max-width: 90%;
-}
-
-
-.box-Content_Btn{
-    padding: 0.9rem 4rem;
-    font-size: 1.4rem;
-    margin: 1rem;
-    border-radius: 15px;
-    border: 0;
-    background: rgb(178, 245, 101);
-    transition: all .5s ease;
-}
-
-.btn_delete{
-    transition: all .5s ease;
-    background: rgb(245, 124, 101);
-    color: #fff;
 }
 
 .Btn_PDF{
@@ -172,20 +139,3 @@ tr:nth-child(2n){
     transform: scale(.9);
     color: #000;
 }
-
-
-.box-Content_Btn:hover{
-    background: rgb(221, 250, 189);
-    transform: scale(.9);
-}
-
-.btn_delete:hover{
-    background: rgb(246, 206, 198 );
-    transform: scale(.9);
-    color: #000;
-}
-
-:is(.box-Content_Btn,.btn_delete,.Btn_PDF):active{
-    transform: scale(1.1);    
-}
-
