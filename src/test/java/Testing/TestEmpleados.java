@@ -11,7 +11,7 @@ public class TestEmpleados {
     public static void main(String[] args) {
         DAOempleado daoEmpleado = new DAOempleado();
 
-        // Prueba de inserción
+        // Prueba de inserción empleado
         Empleado emp = new Empleado();
         emp.setDni("72782490");
         emp.setNombre("Orlando");
@@ -49,5 +49,9 @@ public class TestEmpleados {
         Empleado deletedEmp = daoEmpleado.ObtenerEmpleado("72782490");
         System.out.println("Empleado después de eliminar: " + (deletedEmp == null ? "No encontrado" : deletedEmp.getNombre()));
     }
+    
+    
+    
 }
+
 
