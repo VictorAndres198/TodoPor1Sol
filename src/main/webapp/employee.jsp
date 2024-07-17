@@ -102,6 +102,34 @@
         </div>
         
         <script>
+            var entradaRegistrada = false;
+
+            // Función para obtener la hora actual y mostrarla en la tabla
+            function registrarEntrada() {
+                if (entradaRegistrada) {
+                    $('#error-message2').fadeIn().delay(2000).fadeOut();
+                } else {
+                // Obtener la hora actual
+                var nowE = new Date();
+                var formattedTime = ('0' + nowE.getHours()).slice(-2) + ':' + ('0' + nowE.getMinutes()).slice(-2) + ':' + ('0' + nowE.getSeconds()).slice(-2);
+                // Mostrar la hora actual en el campo correspondiente de la tabla
+                $('#empleado-entrada').text(formattedTime);
+                entradaRegistrada = true; }
+            }
+            
+            function registrarSalida() {
+                // Obtener la hora actual
+                var nowS = new Date();
+                var formattedTimeS = ('0' + nowS.getHours()).slice(-2) + ':' + ('0' + nowS.getMinutes()).slice(-2) + ':' + ('0' + nowS.getSeconds()).slice(-2);
+                // Mostrar la hora actual en el campo correspondiente de la tabla
+                if (entradaRegistrada) {
+                    $('#empleado-salida').text(formattedTimeS);
+                } else {
+                    // Mostrar mensaje de error
+                    $('#error-message').fadeIn().delay(2000).fadeOut();
+                }
+            }
+            
             function loadEmployeeData() {
                 var dniEmpleado = `${usuario.dniEmpleado}`;
                 if (dniEmpleado) {
@@ -114,6 +142,12 @@
                             console.log("Empleado data:", data);
                             $('#employee-display #empleado-nombre').text(data.nombre);
                             $('#employee-display #empleado-apellidos').text(data.apellidos);
+                            
+                            // Obtener la fecha actual
+                            var now = new Date();
+                            var formattedDate = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+                            // Mostrar la fecha actual en el campo correspondiente
+                            $('#employee-display #empleado-fecha').text(formattedDate);
                         },
                         error: function(xhr, status, error) {
                             console.error("Error loading employee data:", status, error);

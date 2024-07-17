@@ -20,7 +20,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <div class="container mt-4">
+        <div class="container pt-4 space-bt">
             <div class="row">
                 <div class="col">
                     <h2 class="mb-2">Registro de Entrada y Salida</h2>
@@ -43,18 +43,40 @@
                             </thead>                    
                             <tbody>   
                                 <tr>
-                                    <td id="empleado-nombre" class="text-center"></td>
+                                    <td id="empleado-nombre" class="text-center bold"></td>
                                     <td id="empleado-apellidos" class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td> 
+                                    <td id="empleado-entrada" class="text-center"></td>
+                                    <td id="empleado-salida" class="text-center"></td>
+                                    <td id="empleado-fecha" class="text-center"></td> 
                                 </tr>
                             </tbody>
                         </table>  
                     </div>
                 </div>
             </div>
+                   
+                    
+            <div style="display: flex; justify-content: center; width: 100%;">       
+                <div style=" display: flex; flex-direction: row; gap: 70px; padding: 20px 0px 20px 0px">
+                    <div class="btn btn-success" id="registrar-entrada">
+                        Registrar Entrada
+                    </div>
+                    <div class="btn btn-info" id="registrar-salida">
+                        Registrar Salida
+                    </div>
+                </div>
+            </div>
+            <!-- Mensaje de error para la salida -->
+            <div id="error-message" style="color: red; text-align: center; display: none;">
+                Debe registrar la entrada primero.
+            </div>
+            
+            <div id="error-message2" style="color: red; text-align: center; display: none;">
+                Solo puede registrar una vez la entrada.
+            </div>
+            
         </div>
+                    
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body> 

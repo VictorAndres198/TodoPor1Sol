@@ -7,6 +7,15 @@ $(document).ready(function() {
                 $('#employee-display').html(`<p>Error loading page: ${xhr.status} ${xhr.statusText}</p>`);
             } else {
                 if (page === 'pages/employee/register.jsp') {
+                    // Vincular evento de clic al botón de "Registrar Entrada"
+                    $('#registrar-entrada').click(function() {
+                        registrarEntrada();
+                        console.log("REGISTRANDO ENTRADA");
+                    });
+                    $('#registrar-salida').click(function() {
+                        registrarSalida();
+                        console.log("REGISTRANDO SALIDA");
+                    });
                     loadEmployeeData();
                 }
             }
