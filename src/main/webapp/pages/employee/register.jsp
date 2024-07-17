@@ -15,48 +15,47 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de Entrada y Salida</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="../../TodoPor1Sol/resources/css/employee-display.css" rel="stylesheet" type="text/css"/> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <div class="principal-container">
-            <form action="${pageContext.request.contextPath}/SvMostrarEmpleado" method="post">
-                <input type="hidden" name="dniEmpleado" value="${usuario.dniEmpleado}" />
-                <button type="submit">Cargar Empleado</button>
-            </form>
-            <div style="padding: 30px 40px;">
-                <p class="header-e-d">
-                    Registro de Entrada y Salida
-                </p>
-                <p class="paragraph-e-d">
-                    Registro de entrada y salida de los empleados
-                </p>
-                
-                <table class="tabla">
-                    <thead>
-                        <tr>
-                            <th style="padding: 0px 10px; color: #1D242E">Nombre</th>
-                            <th style="padding: 0px 10px; color: #1D242E">Apellidos</th>
-                            <th style="padding: 0px 10px; color: #1D242E">Hora de Entrada</th>
-                            <th style="padding: 0px 10px; color: #1D242E">Hora de Salida</th>
-                            <th style="padding: 0px 10px; color: #1D242E">Fecha</th>
-                        </tr>
-                    </thead>                    
-                    <tbody>   
-                            <tr>
-                                <td colspan="5"><hr style="border: none; height: 1px; background-color: rgba(29,36,46,0.3); margin: 0;"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">${empleado.nombre}</td>
-                                <td style="text-align: center;">|${empleado.apellidos}</td>
-                                <td style="text-align: center;"></td>
-                                <td style="text-align: center;"></td>
-                                <td style="text-align: center;"></td> 
-                            </tr>
-                    </tbody>
-                </table>                
-                
-            </div>         
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col">
+                    <h2 class="mb-2">Registro de Entrada y Salida</h2>
+                    <p class="lead mb-2">Registro de entrada y salida de los empleados</p>
+
+                    <form action="${pageContext.request.contextPath}/SvMostrarEmpleado" method="post">
+                        <input type="hidden" name="dniEmpleado" value="${usuario.dniEmpleado}" />
+                    </form>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellidos</th>
+                                    <th scope="col">Hora de Entrada</th>
+                                    <th scope="col">Hora de Salida</th>
+                                    <th scope="col">Fecha</th>
+                                </tr>
+                            </thead>                    
+                            <tbody>   
+                                <tr>
+                                    <td id="empleado-nombre" class="text-center"></td>
+                                    <td id="empleado-apellidos" class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td> 
+                                </tr>
+                            </tbody>
+                        </table>  
+                    </div>
+                </div>
+            </div>
         </div>
-                              
-    </body>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body> 
 </html>

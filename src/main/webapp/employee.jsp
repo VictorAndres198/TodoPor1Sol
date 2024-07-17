@@ -86,13 +86,13 @@
                 </div>  
           </div>
            
-            <a class="button-nav-empl"  href="/TodoPor1Sol/home.jsp" style="text-decoration: none">
+            <div class="button-nav-empl"  id="nav-home" onclick="toHome()">
                 <div style="display: flex; justify-content: end;">
                 </div>
                 <div>
-                    <label class="SeccionName">Cerrar Sesión</label>
+                    Cerrar Sesión
                 </div>
-            </a>
+            </div>
 
             </div>
             
@@ -101,5 +101,31 @@
             </div>
         </div>
         
+        <script>
+            function loadEmployeeData() {
+                var dniEmpleado = `${usuario.dniEmpleado}`;
+                if (dniEmpleado) {
+                    $.ajax({
+                        url: `${pageContext.request.contextPath}/SvMostrarEmpleado`,
+                        type: 'POST',
+                        data: { dniEmpleado: dniEmpleado },
+                        dataType: 'json',
+                        success: function(data) {
+                            console.log("Empleado data:", data);
+                            $('#employee-display #empleado-nombre').text(data.nombre);
+                            $('#employee-display #empleado-apellidos').text(data.apellidos);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error loading employee data:", status, error);
+                            $('#employee-display').html(`<p>Error loading employee data: ${xhr.status} ${xhr.statusText}</p>`);
+                        }
+                    });
+                }
+            }
+            
+            function toHome() {
+                window.location.href = '${pageContext.request.contextPath}/home.jsp';
+            }
+        </script>
     </body>
 </html>

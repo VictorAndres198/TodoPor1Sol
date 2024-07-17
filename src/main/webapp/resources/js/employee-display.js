@@ -1,9 +1,14 @@
+
 $(document).ready(function() {
     function loadPage(page) {
-        console.log("Loading page:", page); // Agregar este console.log
+        console.log("Loading page:", page);
         $('#employee-display').load(`../TodoPor1Sol/${page}`, function(response, status, xhr) {
             if (status == "error") {
                 $('#employee-display').html(`<p>Error loading page: ${xhr.status} ${xhr.statusText}</p>`);
+            } else {
+                if (page === 'pages/employee/register.jsp') {
+                    loadEmployeeData();
+                }
             }
         });
     }
@@ -31,6 +36,7 @@ $(document).ready(function() {
     $('#nav-historialventas').click(function() {
         loadPage('pages/employee/historialdeventas.jsp');
     });
+    
 });
 
 function rotateCheuron() {

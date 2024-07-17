@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  *
@@ -60,27 +61,28 @@ public class SvMostrarEmpleado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Obtener el valor del dniEmpleado desde el request
-        String dni = request.getParameter("dniEmpleado");
+    String dni = request.getParameter("dniEmpleado");
 
-        // Aquí puedes agregar validaciones si es necesario
-        if (dni != null && !dni.isEmpty()) {
-            DAOempleado daoEmpleado = new DAOempleado();
-            Empleado empleado = daoEmpleado.obtenerEmpleadoPorDNI(dni);
+    if (dni != null && !dni.isEmpty()) {
+        DAOempleado daoEmpleado = new DAOempleado();
+        Empleado empleado = daoEmpleado.obtenerEmpleadoPorDNI(dni);
 
-            // Imprimir para debug
-            System.out.println("ESTE ES EL DNI OBTENIDO DEL SERVLET MOSTRAR EMPLEADO: " + dni);
+        if (empleado != null) {
+            Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation() // Excluye campos sin la anotación @Expose
+                .create();
 
-            // Establecer el empleado en la request
-            request.setAttribute("empleado", empleado);
+            String json = gson.toJson(empleado);
 
-            // Redirigir al JSP con los datos del empleado
-            String path = "/pages/employee/register.jsp"; 
-            request.getRequestDispatcher(path).forward(request, response);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
         } else {
-            // Manejar el caso cuando dniEmpleado no está presente o es inválido
-            response.sendRedirect("/pages/employee/error.jsp");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Empleado no encontrado");
         }
+    } else {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "DNI inválido");
+    }
     }
 
     /**
