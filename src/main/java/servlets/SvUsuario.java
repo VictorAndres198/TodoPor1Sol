@@ -11,6 +11,7 @@ import DAO.DAOusuario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.ss.usermodel.ClientAnchor.AnchorType;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 
@@ -99,17 +101,37 @@ public class SvUsuario extends HttpServlet {
         }
     }
     
-    
-    
-    
 
+ 
 protected void exportToExcel(HttpServletResponse response) throws IOException {
     response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     response.setHeader("Content-Disposition", "attachment; filename=ReporteUsuarios.xlsx");
 
     Workbook workbook = new XSSFWorkbook();
     Sheet sheet = workbook.createSheet("Usuarios");
-    
+
+    // Cargar la imagen del logo
+    String logoURL = "https://www.sysfarmasoluciones.com/simbolo_sysfarma.png";
+    InputStream is = new URL(logoURL).openStream();
+    byte[] bytes = IOUtils.toByteArray(is);
+    is.close();
+
+    int logoHeight = 80; // Altura de la imagen
+    int logoWidth = 63; // Ancho de la imagen
+    int pictureIdx = workbook.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+    CreationHelper helper = workbook.getCreationHelper();
+    Drawing<?> drawing = sheet.createDrawingPatriarch();
+    ClientAnchor anchor = helper.createClientAnchor();
+    anchor.setCol1(0);
+    anchor.setRow1(0);
+    anchor.setCol2(1);
+    anchor.setRow2(4);
+
+    // Crear la imagen y ajustar tamaño
+    Picture pict = drawing.createPicture(anchor, pictureIdx);
+    pict.resize(1.0, 1.0); // Redimensionar al tamaño original de la imagen
+    pict.resize(logoWidth / pict.getImageDimension().getWidth(), logoHeight / pict.getImageDimension().getHeight());
+
     // Estilos
     CellStyle headerStyle = workbook.createCellStyle();
     headerStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(207, 226, 255), null));
@@ -123,17 +145,18 @@ protected void exportToExcel(HttpServletResponse response) throws IOException {
     headerFont.setBold(true);
     headerFont.setColor(IndexedColors.BLACK.getIndex());
     headerStyle.setFont(headerFont);
+    
+    //´Estilo del titulo
+    CellStyle titleStyle = workbook.createCellStyle();
+    titleStyle.setAlignment(HorizontalAlignment.CENTER);
+    titleStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+    titleStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-CellStyle titleStyle = workbook.createCellStyle();
-titleStyle.setAlignment(HorizontalAlignment.CENTER);
-titleStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
-titleStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND); // Establece el patrón de relleno
-
-Font titleFont = workbook.createFont();
-titleFont.setBold(true);
-titleFont.setColor(IndexedColors.WHITE.getIndex()); // Color de la fuente (opcional)
-titleFont.setFontHeightInPoints((short) 16);
-titleStyle.setFont(titleFont);
+    Font titleFont = workbook.createFont();
+    titleFont.setBold(true);
+    titleFont.setColor(IndexedColors.BLACK.getIndex());
+    titleFont.setFontHeightInPoints((short) 16);
+    titleStyle.setFont(titleFont);
 
     CellStyle cellStyle = workbook.createCellStyle();
     cellStyle.setBorderBottom(BorderStyle.THIN);
@@ -142,24 +165,37 @@ titleStyle.setFont(titleFont);
     cellStyle.setBorderLeft(BorderStyle.THIN);
     cellStyle.setAlignment(HorizontalAlignment.CENTER);
 
+    // Estilo para la información de la empresa
+    CellStyle infoStyle = workbook.createCellStyle();
+    infoStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(207, 226, 255), null));
+    infoStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+    infoStyle.setBorderBottom(BorderStyle.THIN);
+    infoStyle.setBorderTop(BorderStyle.THIN);
+    infoStyle.setBorderRight(BorderStyle.THIN);
+    infoStyle.setBorderLeft(BorderStyle.THIN);
+    infoStyle.setAlignment(HorizontalAlignment.LEFT);
 
-// Información de la empresa
-String[][] empresaInfo = {
-    {"Empresa :", "Todo Por 1 Sol"},
-    {"RUC :", "20603841108"},
-    {"Dirección :", "Jr. Jose Carlos Mariategui Nro. 299a"},
-    {"Correo :", "TodoPor1Sol@gmail.com"},
-    {"Fecha y Hora de impresión :", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"))},
-    {"Teléfono :", "981770647"}
-};
+    // Información de la empresa
+    String[][] empresaInfo = {
+        {"Empresa :", "Todo Por 1 Sol"},
+        {"RUC :", "20603841108"},
+        {"Dirección :", "Jr. Jose Carlos Mariategui Nro. 299a"},
+        {"Correo :", "TodoPor1Sol@gmail.com"},
+        {"Fecha y Hora de impresión :", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"))},
+        {"Teléfono :", "981770647"}
+    };
 
-// Agregar información de la empresa
-int rowIndex = 0;
-for (String[] info : empresaInfo) {
-    Row row = sheet.createRow(rowIndex++);
-    row.createCell(1).setCellValue(info[0]);
-    row.createCell(2).setCellValue(info[1]);
-}
+    // Agregar información de la empresa
+    int rowIndex = 0;
+    for (String[] info : empresaInfo) {
+        Row row = sheet.createRow(rowIndex++);
+        Cell cell1 = row.createCell(1);
+        Cell cell2 = row.createCell(2);
+        cell1.setCellValue(info[0]);
+        cell2.setCellValue(info[1]);
+        cell1.setCellStyle(infoStyle);
+        cell2.setCellStyle(infoStyle);
+    }
 
     // Crear fila de título
     Row titleRow = sheet.createRow(rowIndex++);
@@ -201,9 +237,8 @@ for (String[] info : empresaInfo) {
     try (ServletOutputStream out = response.getOutputStream()) {
         workbook.write(out);
     }
-}  
+}
 
-    
    
 
     @Override
