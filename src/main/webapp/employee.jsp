@@ -1,4 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="usuario" class="Modelo.Usuario" scope="session" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,9 +27,12 @@
                 <div style="display:flex;flex-direction:row; height: fit-content; width:100%; justify-content: center; align-items: center; padding: 30px 0px;">
                     <img src="resources/img/employee/employee.png" alt=""/>
                     <div style="display: flex; flex-direction: column; padding: 0px 10px;">
-                        <label style="color: white;font-weight: 600; margin: 5px 0px;">
-                            Andrés
-                        </label>
+                        <%-- Verificar si el usuario está en la sesión --%>
+                        <c:if test="${not empty usuario}">
+                            <label style="color: white; font-weight: 600; margin: 5px 0px;">
+                                Bienvenid@, ${usuario.nombre}
+                            </label>
+                        </c:if>
                         <label  style="color: #00FEC1;font-weight: 600;">
                             Empleado
                         </label>
@@ -78,15 +85,15 @@
                     </div>
                 </div>  
           </div>
-
-            <div class="button-nav-empl">
+           
+            <a class="button-nav-empl"  href="/TodoPor1Sol/home.jsp" style="text-decoration: none">
                 <div style="display: flex; justify-content: end;">
                 </div>
                 <div>
-                    <a class="SeccionName" href="/TodoPor1Sol/home.jsp">Cerrar Sesión</a>
+                    <label class="SeccionName">Cerrar Sesión</label>
                 </div>
-            </div>
-                
+            </a>
+
             </div>
             
             <div id="employee-display">

@@ -1,8 +1,7 @@
-
 $(document).ready(function() {
     function loadPage(page) {
         console.log("Loading page:", page); // Agregar este console.log
-        $('#employee-display').load(`../TodoPor1Sol/pages/employee/${page}.jsp`, function(response, status, xhr) {
+        $('#employee-display').load(`../TodoPor1Sol/${page}`, function(response, status, xhr) {
             if (status == "error") {
                 $('#employee-display').html(`<p>Error loading page: ${xhr.status} ${xhr.statusText}</p>`);
             }
@@ -10,27 +9,27 @@ $(document).ready(function() {
     }
 
     // Página por defecto
-    loadPage('register');
+    loadPage('pages/employee/register.jsp');
 
     // Asignar eventos de clic para los ítems del menú
     $('#nav-register').click(function() {
-        loadPage('register');
+        loadPage('pages/employee/register.jsp');
     });
 
     $('#nav-inventory').click(function() {
-        loadPage('inventario');
+        loadPage('pages/employee/inventario.jsp');
     });
 
     $('#nav-realizarventa').click(function() {
-        loadPage('realizarventa');
+        loadPage('pages/employee/realizarventa.jsp');
     });
 
     $('#nav-realizarventa').click(function() {
-        loadPage('realizarventa');
+        loadPage('pages/employee/realizarventa.jsp');
     });
 
     $('#nav-historialventas').click(function() {
-        loadPage('historialdeventas');
+        loadPage('pages/employee/historialdeventas.jsp');
     });
 });
 
