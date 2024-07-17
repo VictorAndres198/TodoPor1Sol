@@ -42,7 +42,7 @@ public class TestEmpleados {
         Empleado updatedEmp = daoEmpleado.ObtenerEmpleado("72782490");
         System.out.println("Empleado actualizado: " + updatedEmp.getNombre());
 
-        // Prueba de eliminación
+        // Prueba de eliminación del empleado
         boolean deleteSuccess = daoEmpleado.Delete("72782490");
         System.out.println("Eliminación exitosa: " + deleteSuccess);
 
