@@ -105,25 +105,35 @@
             var entradaRegistrada = false;
 
             // Función para obtener la hora actual y mostrarla en la tabla
-            function registrarEntrada() {
-                if (entradaRegistrada) {
+            function registrarEntrada() {                
+                var dniUsuario = localStorage.getItem('Usuario');
+        
+                if (entradaRegistrada || !dniUsuario) {
                     $('#error-message2').fadeIn().delay(2000).fadeOut();
                 } else {
+                
                 // Obtener la hora actual
                 var nowE = new Date();
                 var formattedTime = ('0' + nowE.getHours()).slice(-2) + ':' + ('0' + nowE.getMinutes()).slice(-2) + ':' + ('0' + nowE.getSeconds()).slice(-2);
                 // Mostrar la hora actual en el campo correspondiente de la tabla
                 $('#empleado-entrada').text(formattedTime);
-                entradaRegistrada = true; }
+                entradaRegistrada = true; 
+                // Guardar hora de entrada en localStorage específicamente para este usuario
+                localStorage.setItem('horaE_' + dniUsuario, formattedTime);
+                }
             }
             
             function registrarSalida() {
+                var dniUsuario = localStorage.getItem('Usuario');
+                
                 // Obtener la hora actual
                 var nowS = new Date();
                 var formattedTimeS = ('0' + nowS.getHours()).slice(-2) + ':' + ('0' + nowS.getMinutes()).slice(-2) + ':' + ('0' + nowS.getSeconds()).slice(-2);
                 // Mostrar la hora actual en el campo correspondiente de la tabla
-                if (entradaRegistrada) {
+                if (entradaRegistrada && dniUsuario) {
                     $('#empleado-salida').text(formattedTimeS);
+                    // Guardar hora de salida en localStorage específicamente para este usuario
+                    localStorage.setItem('horaS_' + dniUsuario, formattedTimeS);
                 } else {
                     // Mostrar mensaje de error
                     $('#error-message').fadeIn().delay(2000).fadeOut();
@@ -148,6 +158,18 @@
                             var formattedDate = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
                             // Mostrar la fecha actual en el campo correspondiente
                             $('#employee-display #empleado-fecha').text(formattedDate);
+                            
+                            localStorage.setItem('Usuario',(data.dni))
+                            
+                            var horaEntrada = localStorage.getItem('horaE_' + data.dni);
+                            if (horaEntrada) {
+                                $('#empleado-entrada').text(horaEntrada);
+                                entradaRegistrada = true; // Actualizar estado de entradaRegistrada
+                            }
+                            var horaSalida = localStorage.getItem('horaS_' + data.dni);
+                            if (horaSalida) {
+                                $('#empleado-salida').text(horaSalida);
+                            }
                         },
                         error: function(xhr, status, error) {
                             console.error("Error loading employee data:", status, error);
