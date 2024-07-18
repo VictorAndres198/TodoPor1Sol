@@ -22,7 +22,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -39,6 +41,24 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
+import org.apache.commons.compress.utils.IOUtils;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @WebServlet(name = "SvEmpleado", urlPatterns = {"/SvEmpleado"})
 public class SvEmpleado extends HttpServlet {
@@ -106,6 +126,15 @@ public class SvEmpleado extends HttpServlet {
                 acceso = listar;
                 response.sendRedirect(listar);
                 break;
+                
+                            case "exportarExcel":
+                exportToExcel(response);
+                return; // Salir del método después de exportar
+
+            default:
+                response.sendRedirect(listar);
+                break;
+                
         }
 
         if(method.equalsIgnoreCase("edit")){
@@ -115,6 +144,158 @@ public class SvEmpleado extends HttpServlet {
         }
    
     }//fin del processRequest
+    
+    //Excel
+     protected void exportToExcel(HttpServletResponse response) throws IOException {
+    response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    response.setHeader("Content-Disposition", "attachment; filename=ReporteEmpleados.xlsx");
+
+    Workbook workbook = new XSSFWorkbook();
+    Sheet sheet = workbook.createSheet("Empleados");
+
+    // Cargar la imagen del logo
+    String logoURL = "https://www.sysfarmasoluciones.com/simbolo_sysfarma.png";
+    InputStream is = new URL(logoURL).openStream();
+    byte[] bytes = IOUtils.toByteArray(is);
+    is.close();
+
+    int logoHeight = 80; // Altura de la imagen
+    int logoWidth = 63; // Ancho de la imagen
+    int pictureIdx = workbook.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+    CreationHelper helper = workbook.getCreationHelper();
+    Drawing<?> drawing = sheet.createDrawingPatriarch();
+    ClientAnchor anchor = helper.createClientAnchor();
+    anchor.setCol1(0);
+    anchor.setRow1(0);
+    anchor.setCol2(1);
+    anchor.setRow2(4);
+
+    // Crear la imagen y ajustar tamaño
+    Picture pict = drawing.createPicture(anchor, pictureIdx);
+    pict.resize(1.0, 1.0); // Redimensionar al tamaño original de la imagen
+    pict.resize(logoWidth / pict.getImageDimension().getWidth(), logoHeight / pict.getImageDimension().getHeight());
+
+    // Estilos
+    CellStyle headerStyle = workbook.createCellStyle();
+    headerStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(207, 226, 255), null));
+    headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+    headerStyle.setBorderBottom(BorderStyle.THIN);
+    headerStyle.setBorderTop(BorderStyle.THIN);
+    headerStyle.setBorderRight(BorderStyle.THIN);
+    headerStyle.setBorderLeft(BorderStyle.THIN);
+    headerStyle.setAlignment(HorizontalAlignment.CENTER);
+    Font headerFont = workbook.createFont();
+    headerFont.setBold(true);
+    headerFont.setColor(IndexedColors.BLACK.getIndex());
+    headerStyle.setFont(headerFont);
+
+    // Estilo del titulo
+    CellStyle titleStyle = workbook.createCellStyle();
+    titleStyle.setAlignment(HorizontalAlignment.CENTER);
+    titleStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+    titleStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+    Font titleFont = workbook.createFont();
+    titleFont.setBold(true);
+    titleFont.setColor(IndexedColors.BLACK.getIndex());
+    titleFont.setFontHeightInPoints((short) 16);
+    titleStyle.setFont(titleFont);
+
+    CellStyle cellStyle = workbook.createCellStyle();
+    cellStyle.setBorderBottom(BorderStyle.THIN);
+    cellStyle.setBorderTop(BorderStyle.THIN);
+    cellStyle.setBorderRight(BorderStyle.THIN);
+    cellStyle.setBorderLeft(BorderStyle.THIN);
+    cellStyle.setAlignment(HorizontalAlignment.CENTER);
+
+    // Estilo para la información de la empresa
+    CellStyle infoStyle = workbook.createCellStyle();
+    infoStyle.setBorderBottom(BorderStyle.THIN);
+    infoStyle.setBorderTop(BorderStyle.THIN);
+    infoStyle.setBorderRight(BorderStyle.THIN);
+    infoStyle.setBorderLeft(BorderStyle.THIN);
+    infoStyle.setAlignment(HorizontalAlignment.LEFT);
+
+    // Información de la empresa
+    String[][] empresaInfo = {
+        {"Empresa :", "Todo Por 1 Sol"},
+        {"RUC :", "20603841108"},
+        {"Dirección :", "Jr. Jose Carlos Mariategui Nro. 299a"},
+        {"Correo :", "TodoPor1Sol@gmail.com"},
+        {"Fecha y Hora de impresión :", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"))},
+        {"Teléfono :", "981770647"}
+    };
+
+    // Agregar información de la empresa
+    int rowIndex = 0;
+    for (String[] info : empresaInfo) {
+        Row row = sheet.createRow(rowIndex++);
+        Cell cell1 = row.createCell(1);
+        Cell cell2 = row.createCell(2);
+        cell1.setCellValue(info[0]);
+        cell2.setCellValue(info[1]);
+        cell1.setCellStyle(infoStyle);
+        cell2.setCellStyle(infoStyle);
+    }
+
+    // Crear fila de título
+    Row titleRow = sheet.createRow(rowIndex++);
+    Cell titleCell = titleRow.createCell(0);
+    titleCell.setCellValue("REPORTE DE EMPLEADOS - TODO POR 1 SOL");
+    titleCell.setCellStyle(titleStyle);
+    sheet.addMergedRegion(new CellRangeAddress(titleRow.getRowNum(), titleRow.getRowNum(), 0, 8));
+
+    // Crear encabezados
+    Row headerRow = sheet.createRow(rowIndex++);
+    String[] headers = {"DNI", "Nombre", "Apellidos", "Correo", "Teléfono", "Sueldo", "ID Farmacia", "Horario Entrada", "Horario Salida"};
+    for (int i = 0; i < headers.length; i++) {
+        Cell cell = headerRow.createCell(i);
+        cell.setCellValue(headers[i]);
+        cell.setCellStyle(headerStyle);
+    }
+
+    // Agregar datos
+    DAOempleado dao = new DAOempleado();
+    ArrayList<Empleado> listaEmpleados = dao.ListarEmpleado();
+    for (Empleado e : listaEmpleados) {
+        Row row = sheet.createRow(rowIndex++);
+        row.createCell(0).setCellValue(e.getDni());
+        row.createCell(1).setCellValue(e.getNombre());
+        row.createCell(2).setCellValue(e.getApellidos());
+        row.createCell(3).setCellValue(e.getCorreo());
+        row.createCell(4).setCellValue(e.getTelefono());
+        row.createCell(5).setCellValue(e.getSueldo().doubleValue());
+        row.createCell(6).setCellValue(e.getIdFarm());
+        row.createCell(7).setCellValue(e.getHorarioE().toString());
+        row.createCell(8).setCellValue(e.getHorarioS().toString());
+
+        // Aplicar estilo a las celdas
+        for (int j = 0; j < headers.length; j++) {
+            row.getCell(j).setCellStyle(cellStyle);
+        }
+    }
+
+    // Ajustar el ancho de las columnas
+    sheet.setColumnWidth(0, 30 * 256); // DNI
+    sheet.setColumnWidth(1, 30 * 256); // Nombre
+    sheet.setColumnWidth(2, 30 * 256); // Apellidos
+    sheet.setColumnWidth(3, 40 * 256); // Correo
+    sheet.setColumnWidth(4, 20 * 256); // Teléfono
+    sheet.setColumnWidth(5, 15 * 256); // Sueldo
+    sheet.setColumnWidth(6, 15 * 256); // ID Farmacia
+    sheet.setColumnWidth(7, 20 * 256); // Horario Entrada
+    sheet.setColumnWidth(8, 20 * 256); // Horario Salida
+
+    // Escribir el archivo
+    try (ServletOutputStream out = response.getOutputStream()) {
+        workbook.write(out);
+    }
+}
+    
+    
+   
+
+   
 
 
     @Override

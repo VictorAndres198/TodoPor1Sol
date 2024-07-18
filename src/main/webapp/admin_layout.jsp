@@ -96,12 +96,19 @@
                 </a>
                 <a class="button-nav-admin expanded empleadosExpandidos hide" href="/TodoPor1Sol/pages/admin/GestionarEmpleados.jsp" style="text-decoration: none">
                     <div style="display: flex; justify-content: end;">
-                        
+
                     </div>
                     <div>
                         <div class="SeccionName" >Gestionar Empleados</div>
                     </div>
+                </a>     
+                <a class="button-nav-admin expanded empleadosExpandidos hide" href="/TodoPor1Sol/pages/admin/NuevoUsuario.jsp" style="text-decoration: none;">
+                    <div style="display: flex; justify-content: end;"></div>
+                    <div>
+                        <div class="SeccionName">Nuevo Usuario</div>
+                    </div>
                 </a>
+                
                 <div class="button-nav-admin"  onclick="rotateCheuron()">
                     <div style="display: flex; justify-content: end;"></div>
                     <div style="display: flex; align-items: center;">

@@ -89,7 +89,7 @@
     margin-left: 0.7rem;
     margin-top: 2rem;
     border-radius: 10px;
-        
+    justify-content: center;
 }
 
 .table{
@@ -102,11 +102,17 @@
     top:0;
     color: #fff;
     height: 2rem;
+    text-align: center;
     background: rgb(57, 130, 221 );
 }
 .table-header tr{
         padding: 3rem;
 }
+.table td, .table th {
+    text-align: center;
+    padding: 0.5rem;
+}
+
 
 /* BOTONES*/
 
