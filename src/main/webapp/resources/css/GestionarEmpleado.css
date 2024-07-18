@@ -115,36 +115,11 @@
 
 
 /* BOTONES*/
-
-.Frm-Btns{
-    margin:auto;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 .Frm-Btns-Report{
    display: flex;
    justify-content: right;
    align-items: center;
    max-width: 90%;
-}
-
-
-.box-Content_Btn{
-    padding: 0.9rem 4rem;
-    font-size: 1.4rem;
-    margin: 1rem;
-    border-radius: 15px;
-    border: 0;
-    background: rgb(178, 245, 101);
-    transition: all .5s ease;
-}
-
-.btn_delete{
-    transition: all .5s ease;
-    background: rgb(245, 124, 101);
-    color: #fff;
 }
 
 .Btn_PDF{
@@ -163,20 +138,3 @@
     transform: scale(.9);
     color: #000;
 }
-
-
-.box-Content_Btn:hover{
-    background: rgb(221, 250, 189);
-    transform: scale(.9);
-}
-
-.btn_delete:hover{
-    background: rgb(246, 206, 198 );
-    transform: scale(.9);
-    color: #000;
-}
-
-:is(.box-Content_Btn,.btn_delete,.Btn_PDF):active{
-    transform: scale(1.1);    
-}
-

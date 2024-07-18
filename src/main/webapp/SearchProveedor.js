@@ -37,6 +37,13 @@ async function buildTable() {
 
         const cellCorreo = row.insertCell();
         cellCorreo.textContent = prov.correo;
+        
+        const cellBtns = row.insertCell();
+        cellBtns.innerHTML = '<button type="button" class="btn btn-success" \n\
+                            data-bs-toggle="modal" data-bs-target="#ProveedorModal">\n\
+                            <i class="fas fa-edit"></i></button>\n\
+                            <button type="button" class="btn btn-danger">\n\
+                            <i class="fas fa-trash-alt"></i></button>';
     });
 }
 
