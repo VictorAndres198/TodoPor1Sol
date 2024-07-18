@@ -18,6 +18,7 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="../../TodoPor1Sol/resources/css/employee-display.css" rel="stylesheet" type="text/css"/> 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     </head>
     <body>
         <div class="container pt-4 space-bt">
@@ -57,7 +58,7 @@
                    
                     
             <div style="display: flex; justify-content: center; width: 100%;">       
-                <div style=" display: flex; flex-direction: row; gap: 70px; padding: 20px 0px 20px 0px">
+                <div style=" display: flex; flex-direction: row; gap: 70px; padding: 20px 0px 10px 0px">
                     <div class="btn btn-success" id="registrar-entrada">
                         Registrar Entrada
                     </div>
@@ -78,10 +79,17 @@
             <div id="error-message3" style="color: red; text-align: center; display: none;">
                 Solo puede registrar la salida una vez.
             </div>
+            <h4 style="padding-top: 20px;" id="semana-actual">              
+            </h4>
             
+            <div style="display: flex; width: 100%; place-content: center; padding-top: 20px">
+                <div style="width: fit-content; height: fit-content">
+                    <canvas style="height: 350px; width: 90%;" id="grafico-linea"></canvas>
+                </div>  
+            </div>
         </div>
-                    
-
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body> 
+    
+
+    
 </html>

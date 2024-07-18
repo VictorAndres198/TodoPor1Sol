@@ -11,8 +11,9 @@
         <link href="resources/css/employee.css" rel="stylesheet" type="text/css"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>        
         <script src="resources/js/employee-display.js"></script> <!-- Enlace al archivo JS separado -->
-
-        
+        <!-- Agregar Chart.js para los gráficos -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     </head>
     <body class="body-employee">
         <div class="employee">
@@ -182,7 +183,7 @@
                 }
             }
             
-            function loadEmployeeData() {
+            function loadEmployeeData() {            
                 var dniEmpleado = `${usuario.dniEmpleado}`;
                 if (dniEmpleado) {
                     $.ajax({
@@ -220,6 +221,54 @@
                     });
                 }
             }
+            
+            // Función para obtener el lunes de la semana actual
+            function getMonday(date) {
+                var day = date.getDay(),
+                    diff = date.getDate() - day + (day == 0 ? -6 : 1); // ajuste cuando el día es domingo
+                return new Date(date.setDate(diff));
+            }
+
+            // Función para obtener los días de la semana a partir del lunes dado
+            function getWeekDays(monday) {
+                var daysOfWeek = [];
+                for (var i = 0; i < 5; i++) { // Iterar de lunes a viernes (5 días laborales)
+                    var day = new Date(monday);
+                    day.setDate(monday.getDate() + i);
+                    daysOfWeek.push(day);
+                }
+                return daysOfWeek;
+            }
+
+            // Función para cargar y mostrar la semana actual en el HTML
+            function loadSemanaActual() {
+                // Calcular la semana actual y mostrarla en el HTML
+                var today = new Date(); // Fecha actual
+                var monday = getMonday(today); // Lunes de esta semana
+
+                var daysOfWeek = getWeekDays(monday);
+
+                // Formatear las fechas para mostrarlas como DD/MM/YYYY
+                var formattedDays = daysOfWeek.map(function(day) {
+                    var dd = String(day.getDate()).padStart(2, '0');
+                    var mm = String(day.getMonth() + 1).padStart(2, '0'); // Enero es 0
+                    var yyyy = day.getFullYear();
+                    return yyyy + '/' + mm + '/' + dd;
+                });
+                
+                var lunes = formattedDays[0];
+                var viernes = formattedDays[4];
+                console.log(lunes, viernes);
+                
+                // Actualizar el contenido del elemento <h3> con id 'semana-actual'
+                var semanaActualText = "Semana del "+lunes+" hasta "+viernes;
+                console.log(semanaActualText);
+                // Asegúrate de que el DOM esté completamente cargado antes de actualizar el contenido
+                $(document).ready(function() {
+                    $('#semana-actual').text(semanaActualText);
+                });
+            }
+            
             
             function toHome() {
                 window.location.href = '${pageContext.request.contextPath}/home.jsp';

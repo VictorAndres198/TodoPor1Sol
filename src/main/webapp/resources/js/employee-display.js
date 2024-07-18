@@ -17,10 +17,64 @@ $(document).ready(function() {
                         console.log("REGISTRANDO SALIDA");
                     });
                     loadEmployeeData();
+                    // Inicializar el gráfico después de cargar register.jsp
+                    initializeChart();
+                    loadSemanaActual();
                 }
             }
         });
     }
+
+// Función para inicializar el gráfico usando Chart.js
+function initializeChart() {
+    var graficoLinea = document.getElementById('grafico-linea');
+
+    if (graficoLinea) {
+        var ctx = graficoLinea.getContext('2d');
+
+        // Datos de ejemplo (reemplaza esto con tus datos reales)
+        var data = {
+            labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+            datasets: [{
+                label: 'Hora de Salida',
+                data: ['17:00', '17:30', '18:00', '17:15', '18:30'].map(function(time) {
+                    return moment.duration(time).asHours(); // Convertir 'HH:mm' a horas como número
+                }),
+                borderColor: 'rgba(19, 132, 150, 1)',
+                borderWidth: 1,
+                fill: false
+            },{
+                label: 'Hora de Entrada',
+                data: ['08:00', '08:30', '09:00', '08:15', '09:30'].map(function(time) {
+                    return moment.duration(time).asHours(); // Convertir 'HH:mm' a horas como número
+                }),
+                borderColor: 'rgba(33, 136, 56, 1)',
+                borderWidth: 1,
+                fill: false
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins:{                
+                legend: {
+                    position: 'right', // Posiciona la leyenda a la derecha del gráfico
+                    align: 'center', // Alinea la leyenda al centro verticalmente
+                    labels: {
+                        boxWidth: 15 // Ancho del cuadro de la leyenda
+                    }
+                }
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    }
+}
 
     // Página por defecto
     loadPage('pages/employee/register.jsp');
