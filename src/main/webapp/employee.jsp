@@ -130,13 +130,55 @@
                 var nowS = new Date();
                 var formattedTimeS = ('0' + nowS.getHours()).slice(-2) + ':' + ('0' + nowS.getMinutes()).slice(-2) + ':' + ('0' + nowS.getSeconds()).slice(-2);
                 // Mostrar la hora actual en el campo correspondiente de la tabla
-                if (entradaRegistrada && dniUsuario) {
+                // Guardar en la base de datos solo si no se ha guardado antes
+                if (entradaRegistrada && dniUsuario && !localStorage.getItem('guardadoSalida_'+dniUsuario)) {
                     $('#empleado-salida').text(formattedTimeS);
                     // Guardar hora de salida en localStorage específicamente para este usuario
                     localStorage.setItem('horaS_' + dniUsuario, formattedTimeS);
+                    
+                    // Obtener otros datos necesarios para enviar al servidor
+                    var fecha = $('#empleado-fecha').text(); // Obtener la fecha actual de la tabla
+                    var hEntrada = $('#empleado-entrada').text(); // Obtener la hora de entrada registrada
+                    var dniEmpleado = localStorage.getItem('Usuario'); // Obtener el DNI del empleado de localStorage
+
+                    
+            
+                    // Hacer la solicitud AJAX para enviar los datos al servidor
+                    $.ajax({
+                        url: `${pageContext.request.contextPath}/SvGuardarHoraEmpleado`,
+                        type: 'POST',
+                        data: {
+                            fecha: fecha,
+                            hEntrada: hEntrada,
+                            hSalida: formattedTimeS,
+                            dniEmpleado: dniEmpleado
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.success) {
+                                console.log("Datos enviados exitosamente.");
+                                localStorage.setItem('guardadoSalida_'+dniUsuario, 'true');
+                                $('#registrar-salida').prop('disabled', true); // Deshabilitar el botón después de guardar
+                            } else {
+                                console.error("Hubo un error al enviar los datos.");
+                                // Aquí puedes manejar errores específicos si es necesario
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error en la solicitud AJAX:", status, error);
+                            // Manejo de errores (mostrar mensaje al usuario, etc.)
+                        }
+                    });
+                    
+                    
+                    
                 } else {
-                    // Mostrar mensaje de error
-                    $('#error-message').fadeIn().delay(2000).fadeOut();
+                    if (!localStorage.getItem('guardadoSalida_'+dniUsuario)){                        
+                        // Mostrar mensaje de error
+                        $('#error-message').fadeIn().delay(2000).fadeOut();
+                    } else {
+                        $('#error-message3').fadeIn().delay(2000).fadeOut();
+                    }
                 }
             }
             

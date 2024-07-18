@@ -68,11 +68,15 @@
             </div>
             <!-- Mensaje de error para la salida -->
             <div id="error-message" style="color: red; text-align: center; display: none;">
-                Debe registrar la entrada primero.
+                Debe registrar la entrada primero
             </div>
             
             <div id="error-message2" style="color: red; text-align: center; display: none;">
                 Solo puede registrar una vez la entrada.
+            </div>
+            
+            <div id="error-message3" style="color: red; text-align: center; display: none;">
+                Solo puede registrar la salida una vez.
             </div>
             
         </div>
