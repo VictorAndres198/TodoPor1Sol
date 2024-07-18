@@ -51,6 +51,23 @@
                     cheuron2.classList.remove("transition");
                 }, 400);
             };
+                
+            function rotateCheuron3() {
+                const cheuron3 = document.getElementById("cheuron3");
+                cheuron3.classList.toggle("rotated");
+                cheuron3.classList.toggle("transition");
+                
+                const expandedElements3 = document.querySelectorAll('.ventasExpandidos');
+                // Agregamos o eliminamos la clase fade según el estado actual del elemento
+                expandedElements3.forEach(function(element) {
+                    element.classList.toggle('hide');
+                });
+
+                // Eliminamos la clase de transición después de la duración de la transición
+                setTimeout(function() {
+                    cheuron3.classList.remove("transition");
+                }, 400);
+            };
             
         </script>
         
@@ -130,6 +147,8 @@
                       <div class="SeccionName">Gestionar Productos</div>   
                     </div>
                 </a>
+                  
+                  
                 <div class="button-nav-admin"  onclick="rotateCheuron2()" >
                     <div style="display: flex; justify-content: end;"></div>
                     <div style="display: flex; align-items: center;">
@@ -153,14 +172,34 @@
                         <div class="SeccionName">Gestionar Proveedor</div>
                     </div>
                 </a>
-                <a class="button-nav-admin" style="text-decoration: none;">
+                
+                  
+                <div class="button-nav-admin"  onclick="rotateCheuron3()" >
                     <div style="display: flex; justify-content: end;"></div>
-                    <div>
+                    <div style="display: flex; align-items: center;">
                         Historial de Ventas
                     </div>
-                </a>  
-               
+                    <div style="display: flex; align-items: center;height: 100%;width: 100%;">
+                        <img id="cheuron3" name="cheuron3" style="max-height: 16px; max-width: 16px;" src="resources/img/admin/cheuron-abajo3.png" alt=""/>
+                    </div>
+                </div>
+                  
+                <a class="button-nav-admin expanded ventasExpandidos hide" href="" style="text-decoration: none">
+                    <div style="display: flex; justify-content: end;"></div>
+                    <div>
+                        <div class="SeccionName" >Gestion Pedidos</div>
+                    </div>
+                </a>
                 
+                <a class="button-nav-admin expanded ventasExpandidos hide" href="" style="text-decoration: none">
+                    <div style="display: flex; justify-content: end;"></div>
+                    <div>
+                        <div class="SeccionName">Dashboard Ventas</div>
+                    </div>
+                </a>
+
+                  
+                  
         </div>
                 <a class="button-nav-admin" style="text-decoration: none;"  href="/TodoPor1Sol/home.jsp">
                     <div style="display: flex; justify-content: end;"></div>
