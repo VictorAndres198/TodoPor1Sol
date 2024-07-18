@@ -10,8 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <h1>HISTORIAL DE VENTAS JSP</h1>
+        <h2 class="pt-4">Historial de Ventas</h2>
+        <p class="lead mb-2">Inventario completo de todos los productos disponibles para la venta</p>
+        <div id="graficos">            
+        </div>
     </body>
 </html>
