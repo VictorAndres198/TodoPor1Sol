@@ -64,3 +64,10 @@ p{
 .button2:active{
     background: #646464;
 }
+
+.space-bt{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: fit-content;
+}

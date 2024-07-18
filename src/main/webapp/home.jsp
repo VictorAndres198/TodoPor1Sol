@@ -61,13 +61,24 @@
                     </c:if>
                     
                      <form action="${pageContext.request.contextPath}/SvInicioSesion" method="post" class="form-login">
+                        
+                        <div style="display: flex; flex-direction: row; align-items: center;">
+                            <div style="margin: 20px 8px 0px 8px;">
+                                <img style="height: 48px; width:48px;" src="resources/img/home/DNI-Icono.png" alt=""/>
+                            </div>
+                            <div>
+                                <label style="color:#787e85;font-size: 1.25rem;">DNI</label><br>
+                                <input type="text" name="dni" required="true"/>
+                            </div>                            
+                        </div>
+                         
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <div style="margin: 20px 8px 0px 8px;">
                                 <img style="height: 48px; width:48px;" src="resources/img/home/Usuarioicono.png" alt=""/>
                             </div>
                             <div>
                                 <label style="color:#787e85;font-size: 1.25rem;">Usuario</label><br>
-                                <input type="text" name="usuario"/>
+                                <input type="text" name="usuario" required="true"/>
                             </div>                            
                         </div>
                         <div style="display: flex; flex-direction: row; align-items: center;">
@@ -76,7 +87,7 @@
                             </div>
                             <div>
                                 <label style="color:#787e85;font-size: 1.25rem;">Contraseña</label><br>
-                                <input type="password" name="contrasena"/>
+                                <input type="password" name="contrasena" required="true"/>
                             </div> 
                             <div>
                                 <img style="height: 36px; width:36px;margin: 28px 8px 0px 8px; cursor: pointer;" src="resources/img/home/ContraOjo.png" alt=""/>

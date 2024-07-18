@@ -94,20 +94,21 @@ Farmacias farm;
         return empleadoHorarios;
     }
     
-  public Usuario validarUsuario(String nombre, String clave) {
+  public Usuario validarUsuario(String dni, String nombre, String clave) {
         ConectarBD conectarBD = new ConectarBD();
         Connection con = conectarBD.getConnection();
         Usuario usuario = null;
 
         try {
-            String query = "SELECT * FROM usuarios WHERE nombre = ? AND clave = ?";
+            String query = "SELECT * FROM usuarios WHERE DNI_empleado = ? AND nombre = ? AND clave = ?";
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, nombre);
-            ps.setString(2, clave);
+            ps.setString(1, dni);
+            ps.setString(2, nombre);
+            ps.setString(3, clave);
             
             // Registro de la consulta SQL ejecutada
             System.out.println("Ejecutando consulta SQL: " + query);
-            System.out.println("Parámetros: nombre = " + nombre + ", clave = " + clave);
+            System.out.println("Parámetros: dni = " + dni +", nombre = " + nombre + ", clave = " + clave);
             
             ResultSet rs = ps.executeQuery();
 
@@ -119,6 +120,7 @@ Farmacias farm;
                 
                 // Registro de los datos obtenidos de la base de datos
                 System.out.println("Datos del usuario obtenidos de la base de datos:");
+                System.out.println("dni: " + usuario.getDniEmpleado());
                 System.out.println("nombre: " + usuario.getNombre());
                 System.out.println("clave: " + usuario.getClave());
             } else {

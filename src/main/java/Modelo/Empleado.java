@@ -4,14 +4,22 @@ package Modelo;
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.time.LocalTime;
+import com.google.gson.annotations.Expose;
 
-public class Empleado {
+public class Empleado {    
+    @Expose
     private String dni;
+    @Expose
     private String nombre;
+    @Expose
     private String apellidos;
+    @Expose
     private String correo;
+    @Expose
     private String telefono;
+    @Expose
     private BigDecimal sueldo;
+    @Expose
     private Integer idFarm;
     private LocalTime horarioE;
     private LocalTime horarioS;
@@ -20,7 +28,6 @@ public class Empleado {
     //Constructor vacio
     public Empleado(){
     }
-
     public String getDni() {
         return dni;
     }

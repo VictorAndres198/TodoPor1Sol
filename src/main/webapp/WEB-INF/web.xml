@@ -28,6 +28,14 @@
         <servlet-name>SvEliminarProductos</servlet-name>
         <servlet-class>servlets.SvEliminarProductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SvMostrarEmpleado</servlet-name>
+        <servlet-class>servlets.SvMostrarEmpleado</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SvGuardarHoraEmpleado</servlet-name>
+        <servlet-class>servlets.SvGuardarHoraEmpleado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SvHome</servlet-name>
         <url-pattern>/SvHome</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>SvEliminarProductos</servlet-name>
         <url-pattern>/SvEliminarProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvMostrarEmpleado</servlet-name>
+        <url-pattern>/SvMostrarEmpleado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvGuardarHoraEmpleado</servlet-name>
+        <url-pattern>/SvGuardarHoraEmpleado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

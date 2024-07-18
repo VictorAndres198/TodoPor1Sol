@@ -16,21 +16,24 @@ import javax.servlet.http.HttpSession;
 public class SvInicioSesion extends HttpServlet {
 
  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-    String nombre = request.getParameter("usuario");
+    throws ServletException, IOException {    
+    String dni = request.getParameter("dni");    
+    String nombre = request.getParameter("usuario"); 
     String clave = request.getParameter("contrasena");
     
     DAOempleado daoUsuario = new DAOempleado();
-    Usuario usuario = daoUsuario.validarUsuario(nombre, clave);
+    Usuario usuario = daoUsuario.validarUsuario(dni, nombre, clave);
 
     if (usuario != null) {        
         // Añadir el usuario a la sesión
         HttpSession session = request.getSession();
         session.setAttribute("usuario", usuario);
+        System.out.println(" ESTO DEVUELVE MI METODO GETDNI() " +
+                 usuario.getDniEmpleado() + "/n Esto devuelve mi GETNOMBRE() "+ usuario.getNombre());
         response.sendRedirect("employee.jsp");
     } else {
-        System.out.println("Usuario o contraseña incorrectos.");
-        request.setAttribute("error", "Usuario o contraseña incorrectos");
+        System.out.println("DNI, Usuario o contraseña incorrectas");
+        request.setAttribute("error", "DNI, Usuario o contraseña incorrectas");
         request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
 }
