@@ -104,12 +104,99 @@ public class SvProveedor extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    
+        // Leer el cuerpo de la solicitud
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = req.getReader();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
         
+        // Convertir JSON a objeto Java
+        String jsonData = sb.toString();
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(jsonData, JsonObject.class);
+        
+        
+        //generamos un JSON para la respuesta
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        JsonObject jsonResponse = new JsonObject();
+        
+        //Creamos un Objeto Servicio
+        WebService serviceProveedor = new ServiceProveedor();
+        // capturamos el id del proveedor a eliminar
+        String ruc = jsonObject.get("ruc").getAsString();
+        System.out.println(ruc);
+        
+        if(ruc.isBlank()){
+            jsonResponse.addProperty("status","Error");
+            jsonResponse.addProperty("message", "El proveedor con el ruc "+ruc+" no se ha encontrado");
+            resp.getWriter().write(jsonResponse.toString());
+            
+        }else{
+            jsonResponse.addProperty("status","OK");
+            jsonResponse.addProperty("message", "Proveedor eliminado correctamente"); 
+            resp.getWriter().write(jsonResponse.toString());
+            serviceProveedor.Delete(Long.parseLong(ruc));
+        }
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
+        // Leer el cuerpo de la solicitud
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = req.getReader();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+        
+        // Convertir JSON a objeto Java
+        String jsonData = sb.toString();
+        Gson gson = new Gson();
+        JsonObject jsonObject = gson.fromJson(jsonData, JsonObject.class);
+        
+        
+        //generamos un JSON para la respuesta
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        JsonObject jsonResponse = new JsonObject();
+        
+        //Creamos un Objeto Servicio
+        WebService serviceProveedor = new ServiceProveedor();
+        
+        // Dterminamos si el prooveedor con determinadoruc ya esta registrado para actualizar
+        String ruc = jsonObject.get("ruc").getAsString();
+        boolean ExistProv = new ServiceProveedor().FindById(ruc);
+        
+        if(!ExistProv){
+            jsonResponse.addProperty("status","Error");
+            jsonResponse.addProperty("message", "El proveedor con el ruc "+ruc+" ya existe");
+            resp.getWriter().write(jsonResponse.toString());
+            
+        }else{
+            String nombre = jsonObject.get("nombre").getAsString();
+            String pais = jsonObject.get("pais").getAsString();
+            String telefono = jsonObject.get("telefono").getAsString();
+            String correo = jsonObject.get("correo").getAsString();
+
+            Proveedor prov = new Proveedor(ruc, nombre, pais, telefono, correo);
+
+            System.err.println(prov);
+
+            jsonResponse.addProperty("status","OK");
+            jsonResponse.addProperty("message", "Datos recibidos correctamente");
+            jsonResponse.addProperty("ruc", ruc);
+            jsonResponse.addProperty("nombre", nombre);
+            jsonResponse.addProperty("pais", pais);
+            jsonResponse.addProperty("telefono", telefono);
+            jsonResponse.addProperty("correo", correo);
+            resp.getWriter().write(jsonResponse.toString());
+            serviceProveedor.Update(Long.parseLong(ruc), prov);   
+        }
     }
     
     
