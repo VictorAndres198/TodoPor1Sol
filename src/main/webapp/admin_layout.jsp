@@ -184,7 +184,7 @@
                     </div>
                 </div>
                   
-                <a class="button-nav-admin expanded ventasExpandidos hide" href="" style="text-decoration: none">
+                <a class="button-nav-admin expanded ventasExpandidos hide" href="/TodoPor1Sol/pages/admin/GestionarPedidos.jsp" style="text-decoration: none">
                     <div style="display: flex; justify-content: end;"></div>
                     <div>
                         <div class="SeccionName" >Gestion Pedidos</div>

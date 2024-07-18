@@ -24,6 +24,12 @@ public class Producto {
         this.ID_categoria = ID_categoria;
         this.ruc = ruc;
     }
+
+    public Producto(int ID_Prod, String Nombre) {
+        this.ID_Prod = ID_Prod;
+        this.Nombre = Nombre;
+    }
+    
     public int getID_Prod() {
         return ID_Prod;
     }
@@ -108,7 +114,12 @@ public class Producto {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-  
+    @Override
+    public String toString() {
+        return "Producto{" + "ID_Prod=" + ID_Prod + ", Nombre=" + Nombre + '}';
+    }
+
+    
 
 
 

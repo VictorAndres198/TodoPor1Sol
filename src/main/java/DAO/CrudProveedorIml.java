@@ -57,8 +57,8 @@ public class CrudProveedorIml implements CrudRepository<Proveedor>{
              PreparedStatement pst = conn.prepareStatement(action)){
 
             pst.setString(1, String.valueOf(id));
-            
-            try(ResultSet rs = pst.executeQuery()){
+
+            try(ResultSet rs = pst.executeQuery();){
                 if(rs.next()){
                     //Obtenemos al proveedor correspondiente
                     prov =  this.getProveedorFromDB(rs);       
