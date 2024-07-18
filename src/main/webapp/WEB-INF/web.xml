@@ -36,6 +36,10 @@
         <servlet-name>SvGuardarHoraEmpleado</servlet-name>
         <servlet-class>servlets.SvGuardarHoraEmpleado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SvObtenerPrecioProducto</servlet-name>
+        <servlet-class>servlets.SvObtenerPrecioProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SvHome</servlet-name>
         <url-pattern>/SvHome</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>SvGuardarHoraEmpleado</servlet-name>
         <url-pattern>/SvGuardarHoraEmpleado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvObtenerPrecioProducto</servlet-name>
+        <url-pattern>/SvObtenerPrecioProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

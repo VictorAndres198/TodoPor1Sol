@@ -34,4 +34,5 @@ public class ConectarBD implements Parametros {
     public Connection getConnection(){
         return con;
     }
+
 }
