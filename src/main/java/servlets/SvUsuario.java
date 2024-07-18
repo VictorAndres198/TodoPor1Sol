@@ -47,6 +47,8 @@ public class SvUsuario extends HttpServlet {
 
     public void LeerDatosUsuario(HttpServletRequest request, HttpServletResponse response) {
         try {
+            
+            request.setCharacterEncoding("UTF-8");
             usuario.setDniEmpleado(request.getParameter("dniEmpleado"));
             usuario.setNombre(request.getParameter("nombre"));
             usuario.setClave(request.getParameter("clave"));
@@ -63,6 +65,8 @@ public class SvUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("accion");
         
         // Logging para depurar

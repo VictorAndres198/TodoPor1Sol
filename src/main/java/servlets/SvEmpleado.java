@@ -210,7 +210,6 @@ public class SvEmpleado extends HttpServlet {
 
     // Estilo para la información de la empresa
     CellStyle infoStyle = workbook.createCellStyle();
-    infoStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
     infoStyle.setBorderBottom(BorderStyle.THIN);
     infoStyle.setBorderTop(BorderStyle.THIN);
     infoStyle.setBorderRight(BorderStyle.THIN);

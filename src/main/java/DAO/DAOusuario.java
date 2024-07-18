@@ -8,16 +8,17 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class DAOusuario extends ConectarBD implements CRUDusuario {
+    
+    Usuario usu; 
 
     @Override
     public ArrayList<Usuario> ListarUsuario() {
         ArrayList<Usuario> lista = new ArrayList<>();
         String SQL = "SELECT * FROM usuarios where Estado='A';";
         try {
-            ps = super.getConnection().prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
+            rs = smt.executeQuery(SQL);
             while (rs.next()) {
-                Usuario usu = new Usuario();
+                usu = new Usuario();
                 usu.setDniEmpleado(rs.getString("dniEmpleado"));
                 usu.setNombre(rs.getString("nombre"));
                 usu.setClave(rs.getString("clave"));
@@ -32,12 +33,11 @@ public class DAOusuario extends ConectarBD implements CRUDusuario {
 
     @Override
     public Usuario ObtenerUsuario(String dniEmpleado) {
-        Usuario usu = null;
         String SQL = "SELECT * FROM usuarios WHERE dniEmpleado =? and Estado='A'";
         try {
             ps = super.getConnection().prepareStatement(SQL);
             ps.setString(1, dniEmpleado);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             if (rs.next()) {
                 usu = new Usuario();
                 usu.setDniEmpleado(rs.getString("dniEmpleado"));
