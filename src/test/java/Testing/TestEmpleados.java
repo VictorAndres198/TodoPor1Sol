@@ -30,7 +30,7 @@ public class TestEmpleados {
         Empleado fetchedEmp = daoEmpleado.obtenerEmpleadoPorDNI("72782490");
         System.out.println("Empleado obtenido: " + fetchedEmp.getNombre());
 
-        // Prueba de listar empleados
+        // Prueba de listar a los empleados
         System.out.println("Lista de empleados:");
         daoEmpleado.ListarEmpleado().forEach(e -> System.out.println(e.getNombre()));
 
