@@ -8,6 +8,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Modelo.Usuario;
 import DAO.DAOusuario;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URL;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletOutputStream;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import org.apache.commons.compress.utils.IOUtils;
+import org.apache.poi.ss.usermodel.ClientAnchor.AnchorType;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+
 
 @WebServlet(name = "SvUsuario", urlPatterns = {"/SvUsuario"})
 public class SvUsuario extends HttpServlet {
@@ -17,6 +47,8 @@ public class SvUsuario extends HttpServlet {
 
     public void LeerDatosUsuario(HttpServletRequest request, HttpServletResponse response) {
         try {
+            
+            request.setCharacterEncoding("UTF-8");
             usuario.setDniEmpleado(request.getParameter("dniEmpleado"));
             usuario.setNombre(request.getParameter("nombre"));
             usuario.setClave(request.getParameter("clave"));
@@ -33,6 +65,8 @@ public class SvUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("accion");
         
         // Logging para depurar
@@ -60,12 +94,12 @@ public class SvUsuario extends HttpServlet {
                 dao.Delete(dni);
                 response.sendRedirect(listar);
                 break;
-
-            default:
-                response.sendRedirect(listar);
-                break;
+                
         }
     }
+    
+
+ 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -84,3 +118,5 @@ public class SvUsuario extends HttpServlet {
         return "Short description";
     }
 }
+
+

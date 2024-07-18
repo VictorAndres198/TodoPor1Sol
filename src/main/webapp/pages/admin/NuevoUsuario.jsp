@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@page import="Modelo.Usuario"%>
 <%@page import="DAO.DAOusuario"%>
 <%@page import="Modelo.Empleado"%>
@@ -6,10 +8,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <title>Gestionar Usuario</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+    <title>Gestionar Usuario</title>
     <link href="../../resources/css/GestionarUsuario.css" rel="stylesheet" type="text/css"/>
     <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
     <link href="../../resources/css/admin-display.css" rel="stylesheet" type="text/css"/>
+    <script src="node_modules/bootstrap/dist/ js/bootstrap.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -105,6 +110,7 @@
                     </tbody>
                 </table>
             </div>
+                    
     </div>
 
     <script src="../../loadImages.js" type="text/javascript"></script>

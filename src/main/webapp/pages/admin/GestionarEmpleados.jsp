@@ -89,6 +89,9 @@
             <div class="Frm-Btns-Report">
                 <button class="Btn_PDF" onclick="sendReportData()">Generar Reporte</button>
             </div>
+            <div class="Frm-Btns-Report">
+            <a href="/TodoPor1Sol/SvEmpleado?accion=exportarExcel" class="btn btn-primary">Exportar a Excel</a>
+        </div>
         </div>
         <!-- SCRIPT PARA CARGAR IMAGENES-->
         <script src="../../loadImages.js" type="text/javascript"></script>
