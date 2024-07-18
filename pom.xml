@@ -103,6 +103,12 @@
             <type>jar</type>
         </dependency>
         
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        
         <!-- Dependencias para Apache POI -->
         
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -118,6 +124,8 @@
             <artifactId>poi-ooxml</artifactId>
             <version>5.3.0</version>
         </dependency>
+        
+        
         
         
     </dependencies> 
