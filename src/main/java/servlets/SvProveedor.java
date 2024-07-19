@@ -29,6 +29,9 @@ public class SvProveedor extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         WebService serviceProveedor = new ServiceProveedor();
         List<Proveedor> ListProveedores = serviceProveedor.FindAll();
         
@@ -48,8 +51,6 @@ public class SvProveedor extends HttpServlet {
         
         //respondemos con el Json
         PrintWriter out = response.getWriter();
-        response.setContentType("application/json; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
         out.print(jsonProv);
         out.flush();
         

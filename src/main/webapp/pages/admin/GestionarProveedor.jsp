@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Registro de Proveedores</title>
     <link href="../../resources/css/GestionarProveedor.css" rel="stylesheet" type="text/css"/>
     <script src="../../resources/js/BuscadorProveedores.js" type="text/javascript"></script>

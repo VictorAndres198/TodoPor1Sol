@@ -59,7 +59,7 @@
                 <table class="table table-striped table-sm align-middle" id="Table-DetallePedidos">
                     <thead class="align-middle table-header">
                         <tr class="table-primary">
-                            <th>ID Pedido</th>
+                            <th>ID Detalle Pedido</th>
                             <th>ID Producto</th>
                             <th>Nombre </th>
                             <th>Cantidad</th>
