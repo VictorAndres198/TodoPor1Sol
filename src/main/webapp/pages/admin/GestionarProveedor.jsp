@@ -1,24 +1,20 @@
-<%-- 
-    Document   : GestionarProveedor
-    Created on : 19 may 2024, 23:37:34
-    Author     : Alejo
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registro de Proveedores</title>
-        <link href="../../resources/css/GestionarProveedor.css" rel="stylesheet" type="text/css"/>
-        <script src="../../resources/js/BuscadorProveedores.js" type="text/javascript"></script>
-        <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
-        <link href="../../resources/css/admin-display.css" rel="stylesheet" type="text/css"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Registro de Proveedores</title>
+    <link href="../../resources/css/GestionarProveedor.css" rel="stylesheet" type="text/css"/>
+    <script src="../../resources/js/BuscadorProveedores.js" type="text/javascript"></script>
+    <link href="../../resources/css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css/admin-display.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
 
-    </head>  
+</head>  
     <body class="parent-container">
         <!-- Para traer el layout(menu lateral) del admin -->
         <jsp:include page="../../admin_layout.jsp" />  

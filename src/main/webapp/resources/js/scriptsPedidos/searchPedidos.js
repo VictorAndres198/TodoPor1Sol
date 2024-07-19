@@ -11,10 +11,11 @@ async function FindAllPedidos() {
         console.error('Error:', error);
         return [];
     }
+    
 }
 
 
-async function buildTable() {
+async function buildTablePedidos() {
     data = await FindAllPedidos();
     const table = document.getElementById('Table-Pedidos').getElementsByTagName('tbody')[0];
     table.innerHTML = '';
@@ -38,52 +39,90 @@ async function buildTable() {
         cellPrecioFinal.textContent = pedido.PrecioFinal;
 
         const cellBtns = row.insertCell();
-        cellBtns.innerHTML = '<button type="button" class="btn btn-success" \n\
-                            data-bs-toggle="modal" data-bs-target="#ProveedorModal">\n\
-                            <i class="fa-solid fa-file-excel"></i></button>\n\
-                            <button type="button" class="btn btn-danger">\n\
-                            <i class="fa-solid fa-file-pdf"></i></button>';
+        cellBtns.innerHTML = '<button type="button" class="btn btn-dark">\n\
+                             <i class="fa-solid fa-circle-info"></i></button>\n\
+                             <button type="button" class="btn btn-danger">\n\
+                             <i class="fa-solid fa-file-pdf"></i></button>';
     });
 }
 
 // se espera a que el DOM este cargado(Loaded ) para construir recien la tabla
-document.addEventListener('DOMContentLoaded', buildTable);
+document.addEventListener('DOMContentLoaded', buildTablePedidos);
 
-(function SearchItems(){
+
+
+//Esta funcion va en el Boton Actualizar del Modal
+function FindDetallePedido(idPedido){
+    const url = 'http://localhost:8080/TodoPor1Sol/SvPedidos';
+    
+    // creamos el objeto data de los items a buscar
+    const data = {id:idPedido};
+ 
+    //Funcion realizar la peticion con los datos en JSON
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status==="Error"){
+            alert(data.message);
+        }else{
+            console.log(data);
+            buildTableDetallePedido(data);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+(function getInfoPedido(){
     // Añadir el event listener para los botones dentro de la tabla
     document.getElementById('Table-Pedidos').addEventListener('click', function(event) {
-        if (event.target.tagName === 'BUTTON' || event.target.tagName === 'I') {
-            // Encuentra el botón que se ha clickeado
-            let button = event.target;
-            if (button.tagName === 'I') {
-                button = button.parentElement;
+              
+    if (event.target.tagName === 'BUTTON' || event.target.tagName === 'I') {
+    // Encuentra el botón que se ha clickeado
+    let button = event.target;
+    if (button.tagName === 'I') {
+        button = button.parentElement;
+    }
+    const row = button.closest('tr');
+    const idPedido = row.cells[0].textContent;
+            
+            if (button.classList.contains('btn-dark')) {
+                FindDetallePedido(idPedido);
             }
-            
-            const row = button.closest('tr');
-            const PedidoId = row.cells[0].textContent;
-            
-            // Definimos la ruta del Servlet al que se hace la peticion
-            const url = 'http://localhost:8080/TodoPor1Sol/SvPedidos';
-            //definimos los datos a enviar
-            const data = {id:PedidoId};
-
-            //Funcion realizar la peticion con los datos en JSON
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json()) 
-            .then(data => {
-                if(data.status==="Error"){
-                    alert(data.message);
-                }else{
-                    console.log(data);
-                }
-            });  
-           
-        }
+        }  
     });
 })();
+
+function buildTableDetallePedido(dataItems) {
+    data = dataItems;
+    const table = document.getElementById('Table-DetallePedidos').getElementsByTagName('tbody')[0];
+    table.innerHTML = '';
+
+    data.forEach(item => {
+        const row = table.insertRow();
+
+        const cell_ID_Pedido = row.insertCell();
+        cell_ID_Pedido.textContent = item.id;
+        
+        const cell_ID_Producto = row.insertCell();
+        cell_ID_Producto.textContent = item.producto.ID_Prod;
+        
+        const cell_nombre_prod = row.insertCell();
+        cell_nombre_prod.textContent = item.producto.Nombre;
+        
+        const cell_cant = row.insertCell();
+        cell_cant.textContent = item.cantidad;
+        
+        const cellSubT = row.insertCell();
+        cellSubT.textContent = item.subtotal;
+
+    });
+}
+
+

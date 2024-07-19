@@ -1,6 +1,8 @@
 
 package servlets;
 
+import DAO.DAOempleado;
+import Modelo.Empleado;
 import Modelo.Proveedor;
 import Services.ServiceProveedor;
 import Services.WebService;
@@ -9,6 +11,7 @@ import com.google.gson.JsonObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,13 +32,23 @@ public class SvProveedor extends HttpServlet {
         WebService serviceProveedor = new ServiceProveedor();
         List<Proveedor> ListProveedores = serviceProveedor.FindAll();
         
+        for(Proveedor p: ListProveedores){
+            System.out.println(p);
+        }
+        
+        DAOempleado dao = new DAOempleado();
+        ArrayList<Empleado> Lista = dao.ListarEmpleado();
+        for (Empleado e:Lista) {
+            System.out.println(e);}
+        
+        
         //Lo serializamos a Json
         final Gson gson = new Gson();
         String jsonProv = gson.toJson(ListProveedores);
         
         //respondemos con el Json
         PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
+        response.setContentType("application/json; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         out.print(jsonProv);
         out.flush();
@@ -198,6 +211,12 @@ public class SvProveedor extends HttpServlet {
             serviceProveedor.Update(Long.parseLong(ruc), prov);   
         }
     }
+    
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+
     
     
 

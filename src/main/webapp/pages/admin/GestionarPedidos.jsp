@@ -8,8 +8,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestion de Pedidos</title>
         <link href="../../resources/css/GestionarPedidos.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +56,7 @@
             <div><h2>DETALLE PEDIDO</h2></div>
             
             <div class="Frm-Table table-responsive">
-                <table class="table table-striped table-sm align-middle">
+                <table class="table table-striped table-sm align-middle" id="Table-DetallePedidos">
                     <thead class="align-middle table-header">
                         <tr class="table-primary">
                             <th>ID Pedido</th>
@@ -70,74 +68,11 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                        </tr>
-                        <tr>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
-                            <th>data</th>
+                            <th>- - -</th>
+                            <th>- - -</th>
+                            <th>- - -</th>
+                            <th>- - -</th>
+                            <th>- - -</th>
                         </tr>
                     <br>
                     </tbody >

@@ -69,7 +69,7 @@ public class SvPedidos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     
-                // Leer el cuerpo de la solicitud
+        // Leer el cuerpo de la solicitud
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
         String line;
@@ -82,29 +82,20 @@ public class SvPedidos extends HttpServlet {
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(jsonData, JsonObject.class);
         
-        
-        //generamos un JSON para la respuesta
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        
-        ServicePedidos servItems = new ServicePedidos();
-       
       // Dterminamos si el prooveedor con determinadoruc ya esta registrado para actualizar
+        ServicePedidos servItems = new ServicePedidos();
         String id = jsonObject.get("id").getAsString();
-        List<Item> items = servItems.FindById(Integer.valueOf(id));
+        List<Item> items = servItems.FindById(Integer.parseInt(id));
         
         for(Item i:items){
             System.out.println(i);
         }
-
-
-        //Lo serializamos a Json
-        final Gson gson2 = new Gson();
-        String jsonItems = gson2.toJson(items);
-        //respondemos con el Json
-        PrintWriter out = response.getWriter();
+        
+        //generamos un JSON para la respuesta
+        String jsonItems = gson.toJson(items);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
         out.print(jsonItems);
         out.flush();
         

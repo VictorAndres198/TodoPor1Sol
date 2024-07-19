@@ -1,7 +1,12 @@
 
 async function FindAllProveedor() {
     try {
-        const response = await fetch('http://localhost:8080/TodoPor1Sol/SvProveedor');
+        const response = await fetch('http://localhost:8080/TodoPor1Sol/SvProveedor', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json; charset=UTF-8'
+                }
+            });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
