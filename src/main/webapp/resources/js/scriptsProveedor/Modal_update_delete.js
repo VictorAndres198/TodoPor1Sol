@@ -14,7 +14,6 @@
                 /* rellenamos cada uno de los campos de la ventana modal
                  con los valores de la fila seleccionada*/
                 document.getElementById('ruc').value = rucProveedor;
-                document.getElementById('ruc').readOnly=true;
                 document.getElementById('nombre').value = row.cells[1].textContent;
                 document.getElementById('pais').value = row.cells[2].textContent;
                 document.getElementById('telefono').value = row.cells[3].textContent;

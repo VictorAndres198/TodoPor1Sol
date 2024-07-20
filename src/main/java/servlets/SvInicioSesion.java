@@ -28,6 +28,8 @@ public class SvInicioSesion extends HttpServlet {
         // Añadir el usuario a la sesión
         HttpSession session = request.getSession();
         session.setAttribute("usuario", usuario);
+        session.setAttribute("idUsuario", dni);
+        session.setMaxInactiveInterval(30*60); //30 min de inactividad para invalidad esta session
         System.out.println(" ESTO DEVUELVE MI METODO GETDNI() " +
                  usuario.getDniEmpleado() + "/n Esto devuelve mi GETNOMBRE() "+ usuario.getNombre());
         response.sendRedirect("employee.jsp");

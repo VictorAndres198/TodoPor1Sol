@@ -1,10 +1,12 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="Conexion.ConectarBD"%>
+<jsp:useBean id="usuario" class="Modelo.Usuario" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
     <title>Realizar Venta</title>
     <style>
         body {
@@ -62,7 +64,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .add-btn {
+        .add-btn,.mail-btn,.report-btn {
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
@@ -70,9 +72,27 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        .add-btn:hover {
-            background-color: #0056b3;
+        
+        .mail-btn{
+            background-color: #4B4B4B;
         }
+
+        .report-btn{
+            background-color: #CC2121;
+        }
+        
+        .add-btn:hover {
+            background-color: #aed0f5;
+        }
+        
+        .mail-btn:hover {
+            background-color: #989898;
+        }
+
+        .report-btn:hover {
+            background-color: #F98D8D;
+        }
+
         .total {
             text-align: right;
         }
@@ -86,6 +106,10 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        
+        .searchBtn{
+            padding: 0.15em 0.6em;
+        }
     </style>
 </head>
 <body>
@@ -98,23 +122,31 @@
             <p>003-0000001</p>
         </div>
         <div class="details">
-            <label for="nombre">Señor:</label>
-            <input type="text" id="nombre" name="nombre"><br>
-            <label for="direccion">Dirección:</label>
-            <input type="text" id="direccion" name="direccion"><br>
-            <label for="dni">D.I.:</label>
-            <input type="text" id="dni" name="dni"><br>
-            <label for="fecha">Fecha:</label>
-            <input type="text" id="fecha" name="fecha"><br>
+            <!--BUSCAR CLIENTE-->
+            <input type="text" placeholder="DNI del cliente..." id="dniCliente">
+            <button type="button" class="searchBtn" onclick="searchClient()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <br>
+            <label for="nombres">Nombres</label>
+            <input type="text" id="nombres" name="nombres" readonly="true"><br>
+            
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos" readonly="true"><br>
+            
+            <label for="telefono">Telefono</label>
+            <input type="text" id="telefono" name="telefono" readonly="true"><br>
+            
+            <label for="correo">Correo</label>
+            <input type="text" id="correo" name="correo" readonly="true"><br>
         </div>
         <table id="tablaVenta">
             <thead>
                 <tr>
                     <th>CANT.</th>
-                    <th>DESCRIPCIÓN / BUSCAR</th>
+                    <th>CATEGORIA</th>
+                    <th>PRODUCTO</th>
+                    <th>DESCRIPCIÓN</th>
                     <th>P.U.</th>
-                    <th>TOTAL</th>
-                    <th>ID / Precio</th> <!-- Nuevo encabezado para mostrar ID y Precio -->
+                    <th>SUBTOTAL</th>
                 </tr>
             </thead>
             <tbody id="bodyTablaVenta">
@@ -150,9 +182,18 @@
             </tbody>
         </table>
         <button type="button" class="add-btn" onclick="agregarFila()">Agregar Producto</button>
+        <button type="button" class="mail-btn">Enviar Correo</button>
+        <button type="button" class="report-btn"><i class="fa-solid fa-file-pdf"></i></button>
         <div class="total">
-            <label for="total">TOTAL S/.:</label>
-            <input type="text" id="total" name="total" value="0.00">
+            
+            <label for="opGravada">OP GRAVADA S/.:</label>
+            <input type="text" id="opGravada" name="opGravada" value="0.00" readonly="true"><br>
+            
+            <label for="igv">IGV S/.:</label>
+            <input type="text" id="igv" name="igv" value="0.00" readonly="true"><br>
+            
+            <label for="total">IMPORTE TOTAL S/.:</label>
+            <input type="text" id="total" name="total" value="0.00" readonly="true">
         </div>
     </div>
 
@@ -175,21 +216,7 @@ function calcularTotal(numFila) {
     }
 }
 
-function actualizarTotalGeneral() {
-    try {
-        var table = document.getElementById('tablaVenta');
-        var rows = table.getElementsByTagName('tr');
-        var totalGeneral = 0;
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName('td');
-            var totalFila = parseFloat(cells[3].getElementsByTagName('span')[0].textContent.trim());
-            totalGeneral += totalFila;
-        }
-        document.getElementById('total').value = totalGeneral.toFixed(2);
-    } catch (e) {
-        console.error(e);
-    }
-}
+
 function seleccionarProducto(productoId, numFila) {
     try {
         var table = document.getElementById('tablaVenta');
@@ -310,11 +337,13 @@ function obtenerPrecioProducto(idProducto, numFila) {
                     var totalFila = parseFloat(cells[3].getElementsByTagName('span')[0].textContent.trim());
                     totalGeneral += totalFila;
                 }
-                document.getElementById('total').value = totalGeneral.toFixed(2);
+                document.getElementById('opGravada').value = totalGeneral.toFixed(2);
             } catch (e) {
                 console.error(e);
             }
         }
     </script>
+    <script src="../../resources/js/scriptsEmpleado/functionsBoleta.js" type="text/javascript"></script>
+    
 </body>
 </html>

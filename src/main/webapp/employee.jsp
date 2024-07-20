@@ -9,8 +9,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>employee</title>
         <link href="resources/css/employee.css" rel="stylesheet" type="text/css"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>        
-        <script src="resources/js/employee-display.js"></script> <!-- Enlace al archivo JS separado -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!--Enlaces JS disponibles--->
+        <script src="resources/js/employee-display.js"></script>
+        <script src="resources/js/scriptsEmpleado/functionsBoleta.js" type="text/javascript"></script>
         <!-- Agregar Chart.js para los gráficos -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -32,6 +34,9 @@
                         <c:if test="${not empty usuario}">
                             <label style="color: white; font-weight: 600; margin: 5px 0px;">
                                 Bienvenid@, ${usuario.nombre}
+                            </label>
+                            <label style="color: white; font-weight: 600; margin: 5px 0px;" id="idEmpleado">
+                                ID: ${idUsuario}                            
                             </label>
                         </c:if>
                         <label  style="color: #00FEC1;font-weight: 600;">

@@ -63,7 +63,7 @@
                 <!-- Campo DNI -->
                 <div class="mb-3 form-group">
                     <label for="ruc" class="form-label"><i class="fas fa-id-card"></i> RUC</label>
-                    <input class="form-control" type="text" id="ruc">
+                    <input class="form-control" type="text" id="ruc" readonly="true">
                 </div>
                 <!-- Campo Nombre -->
                 <div class="mb-3 form-group">
@@ -109,6 +109,6 @@
         
         <!-- SCRIPT PARA MANEJAR LOS DATOS ENVIADOS PARA GENERAR REPORTE -->
         <script src="../../resources/generateReports/reportProveedor.js" type="text/javascript"></script>
-        
+          
     </body>
 </html>
