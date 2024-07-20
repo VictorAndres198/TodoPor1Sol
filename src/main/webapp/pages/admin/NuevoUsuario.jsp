@@ -62,7 +62,7 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
+                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Usuario" required>
                     </div>
                     <div class="col-md-4">
                         <input type="password" name="clave" id="clave" class="form-control" placeholder="Clave" required>
@@ -80,7 +80,7 @@
                     <thead class="align-middle table-header">
                         <tr class="table-primary">
                             <th>DNI</th>
-                            <th>NOMBRE</th>
+                            <th>USUARIO</th>
                             <th>CLAVE</th>
                             <th>ACCIONES</th>
                         </tr>

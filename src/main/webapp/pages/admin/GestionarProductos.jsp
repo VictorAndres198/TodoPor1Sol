@@ -105,10 +105,10 @@
                     </tbody>
                 </table>
             </div>
-
+                         <!--
             <div class="Frm-Btns-Report">
                 <button class="Btn_PDF" onclick="sendReportData()">Generar Reporte</button>
-            </div>
+            </div>-->
         </div>
 
 

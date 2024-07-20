@@ -100,7 +100,7 @@ Farmacias farm;
         Usuario usuario = null;
 
         try {
-            String query = "SELECT * FROM usuarios WHERE DNI_empleado = ? AND nombre = ? AND clave = ?";
+            String query = "SELECT * FROM usuarios WHERE dniEmpleado = ? AND nombre = ? AND clave = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, dni);
             ps.setString(2, nombre);
@@ -114,7 +114,7 @@ Farmacias farm;
 
             if (rs.next()) {
                 usuario = new Usuario();
-                usuario.setDniEmpleado(rs.getString("DNI_empleado"));
+                usuario.setDniEmpleado(rs.getString("dniEmpleado"));
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setClave(rs.getString("clave"));
                 
