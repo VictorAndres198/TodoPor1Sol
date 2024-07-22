@@ -106,8 +106,8 @@
                 </table>
             </div>
               <div class="Frm-Btns-Report">
-    <a class="Btn_PDF" href="${pageContext.request.contextPath}/resources/generateReports/reporte.jsp">Generar Reporte</a>
-      <a class="Btn_PDF" href="${pageContext.request.contextPath}/resources/generateReports/reporteExcel.jsp">Exportar a Excel</a>
+    <a class="Btn_PDF" href="${pageContext.request.contextPath}/resources/generateReports/productos/reporte.jsp">Generar Reporte</a>
+      <a class="Btn_PDF" href="${pageContext.request.contextPath}/resources/generateReports/productos/reporteExcel.jsp">Exportar a Excel</a>
 </div>
 
                     
