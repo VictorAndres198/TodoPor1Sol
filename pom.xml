@@ -21,7 +21,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.30</version> <!-- Cambiar a la versión deseada -->
         </dependency>
-
+<dependency>
+    <groupId>org.codehaus.groovy</groupId>
+    <artifactId>groovy</artifactId>
+    <version>3.0.9</version> <!-- Usa la versión apropiada -->
+</dependency>
         <!-- Dependencia para JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
