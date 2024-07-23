@@ -105,10 +105,12 @@
                     </tbody>
                 </table>
             </div>
-            <!--
-            <div class="Frm-Btns-Report">
-                <button class="Btn_PDF" onclick="sendReportData()">Generar Reporte</button>
-            </div>-->
+              <div class="Frm-Btns-Report">
+    <a class="Btn_PDF" href="${pageContext.request.contextPath}/resources/generateReports/productos/reporte.jsp">Generar Reporte</a>
+      <a class="Btn_PDF" href="${pageContext.request.contextPath}/resources/generateReports/productos/reporteExcel.jsp">Exportar a Excel</a>
+</div>
+
+                    
         </div>
 
     </body>
