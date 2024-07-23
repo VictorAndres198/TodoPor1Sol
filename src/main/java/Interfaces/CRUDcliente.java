@@ -1,13 +1,13 @@
 
 package Interfaces;
 
-import Modelo.cliente;
+import Modelo.Cliente;
 import java.util.ArrayList;
 
 public interface CRUDcliente {
-    public ArrayList<cliente> ListarCli();
-    public cliente ObtenerCliente(int id);
-    public boolean Insert(cliente cli);
-    public boolean Update(cliente cli);
+    public ArrayList<Cliente> ListarCli();
+    public Cliente ObtenerCliente(int id);
+    public boolean Insert(Cliente cli);
+    public boolean Update(Cliente cli);
     public boolean Delete(int id);
 }

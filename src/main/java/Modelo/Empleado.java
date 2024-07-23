@@ -28,6 +28,12 @@ public class Empleado {
     //Constructor vacio
     public Empleado(){
     }
+
+    public Empleado(String dni) {
+        this.dni = dni;
+    }
+
+    
     public String getDni() {
         return dni;
     }

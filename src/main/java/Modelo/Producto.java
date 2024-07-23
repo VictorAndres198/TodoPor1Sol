@@ -24,11 +24,24 @@ public class Producto {
         this.ID_categoria = ID_categoria;
         this.ruc = ruc;
     }
+    
+    
 
     public Producto(int ID_Prod, String Nombre) {
         this.ID_Prod = ID_Prod;
         this.Nombre = Nombre;
     }
+
+    public Producto(String Descripcion, double precio) {
+        this.Descripcion = Descripcion;
+        this.precio = precio;
+    }
+
+    public Producto(int ID_Prod) {
+        this.ID_Prod = ID_Prod;
+    }
+    
+    
     
     public int getID_Prod() {
         return ID_Prod;
@@ -116,8 +129,10 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "ID_Prod=" + ID_Prod + ", Nombre=" + Nombre + '}';
+        return "Producto{" + "ID_Prod=" + ID_Prod + ", Nombre=" + Nombre + ", Descripcion=" + Descripcion + ", precio=" + precio + ", Stock=" + Stock + ", ID_categoria=" + ID_categoria + '}';
     }
+
+
 
     
 

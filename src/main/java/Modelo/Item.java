@@ -15,9 +15,13 @@ public class Item {
         this.cantidad = cantidad;
         this.subtotal = subtotal;
     }
-    
-    
 
+    public Item(Producto producto, int cantidad, BigDecimal subtotal) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.subtotal = subtotal;
+    }
+    
     public int getId() {
         return id;
     }
@@ -52,7 +56,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + ", subtotal=" + subtotal + '}';
+        return "Item{" + "id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + ", subtotal=" + subtotal + "}\n";
     }
     
     

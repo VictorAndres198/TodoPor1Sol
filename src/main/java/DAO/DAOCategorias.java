@@ -3,6 +3,7 @@ package DAO;
 
 import Conexion.ConectarBD;
 import Interfaces.CrudRepository;
+import Modelo.Categoria;
 import Modelo.Pedido;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,18 +12,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOPedidos implements CrudRepository<Pedido>{
+public class DAOCategorias{
     
     //Metodo para instanciar la cnx a la BD en cada ejecucion de los metodos crud
     private ConectarBD getCnx(){
         return new ConectarBD();
     }
 
-    @Override
-    public List<Pedido> FindAll() {
-                List<Pedido> pedidos = new ArrayList<>();
+    public List<Categoria> FindAll() {
+                List<Categoria> categorias = new ArrayList<>();
         //Query a ejecutar
-        String query = "SELECT * FROM bdbotica.pedidos;";
+        String query = "SELECT * FROM bdbotica.categorias;";
        
         try( Connection conn = getCnx().getConnection();
              Statement st = conn.createStatement()){
@@ -32,41 +32,20 @@ public class DAOPedidos implements CrudRepository<Pedido>{
             try(ResultSet rs = st.getResultSet()){
                 while(rs.next()){
                     //Obtenemos los proveedores y los agregamos a la lista
-                    pedidos.add(this.getPedidoFromDB(rs));
+                    categorias.add(this.getCategoriaFromDB(rs));
                 }
             }
         } catch (Exception e) {
             return null;
         }
-        return pedidos;
+        return categorias;
     }
-
-    @Override
-    public Pedido FindById(long id) {
-        return null;
-    }
-
-    @Override
-    public void Insert(Pedido element) {
-    }
-
-    @Override
-    public void Delete(long id) {
-    }
-
-    @Override
-    public void Update(long id, Pedido element) {
-    }
-    
     
     //Metodo para crear un proveedor segun los resultados obtenidos de la consulta
-    private Pedido getPedidoFromDB(ResultSet rs) throws SQLException{
-        return new Pedido(
-            rs.getInt("ID_Pedido"),
-            rs.getTime("Fecha_Hora").toLocalTime().atDate(java.time.LocalDate.of(1970, 1, 1)),
-            rs.getBigDecimal("PrecioTotal"), 
-            rs.getBigDecimal("IGV"), 
-            rs.getBigDecimal("Precio_Final"));  
+    private Categoria getCategoriaFromDB(ResultSet rs) throws SQLException{
+        return new Categoria(
+            rs.getInt("ID_categoria"),
+            rs.getString("Nombre"));  
     }
     
 }

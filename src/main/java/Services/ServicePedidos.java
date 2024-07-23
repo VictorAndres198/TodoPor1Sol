@@ -27,6 +27,18 @@ public class ServicePedidos{
     public List<Item> FindById(long id) {
         return DAOItem.FindById(id);
     }
+    
+    //al insertar el pedido retornamos el id del pedido insertado para usarlo
+    //en el insert item e insert comprobante
+    public long InsertPedido(Pedido ped){
+        return DAOPedido.Insert(ped);
+    }
+    
+    public void InsertItem(Item item,long idPedido){
+        DAOItem.Insert(item, idPedido);
+    }
+    
+    
 
     
 }

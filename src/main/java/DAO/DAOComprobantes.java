@@ -2,27 +2,27 @@
 package DAO;
 
 import Conexion.ConectarBD;
-import Interfaces.CrudRepository;
+import Modelo.Comprobante;
 import Modelo.Pedido;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
 
-public class DAOPedidos implements CrudRepository<Pedido>{
+
+public class DAOComprobantes {
     
     //Metodo para instanciar la cnx a la BD en cada ejecucion de los metodos crud
     private ConectarBD getCnx(){
         return new ConectarBD();
     }
-
-    @Override
-    public List<Pedido> FindAll() {
-                List<Pedido> pedidos = new ArrayList<>();
+    
+    public String FindLastComprobante() {
+        String idLastComprobante="";
         //Query a ejecutar
-        String query = "SELECT * FROM bdbotica.pedidos;";
+        String query = "SELECT ID FROM comprobantes ORDER BY Fecha_Hora DESC LIMIT 1;";
        
         try( Connection conn = getCnx().getConnection();
              Statement st = conn.createStatement()){
@@ -30,43 +30,43 @@ public class DAOPedidos implements CrudRepository<Pedido>{
             //Ejecuta la busqueda
             st.execute(query);
             try(ResultSet rs = st.getResultSet()){
-                while(rs.next()){
+                if(rs.next()){
                     //Obtenemos los proveedores y los agregamos a la lista
-                    pedidos.add(this.getPedidoFromDB(rs));
+                    return rs.getString("ID");
                 }
             }
         } catch (Exception e) {
             return null;
         }
-        return pedidos;
+        return idLastComprobante;
+    }
+   
+    //Este metodo puede usarse para insertar tanto comprobantes boletas como facturas
+    public void Insert(Comprobante comp) {
+        //Query a ejecutar
+        String action = "INSERT INTO comprobantes(ID,Fecha_Hora,ID_pedido,ID_cliente,"
+                        + " DNI_empleado,ID_tipoComprobante)" 
+                        +" VALUES (?,?,?,?,?,?);";
+        
+        try( Connection conn = getCnx().getConnection();
+             PreparedStatement pst = conn.prepareStatement(action)){
+            
+            setComprobanteToDB(pst, comp);
+            pst.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public Pedido FindById(long id) {
-        return null;
-    }
-
-    @Override
-    public void Insert(Pedido element) {
-    }
-
-    @Override
-    public void Delete(long id) {
-    }
-
-    @Override
-    public void Update(long id, Pedido element) {
+    private void setComprobanteToDB(PreparedStatement pst,Comprobante comp) throws SQLException{
+        pst.setString(1, comp.getId());
+        pst.setTimestamp(2, Timestamp.valueOf(comp.getFechaHora()));
+        pst.setInt(3, comp.getPedido().getId());
+        pst.setString(4, comp.getCliente().getId());
+        pst.setString(5, comp.getEmpleado().getDni());
+        pst.setInt(6, comp.getTipoComprobante());
     }
     
-    
-    //Metodo para crear un proveedor segun los resultados obtenidos de la consulta
-    private Pedido getPedidoFromDB(ResultSet rs) throws SQLException{
-        return new Pedido(
-            rs.getInt("ID_Pedido"),
-            rs.getTime("Fecha_Hora").toLocalTime().atDate(java.time.LocalDate.of(1970, 1, 1)),
-            rs.getBigDecimal("PrecioTotal"), 
-            rs.getBigDecimal("IGV"), 
-            rs.getBigDecimal("Precio_Final"));  
-    }
     
 }

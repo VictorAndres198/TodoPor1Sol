@@ -57,6 +57,7 @@
         .input-cant {
             width: 60px;
             text-align: center;
+            padding: 0.2rem 0 0.2rem 0;
         }
         .search-bar {
             width: calc(100% - 10px);
@@ -119,7 +120,7 @@
             <p>La botica más cerca de ti</p>
             <p>R.U.C. 10097777666</p>
             <p>BOLETA DE VENTA</p>
-            <p>003-0000001</p>
+            <p id="numBoleta">003-0000001</p>
         </div>
         <div class="details">
             <!--BUSCAR CLIENTE-->
@@ -147,43 +148,34 @@
                     <th>DESCRIPCIÓN</th>
                     <th>P.U.</th>
                     <th>SUBTOTAL</th>
+                    <th>DEL</th>
                 </tr>
             </thead>
             <tbody id="bodyTablaVenta">
                 <!-- Fila inicial por defecto -->
                 <tr>
-                    <td><input type="number" class="input-cant" id="cantidad1" value="1" min="0" oninput="calcularTotal(1)"></td>
+                    <td><input type="number" class="input-cant" value="1" min="1"></td>
                     <td>
-                        <select class="search-bar form-control" onchange="seleccionarProducto(this.value, 1)">
-                            <option value="">Seleccionar producto...</option>
-                            <!-- Llenado dinámico del combobox con nombres de productos -->
-                            <% 
-                                try {
-                                    ConectarBD cn = new ConectarBD();
-                                    String sql = "SELECT prod.ID_Prod AS ID, prod.Nombre AS producto FROM Productos prod WHERE Stock >= 0";
-                                    cn.smt = cn.con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                                    cn.rs = cn.smt.executeQuery(sql);
-
-                                    while (cn.rs.next()) {
-                            %>
-                            <option value="<%= cn.rs.getString("producto") %>"><%= cn.rs.getString("producto") %></option>
-                            <% 
-                                    }
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                            %>
+                        <select class="search-bar form-control select-category" data-target-cell="product-category">
+                            <option value="0">---</option>
                         </select>
                     </td>
-                    <td><input type="text" id="precio1" name="precio" value="0.00" class="input-precio" oninput="calcularTotal(1)"></td>
-                    <td><span id="total1">0.00</span></td>
-                    <td><label id="infoProducto1"></label></td> <!-- Label para mostrar ID y Precio -->
+                    <td>
+                        <select class="search-bar form-control select-product" data-target-cell="product-name">
+                            <option value="0">---</option>
+                        </select>
+                    </td>
+                    <td class="product-description">---</td>
+                    <td class="product-price">0</td>
+                    <td class="product-subtotal">0</td>
                 </tr>
+                
             </tbody>
         </table>
-        <button type="button" class="add-btn" onclick="agregarFila()">Agregar Producto</button>
-        <button type="button" class="mail-btn">Enviar Correo</button>
+        <button type="button" class="add-btn" onclick=" buildRow()">Agregar Producto</button>
+        <button type="button" class="add-btn" onclick="saveBoleta()" >Guardar</button>
         <button type="button" class="report-btn"><i class="fa-solid fa-file-pdf"></i></button>
+        <button type="button" class="mail-btn">Enviar Correo</button>
         <div class="total">
             
             <label for="opGravada">OP GRAVADA S/.:</label>
@@ -198,152 +190,297 @@
     </div>
 
     <script>
-        var numFilas = 1;
 
-
-
-function calcularTotal(numFila) {
-    try {
-        var cantidad = parseFloat(document.getElementById('cantidad' + numFila).value.trim());
-        var precioUnitario = parseFloat(document.getElementById('precio' + numFila).value.trim());
-        var total = cantidad * precioUnitario;
-        document.getElementById('total' + numFila).textContent = total.toFixed(2);
-
-        // Actualizar el total general
-        actualizarTotalGeneral();
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-
-function seleccionarProducto(productoId, numFila) {
-    try {
-        var table = document.getElementById('tablaVenta');
-        var rows = table.getElementsByTagName('tr');
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName('td');
-            if (cells[1].getElementsByTagName('select')[0].value.trim() === productoId) {
-                var precio = parseFloat(cells[2].getElementsByTagName('input')[0].value.trim());
-                document.getElementById('precio' + numFila).value = precio.toFixed(2);
-                calcularTotal(numFila);
-
-                // Obtener el ID y el Precio del producto seleccionado
-                obtenerPrecioProducto(productoId, numFila);
-                break;
-            }
-        }
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-
-function obtenerPrecioProducto(idProducto, numFila) {
-    var xhr = new XMLHttpRequest();
-    var url = '/TuAplicacion/SvObtenerPrecioProducto?id=' + encodeURIComponent(idProducto);
-
-    xhr.open('GET', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            if (xhr.status == 200) {
-                var response = JSON.parse(xhr.responseText);
-                var precioProducto = response.precio;
-                var labelInfoProducto = document.getElementById('infoProducto' + numFila);
-                if (precioProducto !== undefined) {
-                    labelInfoProducto.textContent = 'ID: ' + idProducto + ' - Precio: ' + precioProducto.toFixed(2);
-                    document.getElementById('precio' + numFila).value = precioProducto.toFixed(2);
-                    calcularTotal(numFila);
-                } else {
-                    labelInfoProducto.textContent = 'ID: ' + idProducto + ' - Precio: No encontrado';
+        (function loadBoletaNumber(){
+            const numBoleta = document.getElementById('numBoleta');
+            const baseUrl = 'http://localhost:8080/TodoPor1Sol/SvBoleta';
+            const url = `\${baseUrl}?numBoleta=0`;
+            
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            } else {
-                console.error('Error al obtener el precio del producto');
-            }
-        }
-    };
-
-    xhr.send();
-}
-
-
-
-
-        function agregarFila() {
-            numFilas++;
-            try {
-                var table = document.getElementById('tablaVenta').getElementsByTagName('tbody')[0];
-                var newRow = table.insertRow();
-                var cantidadCell = newRow.insertCell(0);
-                var descripcionCell = newRow.insertCell(1);
-                var precioCell = newRow.insertCell(2);
-                var totalCell = newRow.insertCell(3);
-                var infoProductoCell = newRow.insertCell(4); // Nueva celda para mostrar ID y Precio
-
-                cantidadCell.innerHTML = '<input type="number" class="input-cant" id="cantidad' + numFilas + '" value="1" oninput="calcularTotal(' + numFilas + ')">';
-                descripcionCell.innerHTML = `
-                    <select class="search-bar form-control" onchange="seleccionarProducto(this.value, ${numFilas})">
-                        <option value="">Seleccionar producto...</option>
-                        <% 
-                            try {
-                                ConectarBD cn = new ConectarBD();
-                                String sql = "SELECT prod.ID_Prod AS ID, prod.Nombre AS producto FROM Productos prod WHERE Stock >= 0";
-                                cn.smt = cn.con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                                cn.rs = cn.smt.executeQuery(sql);
-
-                                while (cn.rs.next()) {
-                        %>
-                        <option value="<%= cn.rs.getString("producto") %>"><%= cn.rs.getString("producto") %></option>
-                        <% 
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        %>
-                    </select>
-                `;
-                precioCell.innerHTML = '<input type="text" id="precio' + numFilas + '" name="precio" value="0.00" class="input-precio" oninput="calcularTotal(' + numFilas + ')">';
-                totalCell.innerHTML = '<span id="total' + numFilas + '">0.00</span>';
-                infoProductoCell.innerHTML = '<label id="infoProducto' + numFilas + '"></label>'; // Label para mostrar ID y Precio
-
-            } catch (e) {
-                console.error(e);
-            }
-        }
-
-        function calcularTotal(numFila) {
-            try {
-                var cantidad = parseFloat(document.getElementById('cantidad' + numFila).value.trim());
-                var precioUnitario = parseFloat(document.getElementById('precio' + numFila).value.trim());
-                var total = cantidad * precioUnitario;
-                document.getElementById('total' + numFila).textContent = total.toFixed(2);
-
-                // Actualizar el total general
-                actualizarTotalGeneral();
-            } catch (e) {
-                console.error(e);
-            }
-        }
-
-        function actualizarTotalGeneral() {
-            try {
-                var table = document.getElementById('tablaVenta');
-                var rows = table.getElementsByTagName('tr');
-                var totalGeneral = 0;
-                for (var i = 1; i < rows.length; i++) {
-                    var cells = rows[i].getElementsByTagName('td');
-                    var totalFila = parseFloat(cells[3].getElementsByTagName('span')[0].textContent.trim());
-                    totalGeneral += totalFila;
+            })
+            .then(response => response.json())
+            .then(data =>{
+                console.log(data);
+                numBoleta.innerText=data;
+            })
+            .catch(error => console.error('Error:', error));
+            
+        })();
+        
+        (function searchCategories(){
+            const table = document.getElementById('tablaVenta').getElementsByTagName('tbody')[0];
+            const selectElement = table.querySelector('.select-category');
+            const url = 'http://localhost:8080/TodoPor1Sol/SvBoleta';
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-                document.getElementById('opGravada').value = totalGeneral.toFixed(2);
-            } catch (e) {
-                console.error(e);
-            }
+            })
+            .then(response => response.json())
+            .then(data =>{
+                data.forEach(c=>{
+                    const option = document.createElement('option');
+                    option.value = c.ID_categoria;
+                    option.textContent = c.Nombre;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        })();
+        
+        
+        function fillCategories(){
+            const table = document.getElementById('tablaVenta').getElementsByTagName('tbody')[0];
+            const listCategories = table.firstElementChild.querySelector('.select-category').outerHTML;
+            return listCategories;
         }
+
+        function buildRow(){
+            const table = document.getElementById('tablaVenta').getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+            
+            const cellCant = row.insertCell();
+            cellCant.innerHTML = '<input type="number" class="input-cant" value="1" min="1">';
+            
+            const cellCantegory = row.insertCell();
+            cellCantegory.innerHTML = fillCategories();
+            
+            const cellProduct = row.insertCell();
+            cellProduct.innerHTML = '<select class="search-bar form-control select-product" \n\
+                                        data-target-cell="product-name">\n\
+                                        <option value="0">---</option></select>';
+        
+            const cellDescription = row.insertCell();
+            cellDescription.classList.add('product-description');
+            cellDescription.textContent = '---';
+        
+            const cellPrice = row.insertCell();
+            cellPrice.classList.add('product-price');
+            cellPrice.textContent = '0';
+        
+            const cellSubtotal = row.insertCell();
+            cellSubtotal.classList.add('product-subtotal');
+            cellSubtotal.textContent = '0';
+            
+            const cellCancel = row.insertCell();
+            cellCancel.innerHTML = '<button type="button" class="remove-product"><i class="fa-solid fa-circle-xmark"></i></button>';
+      
+        }
+
+        
+        (function showProducts(){
+            const table = document.getElementById('tablaVenta');
+            table.addEventListener('change', (event)=> {
+                const target = event.target;
+                const row = target.closest('tr');
+                if (target.tagName === 'SELECT') {
+                    const selectedValue = target.value;
+                    const selectedCell = target.getAttribute('data-target-cell');
+                    
+                    if(selectedCell==='product-category'){
+                        const updateCell = row.querySelector('.select-product');
+                        searchProducts(selectedValue,updateCell);
+                    }else{
+                        searchProductInfo(selectedValue,row);
+                        //calcSubtotal(row);
+                     
+                    }
+                }else{
+                    calcSubtotal(row);
+                }                
+                
+            });
+        })();
+        
+        // Función para eliminar una fila en el evento click
+        (function removeRow(){
+            const table = document.getElementById('tablaVenta');
+            table.addEventListener('click', function(event){
+                if (event.target.tagName === 'BUTTON' || event.target.tagName === 'I') {
+                    // Encuentra el botón que se ha clickeado
+                    let button = event.target;
+                    if (button.tagName === 'I') {
+                        button = button.parentElement;
+                    }
+                    const row = button.closest('tr');
+                    row.parentNode.removeChild(row);
+                    calcTotal();
+            
+                }   
+            });
+        })();
+        
+       
+        function searchProducts(idCategoria,cell){
+            const baseUrl = 'http://localhost:8080/TodoPor1Sol/SvBoleta';
+            const url = `\${baseUrl}?categoria=\${encodeURIComponent(idCategoria)}`;
+            cell.innerHTML = '';
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data =>{
+                
+                const defaultOpt = document.createElement('option');
+                defaultOpt.value = '0';
+                defaultOpt.textContent = '---';
+                cell.appendChild(defaultOpt);
+                
+                data.forEach(p=>{
+                    const option = document.createElement('option');
+                    option.value = p.ID_Prod;
+                    option.textContent = p.Nombre;
+                    cell.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        function searchProductInfo(idProducto,row){
+            const description = row.querySelector('.product-description');
+            const price = row.querySelector('.product-price');
+            const baseUrl = 'http://localhost:8080/TodoPor1Sol/SvBoleta';
+            const url = `\${baseUrl}?producto=\${encodeURIComponent(idProducto)}`;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data =>{
+                description.textContent = data.Descripcion;
+                price.textContent = data.precio;
+                calcSubtotal(row);
+                
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        function calcSubtotal(row){
+            const price = parseFloat(row.querySelector('.product-price').innerText);
+            const cant = parseFloat(row.querySelector('.input-cant').value);
+            const subtotal = (price * cant).toFixed(2);
+            row.querySelector('.product-subtotal').innerText = subtotal;
+            calcTotal();
+            
+        }
+        
+        function calcTotal(){
+            const table = document.getElementById('tablaVenta').getElementsByTagName('tbody')[0];
+            const rowCount = table.rows.length;
+            let total=0;
+            for (var i = 0; i < rowCount; i++) {
+                const subtotal = parseFloat(table.rows[i].querySelector('.product-subtotal').innerText);
+                total +=subtotal;
+            }
+            document.getElementById('total').value=total.toFixed(2);
+            document.getElementById('igv').value=(0.18*total).toFixed(2);
+            document.getElementById('opGravada').value=(0.82*total).toFixed(2);
+            
+        }
+        
+        function saveBoleta(){
+            //hay que terminar de implmenetar
+            console.log("Este boton guarda la boleta");
+
+            // Definimos la ruta del Servlet al que se hace la peticion
+            const url = 'http://localhost:8080/TodoPor1Sol/SvBoleta';
+            
+            //capturmos los datos del Frm
+            
+            //OBTENEMOS LOS ITEMS DEL PEDIDO
+            const itemsValue = getTableItems();
+            
+            const opGravada = document.getElementById('opGravada').value;
+            const igvValue = document.getElementById('igv').value;
+            const TotalValue = document.getElementById('total').value;
+
+            //OBTENEMOS EL PEDIDO COMPLETO
+            const pedidoValue= {
+                precioTotal:opGravada,
+                igv:igvValue,
+                precioFinal:TotalValue,
+                items:itemsValue
+            };
+            
+            //OBTENEMOS LA BOLETA COMPLETA
+            const idCliente = document.getElementById('dniCliente').value;
+            const nombresCliente = `\${document.getElementById('nombres').value} \${document.getElementById('apellidos').value}`;
+            const clienteObj = {
+                id: idCliente,
+                nombres: nombresCliente
+            };
+        
+            const idEmpleado = document.getElementById('idEmpleado').innerText.split(': ')[1];
+
+            const boleta = {
+                cliente: clienteObj,
+                empleado: idEmpleado,
+                pedido: pedidoValue,
+                tipoComprobante:1 // 1 es para BOLETA
+            };
+            
+            console.log(boleta);
+            //Funcion realizar la peticion con los datos en JSON
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(boleta)
+            })
+            .then(response => response.json()) 
+            .then(data => {
+                if(data.status==="Error"){
+                    alert(data.message);
+                }else{
+                    console.log(data);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        
+        function getTableItems(){
+            const table = document.getElementById('tablaVenta').getElementsByTagName('tbody')[0];
+            const rowCount = table.rows.length;
+            let items=[];
+            for (var i = 0; i < rowCount; i++) {
+                const cantProd = table.rows[i].querySelector('.input-cant').value;
+                const prodSelect = table.rows[i].querySelector('.select-product');
+                const prodId = prodSelect.value;
+                const prodName = prodSelect.options[prodSelect.selectedIndex].text;
+                const descrip = table.rows[i].querySelector('.product-description').innerText;
+                const precioUnit = table.rows[i].querySelector('.product-price').innerText;
+                const subtotalProd = table.rows[i].querySelector('.product-subtotal').textContent;
+                
+                                // Crear un objeto para cada fila
+                const item = {
+                    cantidad: cantProd,
+                    id: prodId,
+                    name: prodName,
+                    descripcion: descrip,
+                    precioUnitario: precioUnit,
+                    subtotal: subtotalProd
+                };
+
+                // Agregar el objeto al arreglo items
+                items.push(item);
+            }
+            return items;
+        }
+        
     </script>
-    <script src="../../resources/js/scriptsEmpleado/functionsBoleta.js" type="text/javascript"></script>
+
     
 </body>
 </html>

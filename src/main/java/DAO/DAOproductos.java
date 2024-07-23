@@ -7,10 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class DAOproductos {
@@ -92,38 +94,89 @@ public class DAOproductos {
         }   
     }  
     //AUN NO FUNCIONA ESTO
-     public Producto obtenerProductos(int ID) {
-    Producto producto = null;
-    ConectarBD conectarBD = new ConectarBD();
-    Connection con = conectarBD.getConnection();
-    
-    try {
-        String query = "SELECT * FROM productos WHERE ID_Prod = ?";
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setInt(1, ID); //DEFAULT PARA QUE FUNCIONE TODO 
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            producto = new Producto();
-            producto.setID_Prod(rs.getInt("ID_Prod")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setNombre(rs.getString("Nombre")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setDescripcion(rs.getString("descripcion")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setFechaVencimiento(rs.getDate("FechaVencimiento")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setStock(rs.getInt("Stock")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setPrecio(rs.getDouble("Precio")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setRuc(rs.getString("RUC_Prov")); // Asegúrate que el nombre de la columna sea correcto
-            producto.setID_categoria(rs.getInt("ID_categoria")); // Asegúrate que el nombre de la columna sea correcto
+    public Producto obtenerProductos(int ID) {
+        Producto producto = null;
+        ConectarBD conectarBD = new ConectarBD();
+        Connection con = conectarBD.getConnection();
+
+        try {
+            String query = "SELECT * FROM productos WHERE ID_Prod = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, ID); //DEFAULT PARA QUE FUNCIONE TODO 
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                producto = new Producto();
+                producto.setID_Prod(rs.getInt("ID_Prod")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setNombre(rs.getString("Nombre")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setDescripcion(rs.getString("descripcion")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setFechaVencimiento(rs.getDate("FechaVencimiento")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setStock(rs.getInt("Stock")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setPrecio(rs.getDouble("Precio")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setRuc(rs.getString("RUC_Prov")); // Asegúrate que el nombre de la columna sea correcto
+                producto.setID_categoria(rs.getInt("ID_categoria")); // Asegúrate que el nombre de la columna sea correcto
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Aquí podrías manejar la excepción de otra manera, dependiendo de tu aplicación
         }
-        rs.close();
-        ps.close();
-    } catch (SQLException e) {
-        e.printStackTrace(); // Aquí podrías manejar la excepción de otra manera, dependiendo de tu aplicación
+
+        return producto;
+    }
+    
+    
+    //Devueleve una lista de productos segun un id de categoria
+    public List<Producto> ListarProductosByCategoria(int id) {
+        List<Producto> productos = new ArrayList<>();
+        ConectarBD conectarBD = new ConectarBD();
+        String query = "SELECT ID_Prod,Nombre FROM productos WHERE ID_categoria = ?;";
+    
+        try (Connection con = conectarBD.getConnection();
+             PreparedStatement pst = con.prepareStatement(query)){
+            
+            pst.setInt(1, id);
+            
+            //Ejecuta la busqueda
+            try(ResultSet rs = pst.executeQuery()){
+                while(rs.next()){
+                    //Obtenemos los productos de una determianda categoria y los agregamos a la lista
+                    productos.add(this.getProductoFromDB(rs));
+                }
+            }
+            
+        } catch (Exception e) {
+            return null;
+        }
+        return productos;
+
+    } 
+    //Devueleve una lista de productos segun un id de categoria
+    public Producto obtenerProductoById(int id) {
+        Producto producto = new Producto();
+        ConectarBD conectarBD = new ConectarBD();
+        String query = "SELECT descripcion,Precio FROM productos WHERE ID_Prod = ?;";
+    
+        try (Connection con = conectarBD.getConnection();
+             PreparedStatement pst = con.prepareStatement(query)){
+            
+            pst.setInt(1, id);
+            
+            //Ejecuta la busqueda
+            try(ResultSet rs = pst.executeQuery()){
+                if(rs.next()){
+                    //Obtenemos la descripcion y precio de un producto con un determinado id
+                    producto=this.getProductoInfoFromDB(rs);
+                }
+            }
+            
+        } catch (Exception e) {
+            return null;
+        }
+        return producto;
+
     } 
     
-    return producto;
-} 
-    
       //FUNCIONA CON EL TESTEO
-    
 public String ActualizarProductos(Producto producto) {
     String sql = "UPDATE productos SET Nombre=?, Descripcion=?, FechaVencimiento=?, Precio=?, Stock=?, ID_categoria=?, RUC_Prov=? WHERE ID_Prod=?";
     
@@ -167,7 +220,19 @@ public String eliminar(Producto producto) {
     }
 }
 
+ 
+    //Metodo para crear un proveedor segun los resultados obtenidos de la consulta
+    private Producto getProductoFromDB(ResultSet rs) throws SQLException{
+        return new Producto(
+            rs.getInt("ID_Prod"),
+            rs.getString("Nombre"));  
+    }
     
+    private Producto getProductoInfoFromDB(ResultSet rs) throws SQLException{
+        return new Producto(
+            rs.getString("descripcion"),
+            rs.getDouble("Precio"));  
+    }
     
     
     

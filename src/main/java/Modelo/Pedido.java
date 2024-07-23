@@ -14,7 +14,7 @@ public class Pedido {
     private BigDecimal PrecioTotal;
     private BigDecimal IGV;
     private BigDecimal PrecioFinal;
-    private List<Item> Items = new ArrayList<>();
+    private List<Item> Items;
 
     public Pedido(int id, LocalDateTime fechaHora, BigDecimal PrecioTotal, BigDecimal IGV, BigDecimal PrecioFinal) {
         this.id = id;
@@ -24,6 +24,19 @@ public class Pedido {
         this.PrecioFinal = PrecioFinal;
     }
 
+    public Pedido(LocalDateTime fechaHora, BigDecimal PrecioTotal, BigDecimal IGV, BigDecimal PrecioFinal, List<Item> Items) {
+        this.fechaHora = fechaHora;
+        this.PrecioTotal = PrecioTotal;
+        this.IGV = IGV;
+        this.PrecioFinal = PrecioFinal;
+        this.Items = Items;
+    }
+
+    public Pedido(int id) {
+        this.id = id;
+    }
+    
+ 
     public int getId() {
         return id;
     }
@@ -72,6 +85,18 @@ public class Pedido {
         this.Items = Items;
     }
 
+    @Override
+    public String toString() {
+        return "Pedido{" + "id=" + id + ",\n"
+                + "fechaHora=" + fechaHora + ",\n"
+                + "PrecioTotal=" + PrecioTotal + ",\n"
+                + "IGV=" + IGV + ",\n"
+                + "PrecioFinal=" + PrecioFinal + ",\n"
+                + " Items=[\n"
+                + Items + "]}";
+    }
+
+    
 
     
 }
