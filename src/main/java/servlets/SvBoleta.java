@@ -188,11 +188,20 @@ public class SvBoleta extends HttpServlet {
         //CONSTRUYENDO EL CODIGO DE BOLETA DEL COMPROBANTE
         String lastIdComp = serviceBoleta.CalcIdComprobante();
         String Header = lastIdComp.split("-[0]*")[0];
+        char[] Body = lastIdComp.split("-")[1].toCharArray();
         
         String oldNumSec = lastIdComp.split("-[0]*")[1];
         int newNumSec = Integer.parseInt(oldNumSec)+1;
-        
-        char[] Body = lastIdComp.split("-")[1].toCharArray();
+       
+        if(oldNumSec.length()<String.valueOf(newNumSec).length()){
+            /*
+            si la longitud del numSecuencia antiguo es menor al numSecuencianuevo
+            entonces el numero aumentó en una cifra
+            por consiguiente la cadena de 0's disminuye en 1
+            para conservarse en 7 cifras*/
+            Body=lastIdComp.split("-0")[1].toCharArray(); //quitamos el 0 al inicio del body
+        }
+
         String idComprobante = Header+"-";
         for(char c:Body){
             if(c=='0'){

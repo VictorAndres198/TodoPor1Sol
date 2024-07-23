@@ -24,25 +24,35 @@ public class Test_Boleta {
         System.out.println(p);*/
         
         // ESTO PARA GENERAR EL COD DEL COMPROBANTE
-        String numBoleta = "003-0001309";
-        String ultBoleta = numBoleta.split("-[0]*")[1];
-        String ultBoleta2 = numBoleta.split("-[0]*")[0];
-        System.out.println("Ultimo digito: "+ultBoleta);
-        System.out.println("Ultimo digito: "+ultBoleta2);
-        int value = Integer.parseInt(ultBoleta)+1;
-        System.out.println("Nuevo digito: "+value);
+        String lastIdComp = "003-0000009";
+        String Header = lastIdComp.split("-[0]*")[0];
+        char[] Body = lastIdComp.split("-")[1].toCharArray();
+
+        String oldNumSec = lastIdComp.split("-[0]*")[1];
+        int newNumSec = Integer.parseInt(oldNumSec)+1;
+        if(oldNumSec.length()<String.valueOf(newNumSec).length()){
+            /*
+            si la longitud del numSecuencia antiguo es menor al nuevo
+            entonces el numero aumentó en una cifra
+            por consiguiente la cadena de 0's disminuye en 1
+            para conservarse en 7 cifras*/
+            Body=lastIdComp.split("-0")[1].toCharArray();
+            System.out.println(lastIdComp.split("-0")[1].toCharArray());
+        }
         
-        char[] BoletaBody = numBoleta.split("-")[1].toCharArray();
-        String newBody = "003-";
-        for(char c:BoletaBody){
+        
+        String idComprobante = Header+"-";
+        
+        for(char c:Body){
             if(c=='0'){
-               newBody+="0";
+               idComprobante+="0";
             }else{
-                newBody+=String.valueOf(value);
+                idComprobante+=String.valueOf(newNumSec);
                 break;
             }
         }
-        System.out.println("Resultado final: "+newBody);
+        
+        System.out.println("Resultado final: "+idComprobante);
         
         /*
         
