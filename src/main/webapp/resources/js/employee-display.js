@@ -21,7 +21,9 @@ $(document).ready(function() {
                     initializeChart();
                     loadSemanaActual();
                 } else if (page === 'pages/employee/historialdeventas.jsp') {
-                    initializeChartdashboard();
+                    initializeVentasChart();
+                    initializeCategoriasChart();
+                    initializeProductosChart();
                 }
             }
         });
@@ -78,11 +80,10 @@ function initializeChart() {
     }
 }
 
-    // Función para inicializar el gráfico usando Chart.js
-    function initializeChartdashboard() {
+    // Función para inicializar el gráfico de ventas mensuales usando Chart.js
+    function initializeVentasChart() {
         var ctx = document.getElementById('ventasChart').getContext('2d');
 
-        // Datos de ejemplo (reemplaza esto con tus datos reales)
         var data = {
             labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
             datasets: [{
@@ -113,13 +114,86 @@ function initializeChart() {
             }
         };
 
-        var myChart = new Chart(ctx, {
+        var ventasChart = new Chart(ctx, {
             type: 'line',
             data: data,
             options: options
         });
     }
 
+    // Función para inicializar el gráfico de ventas por producto usando Chart.js
+    function initializeProductosChart() {
+        var ctx = document.getElementById('productosChart').getContext('2d');
+
+        var data = {
+            labels: ['Paracetamol', 'Ibuprofeno', 'Proteína en polvo', 'Protector solar SPF 50', 'Pastillas para la tos'],
+            datasets: [{
+                label: 'Ventas por Producto',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                data: [30, 50, 70, 40, 55],
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: false,
+                        text: 'Productos'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Ventas'
+                    }
+                }
+            }
+        };
+
+        var productosChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    }
+
+    // Función para inicializar el gráfico de distribución de ventas por categoría usando Chart.js
+    function initializeCategoriasChart() {
+        var ctx = document.getElementById('categoriasChart').getContext('2d');
+
+        var data = {
+            labels: ['Medicamentos', 'Suplementos', 'Cuidado general'],
+            datasets: [{
+                label: 'Distribución de Ventas',
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                data: [60, 25, 15],
+            }]
+        };
+
+        var options = {
+            responsive: true
+        };
+
+        var categoriasChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: options
+        });
+    }
 
     // Página por defecto
     loadPage('pages/employee/register.jsp');

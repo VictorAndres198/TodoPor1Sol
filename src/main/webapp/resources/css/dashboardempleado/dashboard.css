@@ -1,0 +1,28 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 24 jul. 2024, 17:08:43
+    Author     : Victor
+*/
+
+#graficos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; /* Dos filas iguales */
+    gap: 10px; /* Espacio entre los elementos */
+    padding-top: 30px;
+}
+.ventasC {
+    grid-row: 1 / span 2; /* Ocupa ambas filas */
+    grid-column: 1 / 2; /* Primera columna */
+}
+.ventasT {
+    grid-row: 1 / 2; /* Primera fila */
+    grid-column: 2 / 3; /* Segunda columna */
+}
+.ventasP {
+    grid-row: 2 / 3; /* Segunda fila */
+    grid-column: 2 / 3; /* Segunda columna */
+}
