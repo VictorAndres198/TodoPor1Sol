@@ -9,13 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Historial de Ventas</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
-        <h2 class="pt-4">Historial de Ventas</h2>
-        <p class="lead mb-2">Inventario completo de todos los productos disponibles para la venta</p>
-        <div id="graficos">            
+        <div class="container">
+            <h2 class="pt-4">Historial de Ventas</h2>
+            <p class="lead mb-2">Historial de todas las ventas hechas por mes</p>
+            <div id="graficos">
+                <canvas id="ventasChart" width="400" height="200"></canvas>
+            </div>
         </div>
     </body>
 </html>

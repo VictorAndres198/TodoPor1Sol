@@ -108,30 +108,56 @@
         </div>
         
         <script>
+            //Parte del codigo que se encarga de eliminar los datos del local storage cada vez que pasa un día:
+            // Función para formatear la fecha como YYYY-MM-DD
+            function getFormattedDate(date) {
+                var year = date.getFullYear();
+                var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                var day = ('0' + date.getDate()).slice(-2);
+                return year + '-' + month + '-' + day;
+            }
+
+            // Obtener la fecha actual formateada
+            var today = new Date();
+            var formattedToday = getFormattedDate(today);
+
+            // Obtener la última fecha guardada en el localStorage
+            var lastSavedDate = localStorage.getItem('lastSavedDate');
+
+            // Si la última fecha guardada es diferente de la fecha actual, resetear los datos
+            if (lastSavedDate !== formattedToday) {
+                // Obtener todos los DNI de empleados guardados
+                for (var key in localStorage) {
+                    if (key.startsWith('horaE_') || key.startsWith('horaS_') || key.startsWith('guardadoSalida_')) {
+                        localStorage.removeItem(key);
+                    }
+                }
+                localStorage.setItem('lastSavedDate', formattedToday);
+            }
+
             var entradaRegistrada = false;
 
             // Función para obtener la hora actual y mostrarla en la tabla
             function registrarEntrada() {                
                 var dniUsuario = localStorage.getItem('Usuario');
-        
+
                 if (entradaRegistrada || !dniUsuario) {
                     $('#error-message2').fadeIn().delay(2000).fadeOut();
                 } else {
-                
-                // Obtener la hora actual
-                var nowE = new Date();
-                var formattedTime = ('0' + nowE.getHours()).slice(-2) + ':' + ('0' + nowE.getMinutes()).slice(-2) + ':' + ('0' + nowE.getSeconds()).slice(-2);
-                // Mostrar la hora actual en el campo correspondiente de la tabla
-                $('#empleado-entrada').text(formattedTime);
-                entradaRegistrada = true; 
-                // Guardar hora de entrada en localStorage específicamente para este usuario
-                localStorage.setItem('horaE_' + dniUsuario, formattedTime);
+                    // Obtener la hora actual
+                    var nowE = new Date();
+                    var formattedTime = ('0' + nowE.getHours()).slice(-2) + ':' + ('0' + nowE.getMinutes()).slice(-2) + ':' + ('0' + nowE.getSeconds()).slice(-2);
+                    // Mostrar la hora actual en el campo correspondiente de la tabla
+                    $('#empleado-entrada').text(formattedTime);
+                    entradaRegistrada = true; 
+                    // Guardar hora de entrada en localStorage específicamente para este usuario
+                    localStorage.setItem('horaE_' + dniUsuario, formattedTime);
                 }
             }
-            
+
             function registrarSalida() {
                 var dniUsuario = localStorage.getItem('Usuario');
-                
+
                 // Obtener la hora actual
                 var nowS = new Date();
                 var formattedTimeS = ('0' + nowS.getHours()).slice(-2) + ':' + ('0' + nowS.getMinutes()).slice(-2) + ':' + ('0' + nowS.getSeconds()).slice(-2);
@@ -141,14 +167,12 @@
                     $('#empleado-salida').text(formattedTimeS);
                     // Guardar hora de salida en localStorage específicamente para este usuario
                     localStorage.setItem('horaS_' + dniUsuario, formattedTimeS);
-                    
+
                     // Obtener otros datos necesarios para enviar al servidor
                     var fecha = $('#empleado-fecha').text(); // Obtener la fecha actual de la tabla
                     var hEntrada = $('#empleado-entrada').text(); // Obtener la hora de entrada registrada
                     var dniEmpleado = localStorage.getItem('Usuario'); // Obtener el DNI del empleado de localStorage
 
-                    
-            
                     // Hacer la solicitud AJAX para enviar los datos al servidor
                     $.ajax({
                         url: `${pageContext.request.contextPath}/SvGuardarHoraEmpleado`,
@@ -175,9 +199,6 @@
                             // Manejo de errores (mostrar mensaje al usuario, etc.)
                         }
                     });
-                    
-                    
-                    
                 } else {
                     if (!localStorage.getItem('guardadoSalida_'+dniUsuario)){                        
                         // Mostrar mensaje de error
@@ -187,7 +208,7 @@
                     }
                 }
             }
-            
+
             function loadEmployeeData() {            
                 var dniEmpleado = `${usuario.dniEmpleado}`;
                 if (dniEmpleado) {
@@ -200,15 +221,15 @@
                             console.log("Empleado data:", data);
                             $('#employee-display #empleado-nombre').text(data.nombre);
                             $('#employee-display #empleado-apellidos').text(data.apellidos);
-                            
+
                             // Obtener la fecha actual
                             var now = new Date();
                             var formattedDate = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
                             // Mostrar la fecha actual en el campo correspondiente
                             $('#employee-display #empleado-fecha').text(formattedDate);
-                            
+
                             localStorage.setItem('Usuario',(data.dni))
-                            
+
                             var horaEntrada = localStorage.getItem('horaE_' + data.dni);
                             if (horaEntrada) {
                                 $('#empleado-entrada').text(horaEntrada);
@@ -226,7 +247,7 @@
                     });
                 }
             }
-            
+
             // Función para obtener el lunes de la semana actual
             function getMonday(date) {
                 var day = date.getDay(),
@@ -260,11 +281,11 @@
                     var yyyy = day.getFullYear();
                     return yyyy + '/' + mm + '/' + dd;
                 });
-                
+
                 var lunes = formattedDays[0];
                 var viernes = formattedDays[4];
                 console.log(lunes, viernes);
-                
+
                 // Actualizar el contenido del elemento <h3> con id 'semana-actual'
                 var semanaActualText = "Semana del "+lunes+" hasta "+viernes;
                 console.log(semanaActualText);
@@ -273,11 +294,11 @@
                     $('#semana-actual').text(semanaActualText);
                 });
             }
-            
-            
+
             function toHome() {
                 window.location.href = '${pageContext.request.contextPath}/home.jsp';
             }
+
         </script>
     </body>
 </html>

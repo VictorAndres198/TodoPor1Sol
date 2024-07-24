@@ -20,6 +20,8 @@ $(document).ready(function() {
                     // Inicializar el gráfico después de cargar register.jsp
                     initializeChart();
                     loadSemanaActual();
+                } else if (page === 'pages/employee/historialdeventas.jsp') {
+                    initializeChartdashboard();
                 }
             }
         });
@@ -75,6 +77,49 @@ function initializeChart() {
         });
     }
 }
+
+    // Función para inicializar el gráfico usando Chart.js
+    function initializeChartdashboard() {
+        var ctx = document.getElementById('ventasChart').getContext('2d');
+
+        // Datos de ejemplo (reemplaza esto con tus datos reales)
+        var data = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+            datasets: [{
+                label: 'Ventas Mensuales',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                data: [65, 59, 80, 81, 56, 55],
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Meses'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Cantidad de Ventas'
+                    }
+                }
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    }
+
 
     // Página por defecto
     loadPage('pages/employee/register.jsp');

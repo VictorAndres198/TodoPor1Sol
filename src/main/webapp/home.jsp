@@ -30,8 +30,8 @@
     </head>
     <body>
         <div class="contenedor-login">
-            
-            <div class="header-login">
+                
+            <div class="header-login">            
                 <div class="header-login2">
                     <div class="header-logo">                        
                         <img style="object-fit: contain; width: 100%; height: 100%;" src="resources/img/home/Logo.png" alt=""/>
@@ -45,9 +45,10 @@
                     ADMINISTRADOR
                 </button>                
             </div>
+                
             <div class="login">
                 <div class="imagen">
-                    <img style="height: 400px; width: 400px;" src="resources/img/home/TodoPor1Sol.png" alt=""/>
+                    <img style="height: 450px; width: 450px;" src="resources/img/home/TodoPor1Sol.png" alt=""/>
                 </div>
                 
                 <div class="separador"></div>
@@ -102,10 +103,11 @@
                             
                 </div>
             </div>
+                     
                             
             <div class="footer-home">
             </div>
-              
+            </div>
           <div class="fondo-admin">    
               <div class="login-admin">
                   

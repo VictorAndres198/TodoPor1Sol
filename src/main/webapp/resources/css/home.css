@@ -9,6 +9,9 @@
     height: 100vh;
     background: white;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header-login{
@@ -50,13 +53,13 @@
 
 .separador{
     content: "";
-    height: 80%;
-    width: 20px;
+    height: 120%; /*Antes 80%*/
+    width: 30px; /*Antes 20px*/
     background: #009099;
 }
 
 .imagen{
-    /*background: red;*/
+    transform: scale(1.4);
 }
 
 .button{
@@ -83,6 +86,7 @@
     display: grid;
     justify-items: center;
     padding: 12px 0px;
+    transform: scale(1.2); 
 }
 
 .form-login{
@@ -121,7 +125,7 @@ input{
 .fondo-admin.show{    
     display: flex;
     opacity: 1; 
-    transform: scale(1);
+    transform: scale(1.4);
 }
 
 .login-admin{
